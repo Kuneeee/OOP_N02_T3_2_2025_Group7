@@ -22,7 +22,12 @@ Nhap
 ```
 
 ```
-Xuat
+Ban
 ```
++ hangHoaID
++ tenHangHoa
++ soLuongBan
++ giaBan
+
 ```
 Doanhthu
