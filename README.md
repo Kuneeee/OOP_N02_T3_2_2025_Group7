@@ -1,2 +1,2 @@
 # OOP_N02_T3_2_2025_Group7
-hello
+Nhóm làm việc 07
