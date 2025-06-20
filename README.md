@@ -19,9 +19,10 @@ Hanghoa
 ```
 
 Nhap
+```
 
-
+```
 Xuat
-
-
+```
+```
 Doanhthu
