@@ -20,6 +20,10 @@ Hanghoa
 
 Nhap
 ```
++ hanghoaID
++ soLuongNhap
++ giaNhap
++ ngayNhap
 
 ```
 Ban
