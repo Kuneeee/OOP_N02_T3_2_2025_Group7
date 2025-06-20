@@ -21,12 +21,13 @@ Hanghoa
 Nhap
 ```
 + hanghoaID
++ tenHangHoa
 + soLuongNhap
 + giaNhap
 + ngayNhap
 
 ```
-Ban
+XuatBan
 ```
 + hangHoaID
 + tenHangHoa
@@ -35,3 +36,8 @@ Ban
 
 ```
 Doanhthu
+```
++ tyXuatLoiNhuan
++ loiNhuan
++ baoCaoExcel
+```
