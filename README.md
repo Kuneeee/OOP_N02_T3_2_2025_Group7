@@ -5,3 +5,23 @@ Nhóm làm việc 07
  2. Nguyễn Gia Bảo (24100074) githubID: NgGiaBaoo
  3. Trần Quang Trường (24100073) githubID: tuonie21
 # Ứng dụng: Xây dựng ứng dụng quản lý tạp hóa
+
+## Phân tích đối tượng
+
+Hanghoa
+```
++ hanghoaID
++ tenHangHoa
++ soLuongHangHoa
++ nhaSanXuat
++ namSanXuat
+
+```
+
+Nhap
+
+
+Xuat
+
+
+Doanhthu
