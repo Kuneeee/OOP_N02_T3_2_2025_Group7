@@ -16,6 +16,7 @@ Hanghoa
 + soLuongHangHoa
 + nhaSanXuat
 + namSanXuat
++ loaiHangHoa
 
 ```
 
