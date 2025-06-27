@@ -1,7 +1,7 @@
-import testcase.breakAndContinue;
-import testcase.passObject;
-import testcase.number;
-import testcase.randNum;
+import quanLyBanHang.testcase.breakAndContinue;
+import quanLyBanHang.testcase.number;
+import quanLyBanHang.testcase.passObject;
+import quanLyBanHang.testcase.randNum;
 
 public class app
 {
