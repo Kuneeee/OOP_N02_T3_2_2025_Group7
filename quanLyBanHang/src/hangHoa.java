@@ -7,6 +7,6 @@ public class hangHoa
    public String loai_hang_hoa;
    public static void main(String[] args) 
    {
-       
+       //4
    }
 }
