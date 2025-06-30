@@ -1,7 +1,7 @@
 public class doanhThu
 {
    
-   public static void main(String[] args) 
+   public static void test2(String[] args) 
    {
        
    }

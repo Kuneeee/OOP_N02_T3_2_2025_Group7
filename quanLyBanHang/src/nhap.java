@@ -1,6 +1,6 @@
 public class nhap
 {
-   public static void main(String[] args) 
+   public static void test4(String[] args) 
    {
        
    }
