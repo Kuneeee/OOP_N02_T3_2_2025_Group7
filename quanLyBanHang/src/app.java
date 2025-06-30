@@ -11,6 +11,7 @@ public class app
 {
    public static void main(String[] args) 
    {
+      /*
       Scanner input = new Scanner(System.in);
 
       breakAndContinue.test();
@@ -30,6 +31,14 @@ public class app
       input.close();
 
       switchCake.test();
+      */
+
+      hangHoa myObj = new hangHoa(1, "banh mi", "long dep zai", "do an", 2025);
+      System.out.println("hang hoa id: " + myObj.hang_hoa_ID);
+      System.out.println("ten hang hoa: " + myObj.ten_hang_hoa);
+      System.out.println("nha san xuat: " + myObj.nha_sx);
+      System.out.println("loai hang hoa: " + myObj.loai_hang_hoa);
+      System.out.println("nam san xuat: " + myObj.nam_sx);
    }
 }
 
