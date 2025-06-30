@@ -5,7 +5,6 @@ public class Flower{
     Flower(String ss){s=ss;}
     Flower(String s,int petal){
         this(petal);
-        this(s);
         this.s=s;
     }
     Flower() { this("hi",47);}

@@ -1,4 +1,4 @@
-package quanLyBanHang.testcase;
+
 
 public class breakAndContinue {
     public static void test()
