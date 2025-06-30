@@ -33,7 +33,7 @@ public class app
       switchCake.test();
       */
 
-      hangHoa myObj = new hangHoa(1, "banh mi", "long dep zai", "do an", 2025);
+      hangHoa myObj = new hangHoa(1, "banh mi", "long dep zai", 2025, "do an");
       System.out.println("hang hoa id: " + myObj.hang_hoa_ID);
       System.out.println("ten hang hoa: " + myObj.ten_hang_hoa);
       System.out.println("nha san xuat: " + myObj.nha_sx);

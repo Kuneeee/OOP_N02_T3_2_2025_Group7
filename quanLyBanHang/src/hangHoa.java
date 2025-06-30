@@ -6,13 +6,12 @@ public class hangHoa
    public String loai_hang_hoa;
    public int nam_sx;
    hangHoa(){};
-
-   public hangHoa(int hhi, String thh, String nsx, String lhh, int namsx)
+   public hangHoa(int hhi, String thh, String nsx, int namsx, String lhh)
    {
-      hang_hoa_ID = hhi;
-      ten_hang_hoa = thh;
-      nha_sx = nsx;
-      loai_hang_hoa = lhh;
-      nam_sx = namsx;
+       hang_hoa_ID = hhi;
+       ten_hang_hoa = thh;
+       nha_sx = nsx;
+       nam_sx = namsx;
+       loai_hang_hoa = lhh;
    }
 }
