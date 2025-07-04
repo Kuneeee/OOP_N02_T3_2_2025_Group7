@@ -1,4 +1,4 @@
-package quanLyBanHang.testcase;
+package quanLyBanHang.review;
 
 public class passObject {
     public static void f(number m) 

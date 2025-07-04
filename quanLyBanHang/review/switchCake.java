@@ -1,4 +1,4 @@
-package quanLyBanHang.testcase;
+package quanLyBanHang.review;
 
 public class switchCake {
     public static void test() {

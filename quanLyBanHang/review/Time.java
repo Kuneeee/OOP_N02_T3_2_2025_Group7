@@ -1,6 +1,7 @@
 package quanLyBanHang.review;
 
 public class Time {
+<<<<<<< HEAD
     private int hour;
     private int minute;
     private int second;
@@ -61,4 +62,15 @@ public class Time {
         ":" + (second < 10 ? "0" : "") + second +
         (hour < 12 ? " AM" : " PM"));
     }
+=======
+    int hour;
+    int minute;
+    int second;
+
+    
+    Time() { setTime(0,0,0);}
+    Time(int h){setTime(h,0,0);}
+    Time(int h,int m){setTime(h,m,0);}
+    Time(int h, int m, int s) {setTime(h,m,s);}
+>>>>>>> 34d5de85b81e69916ae59ae1bb3406c97784dc6e
 }
