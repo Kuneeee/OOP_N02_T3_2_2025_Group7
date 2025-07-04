@@ -1,4 +1,4 @@
-package quanLyBanHang.review;
+
 
 public class User {
    private static int age;

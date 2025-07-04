@@ -1,4 +1,4 @@
-package quanLyBanHang.review;
+
 import java.util.Random;
 
     public class randNum {

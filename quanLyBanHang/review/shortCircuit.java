@@ -1,4 +1,4 @@
-package quanLyBanHang.review;
+
 
 public class shortCircuit {
     public static boolean test1(int val)
