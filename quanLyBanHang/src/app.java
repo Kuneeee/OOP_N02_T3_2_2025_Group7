@@ -1,12 +1,5 @@
 import java.util.Scanner;
-
-import quanLyBanHang.testcase.breakAndContinue;
-import quanLyBanHang.testcase.number;
-import quanLyBanHang.testcase.passObject;
-import quanLyBanHang.testcase.randNum;
-import quanLyBanHang.testcase.shortCircuit;
-import quanLyBanHang.testcase.switchCake;
-
+import Flower.java
 public class app
 {
    public static void main(String[] args) 
