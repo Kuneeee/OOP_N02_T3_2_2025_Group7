@@ -1,9 +1,5 @@
-<<<<<<< HEAD:quanLyBanHang/review/Leaf.java
 package quanLyBanHang.review;
-=======
-package quanLyBanHang.testcase;
 
->>>>>>> refs/remotes/origin/main:quanLyBanHang/testcase/Leaf.java
 public class Leaf{
     int i=0;
     Leaf increment(){
