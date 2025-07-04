@@ -1,15 +1,13 @@
-class Number {
+class BreakAndContinue {
         int i;
     }
 public class test {
-    static void f(Number m) {
-        m.i = 15;
-    }
     public static void main(String[] args) {
-        Number n = new Number();
-        n.i = 14;
-        test.f(n);
-        System.out.println(n.i);
+        for (int i = 0; i < 100; i++) {
+            if (i == 74) break;
+            if (i % 9 != 0) continue;
+            System.out.println(i);
+        }
     }
 }
 
