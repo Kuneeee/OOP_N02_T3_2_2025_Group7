@@ -1,3 +1,4 @@
+package quanLyBanHang.review;
 public class Person{
     private String name;
     public String getName(){
