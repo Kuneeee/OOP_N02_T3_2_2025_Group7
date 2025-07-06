@@ -1,16 +1,10 @@
 
-// import quanLyBanHang.testcase.breakAndContinue;
-// import quanLyBanHang.testcase.number;
-// import quanLyBanHang.testcase.passObject;
-// import quanLyBanHang.testcase.randNum;
-// import quanLyBanHang.testcase.shortCircuit;
-// import quanLyBanHang.testcase.switchCake;
+import java.util.Scanner;
 
 public class app
 {
    public static void main(String[] args) 
    {
-      /*
       Scanner input = new Scanner(System.in);
 
       breakAndContinue.test();
@@ -20,7 +14,7 @@ public class app
       System.out.println(n.i);
 
       int a;
-      a = randNum.random();
+      a = randNum.generateRandNum();
       System.out.println("random number " + a);
 
       int b = input.nextInt();
@@ -30,7 +24,6 @@ public class app
       input.close();
 
       switchCake.test();
-      */
 
       hangHoa myObj = new hangHoa(1, "banh mi", "long dep zai", 2025, "do an");
       System.out.println("hang hoa id: " + myObj.hang_hoa_ID);
