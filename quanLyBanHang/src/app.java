@@ -5,6 +5,7 @@ public class app
 {
    public static void main(String[] args) 
    {
+      /*
       Scanner input = new Scanner(System.in);
 
       breakAndContinue.test();
@@ -24,6 +25,7 @@ public class app
       input.close();
 
       switchCake.test();
+      */
       
       hangHoa myObj = new hangHoa(1, "banh mi", "long dep zai", 2025, "do an");
       System.out.println("hang hoa id: " + myObj.hang_hoa_ID);
