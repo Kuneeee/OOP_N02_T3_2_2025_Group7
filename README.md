@@ -42,3 +42,4 @@ Doanhthu
 + loiNhuan
 + baoCaoExcel
 ```
+ class diagram : https://online.visual-paradigm.com/share.jsp?id=343136313439372d31
