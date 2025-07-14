@@ -35,8 +35,8 @@ public class app {
    // Main chạy chương trình
    public static void main(String[] args) 
    {
+      // Test code
       /*
-      //test 1
       Scanner input = new Scanner(System.in);
 
       breakAndContinue.test();
@@ -57,7 +57,6 @@ public class app {
 
       switchCake.test();
       
-      //test 2
       hangHoa myObj = new hangHoa(1, "banh mi", "long dep zai", 2025, "do an");
       System.out.println("hang hoa id: " + myObj.hang_hoa_ID);
       System.out.println("ten hang hoa: " + myObj.ten_hang_hoa);
@@ -65,6 +64,8 @@ public class app {
       System.out.println("loai hang hoa: " + myObj.loai_hang_hoa);
       System.out.println("nam san xuat: " + myObj.nam_sx);
       */
+      // Test code
+
 
       // Khai báo các biến để nhập thông tin hàng hóa
       String hanghoaID;
