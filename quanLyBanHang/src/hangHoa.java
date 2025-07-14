@@ -1,17 +1,18 @@
-public class hangHoa
-{
-   public int hang_hoa_ID;
-   public String ten_hang_hoa;
-   public String nha_sx;
-   public String loai_hang_hoa;
-   public int nam_sx;
-   hangHoa(){};
-   public hangHoa(int hhi, String thh, String nsx, int namsx, String lhh)
-   {
-       hang_hoa_ID = hhi;
-       ten_hang_hoa = thh;
-       nha_sx = nsx;
-       nam_sx = namsx;
-       loai_hang_hoa = lhh;
-   }
+public class hangHoa {
+    public String hanghoaID;
+    public String tenHangHoa;
+    public int soLuongHangHoa;
+    public String nhaSanXuat;
+    public int namSanXuat;
+    public String loaiHangHoa;
+
+    public hangHoa(String hanghoaID, String tenHangHoa, int soLuongHangHoa, String nhaSanXuat, int namSanXuat, String loaiHangHoa) {
+        this.hanghoaID = hanghoaID;
+        this.tenHangHoa = tenHangHoa;
+        this.soLuongHangHoa = soLuongHangHoa;
+        this.nhaSanXuat = nhaSanXuat;
+        this.namSanXuat = namSanXuat;
+        this.loaiHangHoa = loaiHangHoa;
+    }
+
 }

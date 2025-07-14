@@ -1,8 +1,8 @@
 public class ban {
-   private String hangHoaID;
-   private String tenHangHoa;
-   private int soLuongBan;
-   private int giaBan;
+   public String hangHoaID;
+   public String tenHangHoa;
+   public int soLuongBan;
+   public int giaBan;
    
    public ban() {}
 
@@ -12,7 +12,6 @@ public class ban {
       this.soLuongBan = soLuongBan;
       this.giaBan = giaBan;
    }
-      
    public String getHangHoaID() {
       return hangHoaID;
    }

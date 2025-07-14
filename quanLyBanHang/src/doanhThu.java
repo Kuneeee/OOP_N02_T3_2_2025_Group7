@@ -1,8 +1,11 @@
 public class doanhThu
 {
-   
-   public static void test1(String[] args) 
-   {
-       
+   public double tyXuatLoiNhuan;
+   public double loiNhuan;
+   doanhThu(){}
+
+   public doanhThu(double tyXuatLoiNhuan, double loiNhuan){
+      this.tyXuatLoiNhuan = tyXuatLoiNhuan;
+      this.loiNhuan = loiNhuan;
    }
 }
