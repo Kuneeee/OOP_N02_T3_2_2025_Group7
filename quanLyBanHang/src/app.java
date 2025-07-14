@@ -1,8 +1,10 @@
 import java.util.Scanner;
 
 public class app {
-
-   public static void nhapHang(String hanghoaID, String tenHangHoa, int soLuongNhap, double giaNhap, String ngayNhap) {
+   // Phương thức nhập thông tin hàng hóa
+   public static void nhapHang(String hanghoaID, String tenHangHoa, int soLuongNhap, double giaNhap, String ngayNhap) 
+   {
+      // Kiểm tra thông tin nhập
       if (hanghoaID != null && !hanghoaID.isEmpty() && tenHangHoa != null && !tenHangHoa.isEmpty() && soLuongNhap > 0 && giaNhap > 0 && ngayNhap != null && !ngayNhap.isEmpty()) {
          nhap hangHoaNhap = new nhap(hanghoaID, tenHangHoa, soLuongNhap, giaNhap, ngayNhap);
          System.out.println("Thông tin hàng hóa đã được nhập thành công.");
@@ -11,7 +13,10 @@ public class app {
       }
    }
 
-    public static void xuatHang(String hanghoaID, String tenHangHoa, int soLuongNhap, int giaNhap, String ngayNhap) {
+   // Phuơng thức xuất thông tin hàng hóa
+   public static void xuatHang(String hanghoaID, String tenHangHoa, int soLuongNhap, int giaNhap, String ngayNhap) 
+   {
+      // Kiểm tra thông tin xuất
       if (hanghoaID != null && !hanghoaID.isEmpty() && tenHangHoa != null && !tenHangHoa.isEmpty() && soLuongNhap > 0 && giaNhap > 0) {
          xuat hangHoaXuat = new xuat(hanghoaID, tenHangHoa, soLuongNhap, giaNhap, ngayNhap);
          System.out.println("Thông tin hàng hóa đã được xuất thành công.");
@@ -20,14 +25,18 @@ public class app {
       }
    }
 
-   public static void capNhatHang(String hanghoaID, String tenHangHoa, int soLuongHangHoa, String nhaSanXuat, int namSanXuat, String loaiHangHoa) {
+   // Phương thức cập nhật thông tin hàng hóa
+   public static void capNhatHang(String hanghoaID, String tenHangHoa, int soLuongHangHoa, String nhaSanXuat, int namSanXuat, String loaiHangHoa) 
+   {
       hangHoa hangHoa = new hangHoa(hanghoaID, tenHangHoa, soLuongHangHoa, nhaSanXuat, namSanXuat, loaiHangHoa);
       System.out.println("Thông tin hàng hóa đã được cập nhật thành công.");
    }
-   
+
+   // Main chạy chương trình
    public static void main(String[] args) 
    {
-      /* test 1
+      /*
+      //test 1
       Scanner input = new Scanner(System.in);
 
       breakAndContinue.test();
@@ -47,9 +56,8 @@ public class app {
       input.close();
 
       switchCake.test();
-      */
       
-      /* test 2
+      //test 2
       hangHoa myObj = new hangHoa(1, "banh mi", "long dep zai", 2025, "do an");
       System.out.println("hang hoa id: " + myObj.hang_hoa_ID);
       System.out.println("ten hang hoa: " + myObj.ten_hang_hoa);
@@ -58,14 +66,15 @@ public class app {
       System.out.println("nam san xuat: " + myObj.nam_sx);
       */
 
+      // Khai báo các biến để nhập thông tin hàng hóa
       String hanghoaID;
       String tenHangHoa;
       int soLuongNhap;
       double giaNhap;
       String ngayNhap;
 
+      // Nhập thông tin hàng hóa
       Scanner input = new Scanner(System.in);
-
       System.out.print("Nhập ID hàng hóa: ");
       hanghoaID = input.nextLine();
       System.out.print("Nhập tên hàng hóa: ");
@@ -79,6 +88,7 @@ public class app {
       ngayNhap = input.nextLine();
       input.close();
 
+      // Gọi các phương thức để nhập, cập nhật và xuất hàng hóa
       nhapHang(hanghoaID, tenHangHoa, soLuongNhap, giaNhap, ngayNhap);
       capNhatHang(hanghoaID, tenHangHoa, soLuongNhap, ngayNhap, soLuongNhap, tenHangHoa);
       xuatHang(hanghoaID, tenHangHoa, soLuongNhap, soLuongNhap, ngayNhap);
