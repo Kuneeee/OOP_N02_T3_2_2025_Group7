@@ -1,4 +1,3 @@
-
 import java.util.Scanner;
 
 public class app {
@@ -12,9 +11,9 @@ public class app {
       }
    }
 
-    public static void xuatHang(String hanghoaID, String tenHangHoa, int soLuongBan, int giaBan) {
-      if (hanghoaID != null && !hanghoaID.isEmpty() && tenHangHoa != null && !tenHangHoa.isEmpty() && soLuongBan > 0 && giaBan > 0) {
-         ban hangHoaXuat = new ban(hanghoaID, tenHangHoa, soLuongBan, giaBan);
+    public static void xuatHang(String hanghoaID, String tenHangHoa, int soLuongNhap, int giaNhap, String ngayNhap) {
+      if (hanghoaID != null && !hanghoaID.isEmpty() && tenHangHoa != null && !tenHangHoa.isEmpty() && soLuongNhap > 0 && giaNhap > 0) {
+         xuat hangHoaXuat = new xuat(hanghoaID, tenHangHoa, soLuongNhap, giaNhap, ngayNhap);
          System.out.println("Thông tin hàng hóa đã được xuất thành công.");
       } else {
          System.out.println("Thông tin xuất không hợp lệ.");
@@ -58,8 +57,30 @@ public class app {
       System.out.println("loai hang hoa: " + myObj.loai_hang_hoa);
       System.out.println("nam san xuat: " + myObj.nam_sx);
       */
-      nhapHang("HH001", "Sản phẩm A", 100, 50000, "2025-07-14");
-      xuatHang("HH001", "Sản phẩm A", 50, 60000);
-      capNhatHang("HH001", "Sản phẩm A", 50, "Nhà sản xuất A", 2025, "Loại A");
+
+      String hanghoaID;
+      String tenHangHoa;
+      int soLuongNhap;
+      double giaNhap;
+      String ngayNhap;
+
+      Scanner input = new Scanner(System.in);
+
+      System.out.print("Nhập ID hàng hóa: ");
+      hanghoaID = input.nextLine();
+      System.out.print("Nhập tên hàng hóa: ");
+      tenHangHoa = input.nextLine();
+      System.out.print("Nhập số lượng nhập: ");
+      soLuongNhap = input.nextInt();
+      System.out.print("Nhập giá nhập: ");
+      giaNhap = input.nextDouble();
+      input.nextLine(); // Đọc dòng mới
+      System.out.print("Nhập ngày nhập (dd-MM-yyyy): ");
+      ngayNhap = input.nextLine();
+      input.close();
+
+      nhapHang(hanghoaID, tenHangHoa, soLuongNhap, giaNhap, ngayNhap);
+      capNhatHang(hanghoaID, tenHangHoa, soLuongNhap, ngayNhap, soLuongNhap, tenHangHoa);
+      xuatHang(hanghoaID, tenHangHoa, soLuongNhap, soLuongNhap, ngayNhap);
    }
 }
