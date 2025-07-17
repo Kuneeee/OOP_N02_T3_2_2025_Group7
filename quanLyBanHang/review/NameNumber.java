@@ -9,7 +9,7 @@ public class NameNumber {
     public String getLastName() {
         return lastName;
     }
-    public String getTelName() {
+    public String getTelNumber() {
         return telNumber;
     }
 }
