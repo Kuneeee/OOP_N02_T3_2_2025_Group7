@@ -13,3 +13,10 @@ public class NNcollection {
 }
         nnArray[index] = n;
     }
+    public String findNumber(String IName){
+        for(int i=0;i!=free;i++)
+          if(nnArray[i].getLastName().equals(IName))
+            return nnArray[i].getTelNumber();
+        return new String("Name not found");
+     }    
+    }

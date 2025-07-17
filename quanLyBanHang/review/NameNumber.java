@@ -1,15 +1,15 @@
 public class NameNumber {
     private String lastName;
-    private String telName;
+    private String telNumber;
     public NameNumber() {}
     public NameNumber(String name,String num) {
         lastName = name;
-        telName = num;
+        telNumber = num;
     }
     public String getLastName() {
         return lastName;
     }
     public String getTelName() {
-        return telName;
+        return telNumber;
     }
 }
