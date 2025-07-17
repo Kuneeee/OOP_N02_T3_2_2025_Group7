@@ -1,4 +1,5 @@
 public class ban {
+   // Thuộc tính của hàng hóa
    public String hangHoaID;
    public String tenHangHoa;
    public int soLuongBan;
