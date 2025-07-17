@@ -4,22 +4,15 @@
 		{
 			"label": "Auto Pull Code",
 			"type": "shell",
-			"command": "./auto-pull.sh",
-			"options": {
-				"cwd": "${workspaceFolder}"
-			},
+			"command": "git",
+			"args": [
+				"pull",
+				"origin",
+				"main"
+			],
 			"group": "build",
 			"isBackground": false,
-			"presentation": {
-				"echo": true,
-				"reveal": "always",
-				"focus": false,
-				"panel": "shared"
-			},
-			"problemMatcher": [],
-			"runOptions": {
-				"runOn": "folderOpen"
-			}
+			"problemMatcher": []
 		}
 	]
 }
