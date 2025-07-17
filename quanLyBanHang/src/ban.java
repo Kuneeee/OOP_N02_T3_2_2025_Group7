@@ -1,4 +1,5 @@
 public class ban {
+   // ngu vcl
    public String hangHoaID;
    public String tenHangHoa;
    public int soLuongBan;
