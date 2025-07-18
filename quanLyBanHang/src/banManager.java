@@ -3,27 +3,23 @@ import java.util.List;
 import java.util.Scanner;
 
 public class banManager {
-    // Danh sách các ban
+
     private List<Ban> danhSachBan = new ArrayList<>();
 
-    // Thêm một ban vào danh sách
     public void themBan(Ban ban) {
         danhSachBan.add(ban);
     }
 
-    // Xóa ban theo mã hàng hóa
     public boolean xoaBan(String hangHoaID) {
         return danhSachBan.removeIf(ban -> ban.getHangHoaID().equals(hangHoaID));
     }
 
-    // Sửa thông tin ban theo mã hàng hóa
     public boolean suaBan(String hangHoaID) {
         for (int i = 0; i < danhSachBan.size(); i++) {
             Ban ban = danhSachBan.get(i);
             if (ban.getHangHoaID().equals(hangHoaID)) {
                 Scanner sc = new Scanner(System.in);
 
-                // Nhập các thông tin mới từ người dùng
                 System.out.print("Nhập tên hàng hóa mới: ");
                 String newTenHangHoa = sc.nextLine();
 
@@ -33,12 +29,10 @@ public class banManager {
                 System.out.print("Nhập số lượng bán mới: ");
                 int newSoLuongBan = sc.nextInt();
 
-                // Cập nhật thông tin cho ban
                 ban.setTenHangHoa(newTenHangHoa);
                 ban.setGiaBan(newGiaBan);
                 ban.setSoLuongBan(newSoLuongBan);
 
-                // Đóng Scanner
                 sc.close();
                 return true;
             }
@@ -62,7 +56,6 @@ public class banManager {
         }
     }
 
-    // Tìm kiếm ban theo tên
     public List<Ban> timBanTheoTen(String ten) {
         List<Ban> ketQua = new ArrayList<>();
         for (Ban ban : danhSachBan) {
