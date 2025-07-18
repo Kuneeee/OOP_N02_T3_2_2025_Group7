@@ -1,0 +1,19 @@
+# Script tự động pull code khi mở terminal
+# Thêm vào file ~/.bashrc hoặc ~/.zshrc
+
+auto_git_pull() {
+    if [ -d ".git" ]; then
+        echo "🔄 Đang pull code mới nhất..."
+        git pull origin main --quiet
+        if [ $? -eq 0 ]; then
+            echo "✅ Code đã được cập nhật!"
+        else
+            echo "❌ Không thể pull code. Vui lòng kiểm tra lại."
+        fi
+    fi
+}
+
+# Chạy auto pull khi vào thư mục workspace
+if [[ "$PWD" == *"OOP_N02_T3_2_2025_Group7"* ]]; then
+    auto_git_pull
+fi
