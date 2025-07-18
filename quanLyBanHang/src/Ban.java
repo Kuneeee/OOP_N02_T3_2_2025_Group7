@@ -1,10 +1,10 @@
 public class Ban {
-    private String hangHoaID;
-    private String tenHangHoa;
-    private double giaBan;
-    private int soLuongBan;
+    private String hangHoaID;   // Mã hàng hóa
+    private String tenHangHoa;   // Tên hàng hóa
+    private double giaBan;       // Giá bán của hàng hóa
+    private int soLuongBan;      // Số lượng bán của hàng hóa
 
-    // Constructor
+    // Constructor để khởi tạo đối tượng ban
     public Ban(String hangHoaID, String tenHangHoa, double giaBan, int soLuongBan) {
         this.hangHoaID = hangHoaID;
         this.tenHangHoa = tenHangHoa;
@@ -12,7 +12,8 @@ public class Ban {
         this.soLuongBan = soLuongBan;
     }
 
-    // Getter và Setter cho hangHoaID
+    // Getter và Setter cho các thuộc tính
+
     public String getHangHoaID() {
         return hangHoaID;
     }
@@ -21,7 +22,6 @@ public class Ban {
         this.hangHoaID = hangHoaID;
     }
 
-    // Getter và Setter cho tenHangHoa
     public String getTenHangHoa() {
         return tenHangHoa;
     }
@@ -30,21 +30,29 @@ public class Ban {
         this.tenHangHoa = tenHangHoa;
     }
 
-    // Getter và Setter cho giaBan
     public double getGiaBan() {
         return giaBan;
     }
 
+    // Chỉnh sửa setter để nhận giá trị kiểu double
     public void setGiaBan(double giaBan) {
         this.giaBan = giaBan;
     }
 
-    // Getter và Setter cho soLuongBan
     public int getSoLuongBan() {
         return soLuongBan;
     }
 
     public void setSoLuongBan(int soLuongBan) {
         this.soLuongBan = soLuongBan;
+    }
+
+    // Phương thức để hiển thị thông tin của một ban
+    public void hienThiThongTin() {
+        System.out.println("Mã hàng hóa: " + hangHoaID);
+        System.out.println("Tên hàng hóa: " + tenHangHoa);
+        System.out.println("Giá bán: " + giaBan);
+        System.out.println("Số lượng bán: " + soLuongBan);
+        System.out.println();
     }
 }
