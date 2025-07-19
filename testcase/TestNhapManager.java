@@ -18,7 +18,7 @@ public class TestNhapManager {
         input.nextLine();
         System.out.print("Nhập loại hàng hóa: ");
         String loai = input.nextLine();
-        hangHoa hh = new hangHoa(id, ten, soLuong, nsx, nam, loai);
+        HangHoa hh = new HangHoa(id, ten, soLuong, nsx, nam, loai);
         manager.addHangHoa(hh);
         System.out.println("Danh sách hàng hóa:");
         input.close();
