@@ -3,31 +3,22 @@ public class HangHoa {
     private String hanghoaID;
     private String tenHangHoa;
     private int soLuongHangHoa;
-    private String nhaSanXuat;
-    private int namSanXuat;
+    private String ngayNhap;
+    private Double giaNhap;
     private String loaiHangHoa;
 
     // Default constructor
     public HangHoa() {}
 
     // Parameterized constructor
-    public HangHoa(String hanghoaID, String tenHangHoa, int soLuongHangHoa, String nhaSanXuat, int namSanXuat, String loaiHangHoa) {
+    public HangHoa(String hanghoaID, String tenHangHoa, int soLuongHangHoa, String ngayNhap, Double giaNhap, String loaiHangHoa) {
         // Khởi tạo các thuộc tính của hàng hóa
         this.hanghoaID = hanghoaID;
         this.tenHangHoa = tenHangHoa;
         this.soLuongHangHoa = soLuongHangHoa;
-        this.nhaSanXuat = nhaSanXuat;
-        this.namSanXuat = namSanXuat;
+        this.ngayNhap = ngayNhap;
+        this.giaNhap = giaNhap;
         this.loaiHangHoa = loaiHangHoa;
-
-        // In thông tin hàng hóa
-        System.out.println("Thông tin hàng hóa:");
-        System.out.println("ID hàng hóa: " + hanghoaID);
-        System.out.println("Tên hàng hóa: " + tenHangHoa);
-        System.out.println("Số lượng hàng hóa: " + soLuongHangHoa);
-        System.out.println("Nhà sản xuất: " + nhaSanXuat);
-        System.out.println("Năm sản xuất: " + namSanXuat);
-        System.out.println("Loại hàng hóa: " + loaiHangHoa);
     }
 
     // Getter methods
@@ -42,13 +33,13 @@ public class HangHoa {
     public int getSoLuongHangHoa() { 
         return soLuongHangHoa; 
     }
-    
-    public String getNhaSanXuat() { 
-        return nhaSanXuat; 
+
+    public String getNgayNhap() { 
+        return ngayNhap; 
     }
-    
-    public int getNamSanXuat() { 
-        return namSanXuat; 
+
+    public Double getGiaNhap() { 
+        return giaNhap; 
     }
     
     public String getLoaiHangHoa() { 
@@ -67,13 +58,13 @@ public class HangHoa {
     public void setSoLuongHangHoa(int soLuongHangHoa) { 
         this.soLuongHangHoa = soLuongHangHoa; 
     }
-    
-    public void setNhaSanXuat(String nhaSanXuat) { 
-        this.nhaSanXuat = nhaSanXuat; 
+
+    public void setNgayNhap(String ngayNhap) { 
+        this.ngayNhap = ngayNhap; 
     }
-    
-    public void setNamSanXuat(int namSanXuat) { 
-        this.namSanXuat = namSanXuat; 
+
+    public void setGiaNhap(Double giaNhap) { 
+        this.giaNhap = giaNhap; 
     }
     
     public void setLoaiHangHoa(String loaiHangHoa) { 
