@@ -37,6 +37,7 @@ public class App {
 
       // test
       ArrayList<HangHoa> danhSachHangHoa = new ArrayList<>();
+      banManager manager = new banManager();
       Scanner input = new Scanner(System.in);
       
       while (true) {
@@ -72,6 +73,10 @@ public class App {
             // Tạo đối tượng Nhap và thêm vào danh sách
             Nhap nhapHangHoa = new Nhap(hanghoaID, tenHangHoa, soLuongNhap, giaNhap, ngayNhap, loaiHangHoa);
             danhSachHangHoa.add(nhapHangHoa);
+
+            // Thêm vào manager để quản lý bán hàng (giả sử giá bán = giá nhập)
+            Ban ban = new Ban(hanghoaID, tenHangHoa, giaNhap, soLuongNhap);
+            manager.themBan(ban);
          }
          else if (choice == 2)
          {
@@ -89,8 +94,9 @@ public class App {
          }
          else if (choice == 4)
          {
-            // Tìm kiếm hàng hóa
+            manager.timKiemBan(input);
          }
+
          else if (choice == 5)
          {
             // Tính doanh thu
