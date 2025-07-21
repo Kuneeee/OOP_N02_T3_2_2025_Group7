@@ -1,30 +1,24 @@
-public class Nhap {
+public class Nhap extends HangHoa {
     // Thuộc tính của hàng hóa nhập
     private String hanghoaID;
     private String tenHangHoa;
     private int soLuongNhap;
     private double giaNhap;
     private String ngayNhap;
+    private String loaiHangHoa;
    
     // Default constructor
     public Nhap() {}
    
     // Parameterized constructor
-    public Nhap(String hanghoaID, String tenHangHoa, int soLuongNhap, double giaNhap, String ngayNhap) {
+    public Nhap(String hanghoaID, String tenHangHoa, int soLuongNhap, double giaNhap, String ngayNhap, String loaiHangHoa) {
         // Khởi tạo các thuộc tính của hàng hóa nhập
         this.hanghoaID = hanghoaID;
         this.tenHangHoa = tenHangHoa;
         this.soLuongNhap = soLuongNhap;
         this.giaNhap = giaNhap;
         this.ngayNhap = ngayNhap;
-
-        // In thông tin hàng hóa nhập
-        System.out.println("Thông tin nhập hàng:");
-        System.out.println("ID hàng hóa: " + hanghoaID);
-        System.out.println("Tên hàng hóa: " + tenHangHoa);
-        System.out.println("Số lượng nhập: " + soLuongNhap);
-        System.out.println("Giá nhập: " + giaNhap);
-        System.out.println("Ngày nhập: " + ngayNhap);
+        this.loaiHangHoa = loaiHangHoa;
     }
 
     // Getter methods
@@ -39,13 +33,17 @@ public class Nhap {
     public int getSoLuongNhap() { 
         return soLuongNhap; 
     }
-    
-    public double getGiaNhap() { 
+
+    public Double getGiaNhap() { 
         return giaNhap; 
     }
     
     public String getNgayNhap() { 
         return ngayNhap; 
+    }
+
+    public String getLoaiHangHoa() { 
+        return loaiHangHoa; 
     }
 
     // Setter methods
@@ -67,5 +65,9 @@ public class Nhap {
     
     public void setNgayNhap(String ngayNhap) { 
         this.ngayNhap = ngayNhap; 
+    }
+
+    public void setLoaiHangHoa(String loaiHangHoa) { 
+        this.loaiHangHoa = loaiHangHoa; 
     }
 }

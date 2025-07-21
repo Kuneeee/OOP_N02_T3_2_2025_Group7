@@ -5,18 +5,20 @@ public class Xuat {
     private int soLuongXuat;
     private double giaXuat;
     private String ngayXuat;
+    private String loaiHangHoa;
     
     // Default constructor
     public Xuat() {}
 
     // Parameterized constructor
-    public Xuat(String hanghoaID, String tenHangHoa, int soLuongXuat, double giaXuat, String ngayXuat) {
+    public Xuat(String hanghoaID, String tenHangHoa, int soLuongXuat, double giaXuat, String ngayXuat, String loaiHangHoa) {
         // Khởi tạo các thuộc tính của hàng hóa xuất
         this.hanghoaID = hanghoaID;
         this.tenHangHoa = tenHangHoa;
         this.soLuongXuat = soLuongXuat;
         this.giaXuat = giaXuat;
         this.ngayXuat = ngayXuat;
+        this.loaiHangHoa = loaiHangHoa;
 
         // In thông tin hàng hóa xuất
         System.out.println("Thông tin xuất hàng:");
@@ -25,6 +27,7 @@ public class Xuat {
         System.out.println("Số lượng xuất: " + soLuongXuat);
         System.out.println("Giá xuất: " + giaXuat);
         System.out.println("Ngày xuất: " + ngayXuat);
+        System.out.println("Loại hàng hóa: " + loaiHangHoa);
     }
    
     // Getter methods
@@ -47,6 +50,10 @@ public class Xuat {
     public String getNgayXuat() { 
         return ngayXuat; 
     }
+
+    public String getLoaiHangHoa() { 
+        return loaiHangHoa; 
+    }
    
     // Setter methods
     public void setHanghoaID(String hanghoaID) { 
@@ -67,5 +74,9 @@ public class Xuat {
     
     public void setNgayXuat(String ngayXuat) { 
         this.ngayXuat = ngayXuat; 
+    }
+
+    public void setLoaiHangHoa(String loaiHangHoa) { 
+        this.loaiHangHoa = loaiHangHoa; 
     }
 }
