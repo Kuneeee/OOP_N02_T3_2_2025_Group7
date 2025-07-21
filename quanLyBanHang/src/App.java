@@ -80,11 +80,19 @@ public class App {
          else if (choice == 3)
          {
             // Hiển thị danh sách hàng hóa
-            System.out.println("\nDanh sách hàng hóa:");
-            for (HangHoa hangHoa : danhSachHangHoa) {
-               System.out.println("ID: " + hangHoa.getHanghoaID() + ", Tên: " + hangHoa.getTenHangHoa() +
-                                  ", Số lượng: " + hangHoa.getSoLuongHangHoa() + ", Ngày nhập: " + hangHoa.getNgayNhap() +
-                                  ", Giá nhập: " + hangHoa.getGiaNhap() + ", Loại: " + hangHoa.getLoaiHangHoa());
+            if (danhSachHangHoa.isEmpty()) {
+               System.out.println("Danh sách hàng hóa hiện tại trống!");
+            } else {
+               System.out.println("Danh sách hàng hóa:");
+               for (HangHoa hangHoa : danhSachHangHoa) {
+                  System.out.println("ID: " + hangHoa.getHanghoaID());
+                  System.out.println("Tên: " + hangHoa.getTenHangHoa());
+                  System.out.println("Số lượng: " + hangHoa.getSoLuongHangHoa());
+                  System.out.println("Ngày nhập: " + hangHoa.getNgayNhap());
+                  System.out.println("Giá nhập: " + hangHoa.getGiaNhap());
+                  System.out.println("Loại hàng hóa: " + hangHoa.getLoaiHangHoa());
+                  System.out.println("-----------------------------");
+               }
             }
          }
          else if (choice == 4)
