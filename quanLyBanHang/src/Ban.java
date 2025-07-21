@@ -1,4 +1,4 @@
-public class Ban {
+public class Ban extends HangHoa {
     private String hangHoaID;   
     private String tenHangHoa;   
     private double giaBan;       

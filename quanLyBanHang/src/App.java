@@ -107,6 +107,19 @@ public class App {
          else if (choice == 5)
          {
             // Tính doanh thu
+            double tongTienBan = 0;
+            double tongTienNhap = 0;
+            for (HangHoa hangHoa : danhSachHangHoa) {
+               if (hangHoa instanceof Ban) {
+                  tongTienBan += ((Ban) hangHoa).getGiaBan() * ((Ban) hangHoa).getSoLuongBan();
+               }
+               if (hangHoa instanceof Nhap) {
+                  tongTienNhap += hangHoa.getGiaNhap() * hangHoa.getSoLuongHangHoa();
+               }
+            }
+            DoanhThu dt = new DoanhThu();
+            dt.tinhDoanhThu(tongTienBan, tongTienNhap);
+            System.out.println("Đánh giá hiệu quả: " + dt.danhGiaHieuQua());
          }
          else if (choice == 6)
          {
