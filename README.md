@@ -61,7 +61,7 @@ Doanhthu
 - Tính toán lợi nhuận, tỷ suất lợi nhuận, xuất báo cáo Excel
 
 ## Tính năng chính
-- Quản lý danh sách hàng hóa, số lượng tồn
+- Quản lý hiển thị danh sách hàng hóa, số lượng tồn
 - Nhập hàng và cập nhật kho tự động
 - Bán hàng và trừ kho
 - Tính toán doanh thu, lợi nhuận theo từng đợt
