@@ -8,17 +8,6 @@ public class DoanhThu {
     // Default constructor
     public DoanhThu() {}
 
-    // Parameterized constructor
-    public DoanhThu(double tyXuatLoiNhuan, double loiNhuan) {
-        this.tyXuatLoiNhuan = tyXuatLoiNhuan;
-        this.loiNhuan = loiNhuan;
-        
-        // In thông tin doanh thu
-        System.out.println("Thông tin doanh thu:");
-        System.out.println("Tỷ xuất lợi nhuận: " + tyXuatLoiNhuan + "%");
-        System.out.println("Lợi nhuận: " + loiNhuan + " VND");
-    }
-
     // Constructor với đầy đủ thông tin
     public DoanhThu(double tyXuatLoiNhuan, double loiNhuan, double doanhThuThang, double chiPhiNhap) {
         this.tyXuatLoiNhuan = tyXuatLoiNhuan;
