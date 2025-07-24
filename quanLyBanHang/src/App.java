@@ -101,7 +101,15 @@ public class App {
          }
          else if (choice == 4)
          {
-            manager.timKiemBan(input);
+            if (manager.getDanhSachBan().isEmpty()) {
+               System.out.println();  // Dòng trắng để cách menu
+               System.out.println("Chưa có dữ liệu để tìm kiếm!");
+               System.out.println();  // Dòng trắng cách menu hoặc các câu lệnh tiếp theo
+               break;  // Thoát khỏi vòng lặp nếu không có dữ liệu
+            } else {
+               TimKiem timKiem = new TimKiem(manager.getDanhSachBan());
+               timKiem.timKiemBan(input);
+            }
          }
 
          else if (choice == 5)

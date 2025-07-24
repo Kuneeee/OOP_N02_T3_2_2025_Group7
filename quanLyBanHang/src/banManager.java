@@ -56,28 +56,8 @@ public class banManager {
         }
     }
 
-    public List<Ban> timBanTheoTen(String ten) {
-        List<Ban> ketQua = new ArrayList<>();
-        for (Ban ban : danhSachBan) {
-        if (ban.getTenHangHoa().toLowerCase().contains(ten.toLowerCase())) {
-            ketQua.add(ban);
-            }
-        }
-    return ketQua;
-}
-   public void timKiemBan(Scanner sc) {
-        System.out.print("Nhập tên hàng hóa cần tìm: ");
-        String tuKhoa = sc.nextLine();
-
-        List<Ban> ketQua = timBanTheoTen(tuKhoa);
-
-        if (ketQua.isEmpty()) {
-            System.out.println("Không tìm thấy hàng hóa nào phù hợp với từ khóa: " + tuKhoa);
-        } else {
-            System.out.println("Kết quả tìm kiếm:");
-            for (Ban ban : ketQua) {
-                ban.hienThiThongTin();
-            }
-        }
+    // Thêm getter để lấy danh sách cho bên ngoài dùng
+    public List<Ban> getDanhSachBan() {
+        return danhSachBan;
     }
 }
