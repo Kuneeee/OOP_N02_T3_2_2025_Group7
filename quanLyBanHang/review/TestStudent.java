@@ -9,13 +9,13 @@ public class TestStudent {
     Student s3 = new Student("Steve", 2.1F);
     if (s3.compareTo(s2) < 0) System.out.println(s3.getName() + " has a lower gpa than " + s2.getName());
     //Set is an interface in Java ; TreeSet is its implementation
-    Set<Student> studentSet = new TreeSet<>();
+    Set studentSet = new TreeSet<>();
     //Method of set add(element)
     studentSet.add(s1); studentSet.add(s2); studentSet.add(s3);
     //Iterator interface access elements of Map, List, Set
-    Iterator<Student> i = studentSet.iterator();
+    Iterator i = studentSet.iterator();
     //method of Iterator hasNext()
-    while(i.hasNext()) System.out.println( i.next().getName());
+    while(i.hasNext()) System.out.println(((Student)i.next()).getName());
     }
 }
 
