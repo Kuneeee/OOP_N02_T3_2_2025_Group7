@@ -2,6 +2,7 @@ class BreakAndContinue {
         int i;
     }
 public class test {
+    /*
     public static void main(String[] args) {
         for (int i = 0; i < 100; i++) {
             if (i == 74) break;
@@ -9,4 +10,5 @@ public class test {
             System.out.println(i);
         }
     }
+    */
 }

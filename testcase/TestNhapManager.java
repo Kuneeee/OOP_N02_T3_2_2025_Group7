@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 public class TestNhapManager {
     public static void main(String[] args) {
+        /*
         nhapManager manager = new nhapManager();
         Scanner input = new Scanner(System.in);
         System.out.print("Nhập ID hàng hóa: ");
@@ -23,5 +24,6 @@ public class TestNhapManager {
         System.out.println("Danh sách hàng hóa:");
         input.close();
         manager.printAll();
+        */
     }
 }

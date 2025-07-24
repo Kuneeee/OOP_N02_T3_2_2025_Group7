@@ -3,6 +3,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 public class TestStudent {
+    /*
     public static void main(String[] args) {
     Student s1 = new Student("Fred", 3.0F);
     Student s2 = new Student("Sam", 3.5F);
@@ -17,5 +18,6 @@ public class TestStudent {
     //method of Iterator hasNext()
     while(i.hasNext()) System.out.println(((Student)i.next()).getName());
     }
+    */
 }
 
