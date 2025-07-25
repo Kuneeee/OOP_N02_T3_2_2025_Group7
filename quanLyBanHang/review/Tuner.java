@@ -13,6 +13,7 @@ class ObnoxiousTune extends Tune{
     System.out.println("ObnoxiousTune.play()") ; }
 }
 public class Tuner {
+    /*
     public static void main(String[] args) {
     CellPhone noiseMaker = new CellPhone();
     ObnoxiousTune ot = new ObnoxiousTune();
@@ -26,5 +27,6 @@ public class Tuner {
     t = new ObnoxiousTune();
     noiseMaker.ring(t);
     }
+    */
 }
 
