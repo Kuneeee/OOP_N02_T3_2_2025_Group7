@@ -107,8 +107,8 @@ public class App {
          else if (choice == 5)
          {
             // Tính doanh thu
-            double tongTienBan = 0;
-            double tongTienNhap = 0;
+            double tongTienBan = 10000;
+            double tongTienNhap = 12000;
             for (HangHoa hangHoa : danhSachHangHoa) {
                if (hangHoa instanceof Ban) {
                   tongTienBan += ((Ban) hangHoa).getGiaBan() * ((Ban) hangHoa).getSoLuongBan();
