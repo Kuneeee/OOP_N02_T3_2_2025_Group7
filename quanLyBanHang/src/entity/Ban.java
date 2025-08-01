@@ -1,8 +1,24 @@
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "ban")
 public class Ban extends HangHoa {
+    @Id
     private String hangHoaID;   
+    
+    @Column(name = "ten_hang_hoa")
     private String tenHangHoa;   
+    
+    @Column(name = "gia_ban")
     private double giaBan;       
-    private int soLuongBan;      
+    
+    @Column(name = "so_luong_ban")
+    private int soLuongBan;    
+    // Default constructor for JPA
+    public Ban() {
+        super();
+    }
+    
     public Ban(String hangHoaID, String tenHangHoa, double giaBan, int soLuongBan) {
         this.hangHoaID = hangHoaID;
         this.tenHangHoa = tenHangHoa;

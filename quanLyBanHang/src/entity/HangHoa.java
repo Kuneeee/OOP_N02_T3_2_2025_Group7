@@ -1,10 +1,26 @@
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "hang_hoa")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class HangHoa {
     // Thuộc tính của hàng hóa
+    @Id
     private String hanghoaID;
+    
+    @Column(name = "ten_hang_hoa")
     private String tenHangHoa;
+    
+    @Column(name = "so_luong_hang_hoa")
     private int soLuongHangHoa;
+    
+    @Column(name = "ngay_nhap")
     private String ngayNhap;
+    
+    @Column(name = "gia_nhap")
     private Double giaNhap;
+    
+    @Column(name = "loai_hang_hoa")
     private String loaiHangHoa;
 
     // Default constructor
