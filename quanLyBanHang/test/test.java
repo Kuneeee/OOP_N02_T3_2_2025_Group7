@@ -1,14 +1,9 @@
-class BreakAndContinue {
-        int i;
-    }
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+
 public class test {
-    /*
-    public static void main(String[] args) {
-        for (int i = 0; i < 100; i++) {
-            if (i == 74) break;
-            if (i % 9 != 0) continue;
-            System.out.println(i);
-        }
-    }
-    */
+
+    
+
 }

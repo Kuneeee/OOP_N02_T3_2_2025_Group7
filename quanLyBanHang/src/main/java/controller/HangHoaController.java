@@ -4,6 +4,7 @@ import entity.HangHoa;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import java.util.stream.Collectors;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
@@ -138,7 +139,7 @@ public class HangHoaController {
                     .filter(h -> h.getTenHangHoa().toLowerCase().contains(searchKeyword) ||
                                h.getHanghoaID().toLowerCase().contains(searchKeyword) ||
                                h.getLoaiHangHoa().toLowerCase().contains(searchKeyword))
-                    .toList();
+                    .collect(Collectors.toList());
         }
         
         model.addAttribute("hangHoaList", searchResults);

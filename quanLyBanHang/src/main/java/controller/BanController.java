@@ -4,6 +4,7 @@ import entity.Ban;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import java.util.stream.Collectors;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
@@ -19,10 +20,10 @@ public class BanController {
     private static int nextId = 1;
     
     static {
-        // Dữ liệu mẫu
-        banList.add(new Ban("HH001", "Laptop Dell", 16000000.0, 2));
-        banList.add(new Ban("HH002", "Điện thoại iPhone", 26000000.0, 1));
-        banList.add(new Ban("HH003", "Máy ảnh Canon", 13000000.0, 1));
+        // Dữ liệu mẫu  
+        banList.add(new Ban("B001", "HH001", "Laptop Dell", "Nguyễn Văn A", "2024-01-15", 16000000.0, 2));
+        banList.add(new Ban("B002", "HH002", "Điện thoại iPhone", "Trần Thị B", "2024-01-16", 26000000.0, 1));
+        banList.add(new Ban("B003", "HH003", "Máy ảnh Canon", "Lê Văn C", "2024-01-17", 13000000.0, 1));
         nextId = 4;
     }
     
@@ -145,7 +146,7 @@ public class BanController {
             searchResults = banList.stream()
                     .filter(b -> b.getTenHangHoa().toLowerCase().contains(searchKeyword) ||
                                b.getHangHoaID().toLowerCase().contains(searchKeyword))
-                    .toList();
+                    .collect(Collectors.toList());
         }
         
         model.addAttribute("banList", searchResults);
