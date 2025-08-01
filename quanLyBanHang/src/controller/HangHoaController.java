@@ -127,35 +127,27 @@ public class HangHoaController {
         return "redirect:/hanghoa/list";
     }
     
-    // Tìm kiếm hàng hóa
+    // Tìm kiếm hàng hóa đơn giản
     @GetMapping("/search")
-    public String searchHangHoa(@RequestParam(required = false) String keyword, 
-                               @RequestParam(required = false) String loai,
-                               Model model) {
-        List<HangHoa> searchResults = new ArrayList<>();
+    public String searchHangHoa(@RequestParam(required = false) String keyword, Model model) {
+        List<HangHoa> searchResults = hangHoaList;
         
         if (keyword != null && !keyword.trim().isEmpty()) {
             String searchKeyword = keyword.toLowerCase().trim();
             searchResults = hangHoaList.stream()
                     .filter(h -> h.getTenHangHoa().toLowerCase().contains(searchKeyword) ||
-                               h.getHanghoaID().toLowerCase().contains(searchKeyword))
+                               h.getHanghoaID().toLowerCase().contains(searchKeyword) ||
+                               h.getLoaiHangHoa().toLowerCase().contains(searchKeyword))
                     .toList();
-        } else if (loai != null && !loai.trim().isEmpty()) {
-            searchResults = hangHoaList.stream()
-                    .filter(h -> h.getLoaiHangHoa().equalsIgnoreCase(loai.trim()))
-                    .toList();
-        } else {
-            searchResults = hangHoaList;
         }
         
         model.addAttribute("hangHoaList", searchResults);
         model.addAttribute("title", "Kết Quả Tìm Kiếm");
         model.addAttribute("keyword", keyword);
-        model.addAttribute("loai", loai);
-        return "hanghoa/search";
+        return "hanghoa/list";
     }
     
-    // Thống kê hàng hóa
+    // Thống kê hàng hóa đơn giản
     @GetMapping("/statistics")
     public String statistics(Model model) {
         int totalProducts = hangHoaList.size();
@@ -164,36 +156,11 @@ public class HangHoaController {
                 .mapToDouble(h -> h.getGiaNhap() * h.getSoLuongHangHoa())
                 .sum();
         
-        // Thống kê theo loại
-        var categoryStats = hangHoaList.stream()
-                .collect(java.util.stream.Collectors.groupingBy(
-                    HangHoa::getLoaiHangHoa,
-                    java.util.stream.Collectors.counting()
-                ));
-        
         model.addAttribute("totalProducts", totalProducts);
         model.addAttribute("totalQuantity", totalQuantity);
         model.addAttribute("totalValue", totalValue);
-        model.addAttribute("categoryStats", categoryStats);
         model.addAttribute("title", "Thống Kê Hàng Hóa");
         
         return "hanghoa/statistics";
-    }
-    
-    // API endpoint để lấy dữ liệu JSON (cho AJAX)
-    @GetMapping("/api/all")
-    @ResponseBody
-    public List<HangHoa> getAllHangHoaApi() {
-        return hangHoaList;
-    }
-    
-    // API endpoint để lấy hàng hóa theo ID
-    @GetMapping("/api/{id}")
-    @ResponseBody
-    public HangHoa getHangHoaByIdApi(@PathVariable String id) {
-        return hangHoaList.stream()
-                .filter(h -> h.getHanghoaID().equals(id))
-                .findFirst()
-                .orElse(null);
     }
 }
