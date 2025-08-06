@@ -1,161 +1,270 @@
 package entity;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 /**
- * Entity quản lý nhập hàng
- * Kế thừa từ HangHoa và bổ sung logic nhập hàng
+ * Entity class đại diện cho thông tin nhập hàng
+ * Tương thích với NhapController và tránh xung đột với HangHoaController, BanController
  */
-public class Nhap extends HangHoa {
+public class Nhap {
+    // Thuộc tính chính - theo NhapController
+    private String hanghoaID;        // ID hàng hóa - khớp với NhapController
+    private String tenHangHoa;       // Tên hàng hóa - khớp với NhapController  
+    private int soLuongNhap;        // Số lượng nhập - khớp với NhapController
+    private double giaNhap;          // Giá nhập - khớp với NhapController
+    private String ngayNhap;         // Ngày nhập - khớp với NhapController
     
-    private int soLuongNhap;
-    private double giaNhapDonVi;
-    private String nhaCungCap;
-    private String ghiChu;
-
-    // Constructors
+    // Thuộc tính bổ sung cho nhập hàng
+    private String nhaCungCap;       // Nhà cung cấp
+    private String nguoiNhap;        // Người thực hiện nhập
+    private String ghiChu;           // Ghi chú
+    private String trangThai;        // Trạng thái nhập
+    private String maNhapHang;       // Mã phiếu nhập (khác với hanghoaID)
+    
+    // Constructor không tham số
     public Nhap() {
-        super();
+        this.ngayNhap = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        this.trangThai = "Đã nhập";
+        this.ghiChu = "";
+        this.nguoiNhap = "";
+        this.nhaCungCap = "";
+        this.maNhapHang = "";
     }
-
-    public Nhap(String hanghoaID, String tenHangHoa, int soLuongNhap, double giaNhap, String ngayNhap, String loaiHangHoa) {
-        super(hanghoaID, tenHangHoa, soLuongNhap, ngayNhap, giaNhap, loaiHangHoa);
+    
+    
+    // Constructor đầy đủ cho form
+    public Nhap(String hanghoaID, String tenHangHoa, int soLuongNhap, double giaNhap, 
+                String ngayNhap, String nhaCungCap, String nguoiNhap, String ghiChu) {
+        this.hanghoaID = hanghoaID;
+        this.tenHangHoa = tenHangHoa;
         this.soLuongNhap = soLuongNhap;
-        this.giaNhapDonVi = giaNhap;
-    }
-
-    public Nhap(String hanghoaID, String tenHangHoa, int soLuongNhap, double giaNhapDonVi, 
-                String ngayNhap, String loaiHangHoa, String nhaCungCap, String ghiChu) {
-        super(hanghoaID, tenHangHoa, soLuongNhap, ngayNhap, giaNhapDonVi, loaiHangHoa);
-        this.soLuongNhap = soLuongNhap;
-        this.giaNhapDonVi = giaNhapDonVi;
+        this.giaNhap = giaNhap;
+        this.ngayNhap = ngayNhap;
         this.nhaCungCap = nhaCungCap;
+        this.nguoiNhap = nguoiNhap;
+        this.ghiChu = ghiChu;
+        this.trangThai = "Đã nhập";
+        this.maNhapHang = "NH" + hanghoaID;
+    }
+    
+    // Constructor 6 tham số
+    public Nhap(String hanghoaID, String tenHangHoa, int soLuongNhap, double giaNhap, 
+                String ngayNhap, String nhaCungCap) {
+        this.hanghoaID = hanghoaID;
+        this.tenHangHoa = tenHangHoa;
+        this.soLuongNhap = soLuongNhap;
+        this.giaNhap = giaNhap;
+        this.ngayNhap = ngayNhap;
+        this.nhaCungCap = nhaCungCap;
+        this.trangThai = "Đã nhập";
+        this.nguoiNhap = "";
+        this.ghiChu = "";
+        this.maNhapHang = "NH" + hanghoaID;
+    }
+    
+    // Constructor legacy - tương thích với lỗi Maven ban đầu
+    public Nhap(String maNhap, String maSanPham, int soLuong, int donGia, String nhaCungCap) {
+        this.maNhapHang = maNhap;
+        this.hanghoaID = maSanPham;
+        this.tenHangHoa = maSanPham;
+        this.soLuongNhap = soLuong;
+        this.giaNhap = (double) donGia;
+        this.nhaCungCap = nhaCungCap;
+        this.ngayNhap = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        this.trangThai = "Đã nhập";
+        this.nguoiNhap = "";
+        this.ghiChu = "";
+    }
+    
+    // Getter và Setter methods - Theo đúng NhapController
+    public String getHanghoaID() {
+        return hanghoaID;
+    }
+    
+    public void setHanghoaID(String hanghoaID) {
+        this.hanghoaID = hanghoaID;
+        // Tự động cập nhật mã nhập hàng
+        if (this.maNhapHang == null || this.maNhapHang.isEmpty()) {
+            this.maNhapHang = "NH" + hanghoaID;
+        }
+    }
+    
+    public String getTenHangHoa() {
+        return tenHangHoa;
+    }
+    
+    public void setTenHangHoa(String tenHangHoa) {
+        this.tenHangHoa = tenHangHoa;
+    }
+    
+    public int getSoLuongNhap() {
+        return soLuongNhap;
+    }
+    
+    public void setSoLuongNhap(int soLuongNhap) {
+        this.soLuongNhap = soLuongNhap;
+    }
+    
+    public double getGiaNhap() {
+        return giaNhap;
+    }
+    
+    public void setGiaNhap(double giaNhap) {
+        this.giaNhap = giaNhap;
+    }
+    
+    public String getNgayNhap() {
+        return ngayNhap;
+    }
+    
+    public void setNgayNhap(String ngayNhap) {
+        this.ngayNhap = ngayNhap;
+    }
+    
+    public String getNhaCungCap() {
+        return nhaCungCap;
+    }
+    
+    public void setNhaCungCap(String nhaCungCap) {
+        this.nhaCungCap = nhaCungCap;
+    }
+    
+    public String getNguoiNhap() {
+        return nguoiNhap;
+    }
+    
+    public void setNguoiNhap(String nguoiNhap) {
+        this.nguoiNhap = nguoiNhap;
+    }
+    
+    public String getGhiChu() {
+        return ghiChu;
+    }
+    
+    public void setGhiChu(String ghiChu) {
         this.ghiChu = ghiChu;
     }
-
-    // Getters và Setters
-    public int getSoLuongNhap() { 
-        return soLuongNhap; 
+    
+    public String getTrangThai() {
+        return trangThai;
     }
     
-    public void setSoLuongNhap(int soLuongNhap) { 
-        this.soLuongNhap = soLuongNhap;
-        // Cập nhật số lượng trong hàng hóa chính
-        super.setSoLuongHangHoa(super.getSoLuongHangHoa() + soLuongNhap);
-    }
-
-    public double getGiaNhapDonVi() { 
-        return giaNhapDonVi; 
+    public void setTrangThai(String trangThai) {
+        this.trangThai = trangThai;
     }
     
-    public void setGiaNhapDonVi(double giaNhapDonVi) { 
-        this.giaNhapDonVi = giaNhapDonVi;
-        super.setGiaNhap(giaNhapDonVi);
-    }
-
-    public String getNhaCungCap() { 
-        return nhaCungCap; 
+    public String getMaNhapHang() {
+        return maNhapHang;
     }
     
-    public void setNhaCungCap(String nhaCungCap) { 
-        this.nhaCungCap = nhaCungCap; 
-    }
-
-    public String getGhiChu() { 
-        return ghiChu; 
+    public void setMaNhapHang(String maNhapHang) {
+        this.maNhapHang = maNhapHang;
     }
     
-    public void setGhiChu(String ghiChu) { 
-        this.ghiChu = ghiChu; 
+    // Phương thức tính toán - Sử dụng trong Controller
+    public double getTongTienNhap() {
+        return soLuongNhap * giaNhap;
     }
-
-    // Business Logic Methods
-
-    /**
-     * Tính tổng tiền nhập cho lô hàng này
-     */
-    public double tinhTongTienNhap() {
-        return soLuongNhap * giaNhapDonVi;
+    
+    // Alias cho tính tổng chi phí
+    public double getTotalCost() {
+        return getTongTienNhap();
     }
-
-    /**
-     * Kiểm tra tính hợp lệ của phiếu nhập
-     */
-    public boolean kiemTraPhieuNhap() {
-        if (!validateData()) return false;
-        
-        if (soLuongNhap <= 0) {
-            System.out.println("Lỗi: Số lượng nhập phải lớn hơn 0!");
+    
+    // Phương thức kiểm tra hợp lệ
+    public boolean isValid() {
+        return hanghoaID != null && !hanghoaID.trim().isEmpty() &&
+               tenHangHoa != null && !tenHangHoa.trim().isEmpty() &&
+               soLuongNhap > 0 && giaNhap > 0 &&
+               ngayNhap != null && !ngayNhap.trim().isEmpty();
+    }
+    
+    // Phương thức format giá tiền (cho hiển thị)
+    public String getFormattedGiaNhap() {
+        return String.format("%,.0f VND", giaNhap);
+    }
+    
+    // Phương thức format tổng tiền (cho hiển thị)
+    public String getFormattedTongTien() {
+        return String.format("%,.0f VND", getTongTienNhap());
+    }
+    
+    // Phương thức kiểm tra ngày nhập gần đây (trong 30 ngày)
+    public boolean isRecentImport() {
+        try {
+            LocalDate importDate = LocalDate.parse(ngayNhap);
+            LocalDate thirtyDaysAgo = LocalDate.now().minusDays(30);
+            return importDate.isAfter(thirtyDaysAgo);
+        } catch (Exception e) {
             return false;
         }
-        
-        if (giaNhapDonVi <= 0) {
-            System.out.println("Lỗi: Giá nhập đơn vị phải lớn hơn 0!");
-            return false;
-        }
-        
-        return true;
     }
-
-    /**
-     * Thực hiện nhập hàng vào kho
-     */
-    public boolean thucHienNhapHang() {
-        if (!kiemTraPhieuNhap()) {
-            return false;
-        }
-        
-        System.out.println("=== THỰC HIỆN NHẬP HÀNG ===");
-        System.out.println("Mã hàng hóa: " + getHanghoaID());
-        System.out.println("Tên hàng hóa: " + getTenHangHoa());
-        System.out.println("Số lượng nhập: " + soLuongNhap);
-        System.out.println("Giá nhập đơn vị: " + String.format("%.2f VND", giaNhapDonVi));
-        System.out.println("Tổng tiền: " + String.format("%.2f VND", tinhTongTienNhap()));
-        System.out.println("Nhà cung cấp: " + (nhaCungCap != null ? nhaCungCap : "Chưa cập nhật"));
-        System.out.println("Ngày nhập: " + getNgayNhap());
-        System.out.println("Nhập hàng thành công!");
-        System.out.println("===============================");
-        
-        return true;
+    
+    // Phương thức so sánh với hàng hóa khác (để tránh trùng lặp)
+    public boolean isDuplicateWith(String otherHanghoaID, String otherNgayNhap) {
+        return this.hanghoaID != null && this.hanghoaID.equals(otherHanghoaID) &&
+               this.ngayNhap != null && this.ngayNhap.equals(otherNgayNhap);
     }
-
-    /**
-     * Hiển thị thông tin phiếu nhập
-     */
-    @Override
-    public void hienThiThongTin() {
-        System.out.println("=== PHIẾU NHẬP HÀNG ===");
-        System.out.println("Mã hàng hóa: " + getHanghoaID());
-        System.out.println("Tên hàng hóa: " + getTenHangHoa());
-        System.out.println("Số lượng nhập: " + soLuongNhap);
-        System.out.println("Giá nhập đơn vị: " + String.format("%.2f VND", giaNhapDonVi));
-        System.out.println("Tổng tiền: " + String.format("%.2f VND", tinhTongTienNhap()));
-        System.out.println("Nhà cung cấp: " + (nhaCungCap != null ? nhaCungCap : "Chưa cập nhật"));
-        System.out.println("Ngày nhập: " + getNgayNhap());
-        System.out.println("Loại hàng hóa: " + getLoaiHangHoa());
-        if (ghiChu != null && !ghiChu.trim().isEmpty()) {
-            System.out.println("Ghi chú: " + ghiChu);
-        }
-        System.out.println("=======================");
-    }
-
-    /**
-     * Cập nhật thông tin nhập hàng
-     */
-    public void capNhatThongTinNhap(int soLuongMoi, double giaMoi, String nhaCungCapMoi, String ghiChuMoi) {
-        this.soLuongNhap = soLuongMoi;
-        this.giaNhapDonVi = giaMoi;
-        this.nhaCungCap = nhaCungCapMoi;
-        this.ghiChu = ghiChuMoi;
-        
-        // Cập nhật thông tin trong entity cha
-        super.setGiaNhap(giaMoi);
-        super.setSoLuongHangHoa(soLuongMoi);
-        
-        System.out.println("Đã cập nhật thông tin nhập hàng cho mã: " + getHanghoaID());
-    }
-
+    
+    // Override toString method
     @Override
     public String toString() {
-        return String.format("Nhap{ID='%s', Ten='%s', SoLuongNhap=%d, GiaNhap=%.2f, TongTien=%.2f, NhaCungCap='%s'}", 
-                           getHanghoaID(), getTenHangHoa(), soLuongNhap, giaNhapDonVi, tinhTongTienNhap(), nhaCungCap);
+        return "Nhap{" +
+                "maNhapHang='" + maNhapHang + '\'' +
+                ", hanghoaID='" + hanghoaID + '\'' +
+                ", tenHangHoa='" + tenHangHoa + '\'' +
+                ", soLuongNhap=" + soLuongNhap +
+                ", giaNhap=" + giaNhap +
+                ", ngayNhap='" + ngayNhap + '\'' +
+                ", nhaCungCap='" + nhaCungCap + '\'' +
+                ", nguoiNhap='" + nguoiNhap + '\'' +
+                ", trangThai='" + trangThai + '\'' +
+                ", tongTienNhap=" + getTongTienNhap() +
+                '}';
+    }
+    
+    // Override equals method - Sử dụng maNhapHang làm key chính
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        
+        Nhap nhap = (Nhap) obj;
+        
+        // Ưu tiên so sánh bằng maNhapHang
+        if (maNhapHang != null && nhap.maNhapHang != null) {
+            return maNhapHang.equals(nhap.maNhapHang);
+        }
+        
+        // Fallback: so sánh bằng hanghoaID
+        return hanghoaID != null ? hanghoaID.equals(nhap.hanghoaID) : nhap.hanghoaID == null;
+    }
+    
+    // Override hashCode method
+    @Override
+    public int hashCode() {
+        if (maNhapHang != null) {
+            return maNhapHang.hashCode();
+        }
+        return hanghoaID != null ? hanghoaID.hashCode() : 0;
+    }
+    
+    // Phương thức so sánh theo ngày (cho sắp xếp)
+    public int compareByDate(Nhap other) {
+        if (this.ngayNhap == null || other.ngayNhap == null) {
+            return 0;
+        }
+        return this.ngayNhap.compareTo(other.ngayNhap);
+    }
+    
+    // Phương thức so sánh theo giá (cho sắp xếp)
+    public int compareByPrice(Nhap other) {
+        return Double.compare(this.giaNhap, other.giaNhap);
+    }
+    
+    // Phương thức so sánh theo số lượng (cho sắp xếp)
+    public int compareByQuantity(Nhap other) {
+        return Integer.compare(this.soLuongNhap, other.soLuongNhap);
     }
 }
