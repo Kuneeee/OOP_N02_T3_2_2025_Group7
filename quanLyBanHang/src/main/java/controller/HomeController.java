@@ -1,8 +1,10 @@
 package controller;
 
+import model.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import java.util.List;
 
 @Controller
 public class HomeController {
@@ -16,7 +18,22 @@ public class HomeController {
     
     @GetMapping("/dashboard")
     public String dashboard(Model model) {
+        // Lấy dữ liệu thống kê
+        SampleDataProvider.SummaryStats stats = SampleDataProvider.getSummaryStats();
+        List<Product> lowStockProducts = SampleDataProvider.getSampleProducts().stream()
+                .filter(Product::isLowStock)
+                .collect(java.util.stream.Collectors.toList());
+        List<Order> recentOrders = SampleDataProvider.getSampleOrders();
+        List<Customer> vipCustomers = SampleDataProvider.getSampleCustomers().stream()
+                .filter(Customer::isVipCustomer)
+                .collect(java.util.stream.Collectors.toList());
+        
         model.addAttribute("title", "Bảng Điều Khiển");
+        model.addAttribute("stats", stats);
+        model.addAttribute("lowStockProducts", lowStockProducts);
+        model.addAttribute("recentOrders", recentOrders);
+        model.addAttribute("vipCustomers", vipCustomers);
+        
         return "dashboard";
     }
     
