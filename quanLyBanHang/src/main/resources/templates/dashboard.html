@@ -1,246 +1,322 @@
 <!DOCTYPE html>
-<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title th:text="${title} ?: 'Bảng Điều Khiển'">Bảng Điều Khiển</title>
-    
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
+    <title th:text="${title}">Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        body {
-            background-color: #f8f9fa;
+        .card-stats {
+            border-left: 4px solid;
+            transition: transform 0.2s;
         }
-        .navbar-brand {
-            font-weight: bold;
+        .card-stats:hover {
+            transform: translateY(-5px);
         }
-        .card {
-            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-            border: 1px solid rgba(0, 0, 0, 0.125);
-            transition: transform 0.2s ease-in-out;
-        }
-        .card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-        }
-        .stats-card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-        .stats-card .card-body {
-            padding: 1.5rem;
-        }
-        .stats-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-        }
-        .quick-action-card {
-            height: 150px;
+        .card-primary { border-left-color: #007bff; }
+        .card-success { border-left-color: #28a745; }
+        .card-warning { border-left-color: #ffc107; }
+        .card-danger { border-left-color: #dc3545; }
+        .card-info { border-left-color: #17a2b8; }
+        .card-purple { border-left-color: #6f42c1; }
+        
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            text-decoration: none;
-            color: inherit;
+            font-size: 24px;
+            color: white;
         }
-        .quick-action-card:hover {
-            text-decoration: none;
-            color: inherit;
-        }
-        .action-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
+        
+        .bg-primary-gradient { background: linear-gradient(45deg, #007bff, #0056b3); }
+        .bg-success-gradient { background: linear-gradient(45deg, #28a745, #155724); }
+        .bg-warning-gradient { background: linear-gradient(45deg, #ffc107, #e0a800); }
+        .bg-danger-gradient { background: linear-gradient(45deg, #dc3545, #bd2130); }
+        .bg-info-gradient { background: linear-gradient(45deg, #17a2b8, #117a8b); }
+        .bg-purple-gradient { background: linear-gradient(45deg, #6f42c1, #494b8a); }
     </style>
 </head>
 <body>
-    <!-- Navigation Bar -->
+    <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
-            <a class="navbar-brand" th:href="@{/}">
-                <i class="fas fa-store me-2"></i>
-                Hệ Thống Quản Lý Bán Hàng
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-store me-2"></i>Tech Store Management
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" th:href="@{/dashboard}">
-                            <i class="fas fa-tachometer-alt me-1"></i>
-                            Bảng Điều Khiển
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/hanghoa}">
-                            <i class="fas fa-boxes me-1"></i>
-                            Hàng Hóa
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/ban}">
-                            <i class="fas fa-shopping-cart me-1"></i>
-                            Bán Hàng
-                        </a>
-                    </li>
-                </ul>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="/"><i class="fas fa-home me-1"></i>Trang chủ</a>
+                <a class="nav-link active" href="/dashboard"><i class="fas fa-chart-pie me-1"></i>Dashboard</a>
+                <a class="nav-link" href="/products"><i class="fas fa-box me-1"></i>Sản phẩm</a>
+                <a class="nav-link" href="/customers"><i class="fas fa-users me-1"></i>Khách hàng</a>
+                <a class="nav-link" href="/orders"><i class="fas fa-shopping-cart me-1"></i>Đơn hàng</a>
             </div>
         </div>
     </nav>
 
-    <div class="container mt-4">
-        <!-- Page Header -->
-        <div class="row mb-4">
-            <div class="col">
-                <h1 class="h2 mb-0" th:text="${title}">Bảng Điều Khiển</h1>
-                <p class="text-muted">Tổng quan về hoạt động kinh doanh của bạn</p>
+    <div class="container-fluid mt-4">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="mb-4">
+                    <i class="fas fa-chart-pie me-2"></i>Bảng Điều Khiển
+                    <small class="text-muted">Tổng quan hệ thống</small>
+                </h2>
             </div>
         </div>
 
         <!-- Statistics Cards -->
         <div class="row mb-4">
-            <div class="col-md-3 mb-3">
-                <div class="card stats-card">
-                    <div class="card-body text-center">
-                        <i class="fas fa-boxes mb-2" style="font-size: 2rem;"></i>
-                        <div class="stats-number">125</div>
-                        <div>Sản Phẩm</div>
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+                <div class="card card-stats card-primary shadow">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-8">
+                                <h5 class="card-title text-uppercase text-muted mb-0">Sản phẩm</h5>
+                                <span class="h2 font-weight-bold mb-0" th:text="${stats.totalProducts}">8</span>
+                            </div>
+                            <div class="col-4 text-end">
+                                <div class="stat-icon bg-primary-gradient">
+                                    <i class="fas fa-box"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mt-3 mb-0 text-muted text-sm">
+                            <span class="text-danger me-2" th:text="${stats.lowStockProducts}">0</span>
+                            <span class="text-nowrap">sắp hết hàng</span>
+                        </p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 mb-3">
-                <div class="card stats-card">
-                    <div class="card-body text-center">
-                        <i class="fas fa-shopping-cart mb-2" style="font-size: 2rem;"></i>
-                        <div class="stats-number">48</div>
-                        <div>Đơn Hàng Hôm Nay</div>
+
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+                <div class="card card-stats card-success shadow">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-8">
+                                <h5 class="card-title text-uppercase text-muted mb-0">Khách hàng</h5>
+                                <span class="h2 font-weight-bold mb-0" th:text="${stats.totalCustomers}">6</span>
+                            </div>
+                            <div class="col-4 text-end">
+                                <div class="stat-icon bg-success-gradient">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mt-3 mb-0 text-muted text-sm">
+                            <span class="text-success me-2" th:text="${stats.vipCustomers}">2</span>
+                            <span class="text-nowrap">VIP</span>
+                        </p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 mb-3">
-                <div class="card stats-card">
-                    <div class="card-body text-center">
-                        <i class="fas fa-dollar-sign mb-2" style="font-size: 2rem;"></i>
-                        <div class="stats-number">15.2M</div>
-                        <div>Doanh Thu (VNĐ)</div>
+
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+                <div class="card card-stats card-warning shadow">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-8">
+                                <h5 class="card-title text-uppercase text-muted mb-0">Đơn hàng</h5>
+                                <span class="h2 font-weight-bold mb-0" th:text="${stats.totalOrders}">4</span>
+                            </div>
+                            <div class="col-4 text-end">
+                                <div class="stat-icon bg-warning-gradient">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mt-3 mb-0 text-muted text-sm">
+                            <span class="text-success me-2" th:text="${stats.completedOrders}">2</span>
+                            <span class="text-nowrap">hoàn thành</span>
+                        </p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 mb-3">
-                <div class="card stats-card">
-                    <div class="card-body text-center">
-                        <i class="fas fa-users mb-2" style="font-size: 2rem;"></i>
-                        <div class="stats-number">1,235</div>
-                        <div>Khách Hàng</div>
+
+            <div class="col-xl-3 col-md-6 col-sm-6 mb-3">
+                <div class="card card-stats card-info shadow">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-8">
+                                <h5 class="card-title text-uppercase text-muted mb-0">Doanh thu</h5>
+                                <span class="h2 font-weight-bold mb-0">
+                                    <span th:text="${#numbers.formatInteger(stats.totalRevenue.longValue(), 0, 'COMMA')}">75,100,000</span>
+                                    <small>đ</small>
+                                </span>
+                            </div>
+                            <div class="col-4 text-end">
+                                <div class="stat-icon bg-info-gradient">
+                                    <i class="fas fa-dollar-sign"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mt-3 mb-0 text-muted text-sm">
+                            <span class="text-nowrap">từ đơn hàng hoàn thành</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6 col-sm-6 mb-3">
+                <div class="card card-stats card-purple shadow">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-8">
+                                <h5 class="card-title text-uppercase text-muted mb-0">Tồn kho</h5>
+                                <span class="h2 font-weight-bold mb-0">
+                                    <span th:text="${#numbers.formatInteger(stats.totalInventoryValue.longValue(), 0, 'COMMA')}">2,500,000,000</span>
+                                    <small>đ</small>
+                                </span>
+                            </div>
+                            <div class="col-4 text-end">
+                                <div class="stat-icon bg-purple-gradient">
+                                    <i class="fas fa-warehouse"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mt-3 mb-0 text-muted text-sm">
+                            <span class="text-nowrap">tổng giá trị hàng tồn</span>
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Quick Actions -->
-        <div class="row mb-4">
-            <div class="col">
-                <h3 class="h4 mb-3">Thao Tác Nhanh</h3>
-            </div>
-        </div>
-        
+        <!-- Charts and Tables Row -->
         <div class="row">
-            <div class="col-md-3 mb-3">
-                <a th:href="@{/hanghoa/them}" class="card quick-action-card text-decoration-none">
-                    <div class="card-body text-center">
-                        <i class="fas fa-plus-circle action-icon text-success"></i>
-                        <h5 class="card-title">Thêm Hàng Hóa</h5>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-3 mb-3">
-                <a th:href="@{/ban/them}" class="card quick-action-card text-decoration-none">
-                    <div class="card-body text-center">
-                        <i class="fas fa-cash-register action-icon text-primary"></i>
-                        <h5 class="card-title">Tạo Đơn Bán</h5>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-3 mb-3">
-                <a th:href="@{/timkiem}" class="card quick-action-card text-decoration-none">
-                    <div class="card-body text-center">
-                        <i class="fas fa-search action-icon text-info"></i>
-                        <h5 class="card-title">Tìm Kiếm</h5>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-3 mb-3">
-                <a th:href="@{/baocao}" class="card quick-action-card text-decoration-none">
-                    <div class="card-body text-center">
-                        <i class="fas fa-chart-bar action-icon text-warning"></i>
-                        <h5 class="card-title">Báo Cáo</h5>
-                    </div>
-                </a>
-            </div>
-        </div>
-
-        <!-- Recent Activities -->
-        <div class="row mt-5">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header">
-                        <h5 class="card-title mb-0">
-                            <i class="fas fa-clock me-2"></i>
-                            Hoạt Động Gần Đây
-                        </h5>
+            <!-- Low Stock Products -->
+            <div class="col-xl-4 col-lg-6 mb-4">
+                <div class="card shadow">
+                    <div class="card-header bg-danger text-white">
+                        <h6 class="m-0 font-weight-bold">
+                            <i class="fas fa-exclamation-triangle me-2"></i>Sản phẩm sắp hết hàng
+                        </h6>
                     </div>
                     <div class="card-body">
-                        <div class="list-group list-group-flush">
-                            <div class="list-group-item d-flex justify-content-between align-items-center">
-                                <div>
-                                    <i class="fas fa-plus-circle text-success me-2"></i>
-                                    Thêm sản phẩm "Bánh mì sandwich"
+                        <div th:if="${#lists.isEmpty(lowStockProducts)}" class="text-center text-muted py-3">
+                            <i class="fas fa-check-circle fa-2x mb-2 text-success"></i>
+                            <p>Tất cả sản phẩm đều còn đủ hàng</p>
+                        </div>
+                        <div th:if="${!#lists.isEmpty(lowStockProducts)}">
+                            <div th:each="product : ${lowStockProducts}" class="d-flex align-items-center mb-3">
+                                <div class="flex-shrink-0">
+                                    <div class="bg-danger text-white rounded-circle d-flex align-items-center justify-content-center" 
+                                         style="width: 40px; height: 40px;">
+                                        <i class="fas fa-box"></i>
+                                    </div>
                                 </div>
-                                <small class="text-muted">2 phút trước</small>
-                            </div>
-                            <div class="list-group-item d-flex justify-content-between align-items-center">
-                                <div>
-                                    <i class="fas fa-shopping-cart text-primary me-2"></i>
-                                    Đơn hàng #1234 đã hoàn thành
+                                <div class="flex-grow-1 ms-3">
+                                    <h6 class="mb-0" th:text="${product.productName}">Product Name</h6>
+                                    <small class="text-muted">
+                                        Còn <span th:text="${product.stockQuantity}" class="fw-bold text-danger">0</span> / 
+                                        Tối thiểu <span th:text="${product.minStockLevel}">0</span>
+                                    </small>
                                 </div>
-                                <small class="text-muted">15 phút trước</small>
                             </div>
-                            <div class="list-group-item d-flex justify-content-between align-items-center">
-                                <div>
-                                    <i class="fas fa-edit text-info me-2"></i>
-                                    Cập nhật giá sản phẩm "Nước cam"
-                                </div>
-                                <small class="text-muted">1 giờ trước</small>
-                            </div>
+                        </div>
+                        <div class="text-center">
+                            <a href="/products/low-stock" class="btn btn-outline-danger btn-sm">
+                                <i class="fas fa-eye me-1"></i>Xem tất cả
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
-            
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header">
-                        <h5 class="card-title mb-0">
-                            <i class="fas fa-exclamation-triangle me-2"></i>
-                            Cảnh Báo Hệ Thống
-                        </h5>
+
+            <!-- Recent Orders -->
+            <div class="col-xl-8 col-lg-6 mb-4">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white">
+                        <h6 class="m-0 font-weight-bold">
+                            <i class="fas fa-shopping-cart me-2"></i>Đơn hàng gần đây
+                        </h6>
                     </div>
                     <div class="card-body">
-                        <div class="alert alert-warning" role="alert">
-                            <i class="fas fa-box me-2"></i>
-                            <strong>Hàng sắp hết!</strong> 5 sản phẩm có số lượng dưới 10.
+                        <div class="table-responsive">
+                            <table class="table table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>Mã đơn</th>
+                                        <th>Khách hàng</th>
+                                        <th>Tổng tiền</th>
+                                        <th>Trạng thái</th>
+                                        <th>Ngày đặt</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="order : ${recentOrders}">
+                                        <td>
+                                            <a th:href="@{/orders/{id}(id=${order.orderId})}" 
+                                               class="text-decoration-none fw-bold" th:text="${order.orderId}">ORD001</a>
+                                        </td>
+                                        <td th:text="${order.customerName}">Customer Name</td>
+                                        <td>
+                                            <span th:text="${#numbers.formatInteger(order.finalAmount.longValue(), 0, 'COMMA')}">0</span>đ
+                                        </td>
+                                        <td>
+                                            <span th:switch="${order.status}" class="badge">
+                                                <span th:case="'COMPLETED'" class="badge bg-success">Hoàn thành</span>
+                                                <span th:case="'PROCESSING'" class="badge bg-info">Đang xử lý</span>
+                                                <span th:case="'PENDING'" class="badge bg-warning">Chờ xử lý</span>
+                                                <span th:case="'CANCELLED'" class="badge bg-danger">Đã hủy</span>
+                                                <span th:case="*" class="badge bg-secondary" th:text="${order.status}">Unknown</span>
+                                            </span>
+                                        </td>
+                                        <td th:text="${#temporals.format(order.orderDate, 'dd/MM/yyyy HH:mm')}">01/01/2024 10:00</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-                        <div class="alert alert-info" role="alert">
-                            <i class="fas fa-calendar me-2"></i>
-                            <strong>Nhắc nhở:</strong> Có 3 sản phẩm sắp hết hạn trong tuần này.
+                        <div class="text-center">
+                            <a href="/orders" class="btn btn-outline-primary btn-sm">
+                                <i class="fas fa-eye me-1"></i>Xem tất cả đơn hàng
+                            </a>
                         </div>
-                        <div class="alert alert-success" role="alert">
-                            <i class="fas fa-check-circle me-2"></i>
-                            <strong>Tốt!</strong> Doanh thu tháng này tăng 15% so với tháng trước.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- VIP Customers -->
+        <div class="row">
+            <div class="col-12 mb-4">
+                <div class="card shadow">
+                    <div class="card-header bg-warning text-dark">
+                        <h6 class="m-0 font-weight-bold">
+                            <i class="fas fa-crown me-2"></i>Khách hàng VIP
+                        </h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div th:each="customer : ${vipCustomers}" class="col-xl-3 col-md-6 mb-3">
+                                <div class="card border-warning">
+                                    <div class="card-body text-center">
+                                        <div class="text-warning mb-2">
+                                            <i class="fas fa-user-circle fa-3x"></i>
+                                        </div>
+                                        <h6 class="card-title" th:text="${customer.customerName}">Customer Name</h6>
+                                        <p class="card-text">
+                                            <small class="text-muted" th:text="${customer.phoneNumber}">Phone</small><br>
+                                            <span class="badge bg-warning text-dark">VIP</span>
+                                        </p>
+                                        <div class="text-muted small">
+                                            <div>Tổng mua: <strong th:text="${#numbers.formatInteger(customer.totalPurchased, 0, 'COMMA')}">0</strong>đ</div>
+                                            <div>Số đơn: <strong th:text="${customer.totalOrders}">0</strong></div>
+                                        </div>
+                                        <a th:href="@{/customers/{id}(id=${customer.customerId})}" 
+                                           class="btn btn-outline-warning btn-sm mt-2">
+                                            <i class="fas fa-eye me-1"></i>Chi tiết
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <a href="/customers/vip" class="btn btn-outline-warning">
+                                <i class="fas fa-crown me-1"></i>Xem tất cả VIP
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -248,21 +324,6 @@
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="footer mt-5 py-4 bg-dark text-light">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <p class="mb-0">&copy; 2025 Hệ Thống Quản Lý Bán Hàng. All rights reserved.</p>
-                </div>
-                <div class="col-md-6 text-md-end">
-                    <p class="mb-0">Phiên bản 1.0.0</p>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
