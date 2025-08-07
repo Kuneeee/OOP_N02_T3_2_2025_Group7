@@ -61,17 +61,17 @@ public class SampleDataProvider {
         List<Customer> customers = new ArrayList<>();
         
         // Khách VIP
-        Customer vip = new Customer("CUS001", "Chị Lan Anh", "0901234567");
-        vip.setEmail("lananh@gmail.com");
-        vip.setAddress("123 Nguyễn Huệ, Quận 1, TP.HCM");
+        Customer vip = new Customer("CUS001", "Chị Bảo", "0355696858");
+        vip.setEmail("giabaomc0903@gmail.com");
+        vip.setAddress("Thôn 6 Hải Tiến, xã Hải Ninh, tỉnh Quảng Ninh");
         vip.setCustomerType("VIP");
         vip.setTotalPurchased(500000.0);
         vip.setTotalOrders(25);
         
         // Khách thường
-        Customer regular = new Customer("CUS002", "Anh Minh", "0912345678");
-        regular.setEmail("anhminh@gmail.com");
-        regular.setAddress("456 Lê Lợi, Quận 3, TP.HCM");
+        Customer regular = new Customer("CUS002", "Anh Long", "0866198289");
+        regular.setEmail("dangduclong100@gmail.com");
+        regular.setAddress("Thôn 4 Hải Tiến, xã Hải Ninh, tỉnh Quảng Ninh");
         regular.setCustomerType("Regular");
         regular.setTotalPurchased(150000.0);
         regular.setTotalOrders(8);
@@ -149,7 +149,7 @@ public class SampleDataProvider {
         
         // Đơn hàng hoàn thành
         Order order1 = new Order("ORD001", "CUS001", "USR003");
-        order1.setCustomerName("Chị Lan Anh");
+        order1.setCustomerName("Chị Bảo");
         order1.setEmployeeName("Nhân Viên");
         order1.setOrderDate(LocalDateTime.now().minusDays(2));
         order1.setStatus("COMPLETED");
@@ -164,7 +164,7 @@ public class SampleDataProvider {
         
         // Đơn hàng đang xử lý
         Order order2 = new Order("ORD002", "CUS002", "USR003");
-        order2.setCustomerName("Anh Minh");
+        order2.setCustomerName("Anh Long");
         order2.setEmployeeName("Nhân Viên");
         order2.setOrderDate(LocalDateTime.now().minusHours(2));
         order2.setStatus("PROCESSING");
