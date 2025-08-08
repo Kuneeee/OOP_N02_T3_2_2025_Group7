@@ -60,10 +60,18 @@
             border-radius: 15px;
             padding: 1.5rem;
             text-align: center;
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
         }
         .feature-card:hover {
             transform: translateY(-5px);
+            background: rgba(102, 126, 234, 0.2);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.2);
+            color: inherit;
+            text-decoration: none;
         }
         .feature-icon {
             font-size: 2.5rem;
@@ -126,37 +134,37 @@
             </p>
             
             <div class="feature-grid">
-                <div class="feature-card">
+                <a th:href="@{/products}" class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-boxes"></i>
                     </div>
-                    <div class="feature-title">Quản Lý Hàng Hóa</div>
+                    <div class="feature-title">Quản Lý Sản Phẩm</div>
                     <div class="feature-desc">Theo dõi và quản lý kho hàng một cách hiệu quả</div>
-                </div>
+                </a>
                 
-                <div class="feature-card">
+                <a th:href="@{/orders}" class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-shopping-cart"></i>
                     </div>
-                    <div class="feature-title">Bán Hàng</div>
+                    <div class="feature-title">Quản Lý Đơn Hàng</div>
                     <div class="feature-desc">Xử lý đơn hàng và giao dịch bán hàng nhanh chóng</div>
-                </div>
+                </a>
                 
-                <div class="feature-card">
+                <a th:href="@{/dashboard}" class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-chart-line"></i>
                     </div>
-                    <div class="feature-title">Báo Cáo</div>
+                    <div class="feature-title">Dashboard & Báo Cáo</div>
                     <div class="feature-desc">Phân tích doanh thu và hiệu quả kinh doanh</div>
-                </div>
+                </a>
                 
-                <div class="feature-card">
+                <a th:href="@{/customers}" class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-search"></i>
+                        <i class="fas fa-users"></i>
                     </div>
-                    <div class="feature-title">Tìm Kiếm</div>
-                    <div class="feature-desc">Tìm kiếm thông tin hàng hóa và khách hàng</div>
-                </div>
+                    <div class="feature-title">Quản Lý Khách Hàng</div>
+                    <div class="feature-desc">Tìm kiếm và quản lý thông tin khách hàng</div>
+                </a>
             </div>
             
             <div class="d-grid gap-2 d-md-flex justify-content-md-center">
