@@ -15,7 +15,13 @@ public class ProductController {
     public String products(Model model, 
                           @RequestParam(required = false) String search,
                           @RequestParam(required = false) String category) {
+        
+        System.out.println("=== ProductController /products được gọi ===");
+        System.out.println("Search: " + search + ", Category: " + category);
+        
         List<Product> products = SampleDataProvider.getSampleProducts();
+        System.out.println("Số sản phẩm từ SampleDataProvider: " + products.size());
+        
         List<Category> categories = SampleDataProvider.getSampleCategories();
         
         // Filter by search keyword
@@ -30,8 +36,13 @@ public class ProductController {
         // Filter by category
         if (category != null && !category.trim().isEmpty()) {
             products = products.stream()
-                    .filter(p -> category.equals(p.getCategoryId()))
+                    .filter(p -> category.equals(p.getCategoryName()) || category.equals(p.getCategoryId()))
                     .collect(Collectors.toList());
+        }
+        
+        System.out.println("Số sản phẩm sau filter: " + products.size());
+        if (!products.isEmpty()) {
+            System.out.println("Sản phẩm đầu tiên: " + products.get(0).getProductName());
         }
         
         model.addAttribute("products", products);
