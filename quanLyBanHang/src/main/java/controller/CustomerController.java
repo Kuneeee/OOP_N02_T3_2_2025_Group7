@@ -90,4 +90,217 @@ public class CustomerController {
         
         return "customers/list";
     }
+    
+    // Hiển thị form thêm khách hàng mới
+    @GetMapping("/add")
+    public String showAddForm(Model model) {
+        model.addAttribute("customer", new Customer());
+        model.addAttribute("title", "Thêm Khách Hàng Mới");
+        model.addAttribute("action", "add");
+        return "customers/form";
+    }
+    
+    // Xử lý thêm khách hàng mới
+    @PostMapping("/add")
+    public String addCustomer(@ModelAttribute Customer customer, Model model) {
+        System.out.println("=== CustomerController /add POST được gọi ===");
+        System.out.println("Customer name: " + customer.getCustomerName());
+        
+        try {
+            // Generate new ID
+            List<Customer> customers = SampleDataProvider.getSampleCustomers();
+            int maxId = customers.stream()
+                    .mapToInt(c -> {
+                        try {
+                            return Integer.parseInt(c.getCustomerId().substring(3)); // CUS001 -> 001 -> 1
+                        } catch (Exception e) {
+                            return 0;
+                        }
+                    })
+                    .max()
+                    .orElse(0);
+            customer.setCustomerId("CUS" + String.format("%03d", maxId + 1));
+            
+            System.out.println("Generated ID: " + customer.getCustomerId());
+            
+            // Set default values if not provided
+            if (customer.getCustomerType() == null || customer.getCustomerType().isEmpty()) {
+                customer.setCustomerType("New");
+            }
+            if (customer.getTotalSpent() == null) {
+                customer.setTotalSpent(0.0);
+            }
+            if (customer.getTotalOrders() == 0) {
+                customer.setTotalOrders(0);
+            }
+            
+            // Add to sample data (Note: This is temporary, in real app would save to database)
+            customers.add(customer);
+            
+            System.out.println("Customer added successfully. Total customers: " + customers.size());
+            System.out.println("Returning to customers list view...");
+            
+            // Instead of redirect, return to customers list directly with success message
+            List<Customer> vipCustomers = customers.stream()
+                    .filter(Customer::isVipCustomer)
+                    .collect(Collectors.toList());
+            
+            long regularCount = customers.stream()
+                    .filter(c -> "Regular".equals(c.getCustomerType()))
+                    .count();
+            
+            long newCount = customers.stream()
+                    .filter(c -> "New".equals(c.getCustomerType()))
+                    .count();
+            
+            model.addAttribute("customers", customers);
+            model.addAttribute("vipCount", vipCustomers.size());
+            model.addAttribute("regularCount", regularCount);
+            model.addAttribute("newCount", newCount);
+            model.addAttribute("title", "Quản Lý Khách Hàng");
+            model.addAttribute("successMessage", "Thêm khách hàng thành công!");
+            
+            return "customers/list";
+        } catch (Exception e) {
+            System.out.println("Error adding customer: " + e.getMessage());
+            e.printStackTrace();
+            model.addAttribute("error", "Có lỗi xảy ra: " + e.getMessage());
+            model.addAttribute("customer", customer);
+            model.addAttribute("title", "Thêm Khách Hàng Mới");
+            model.addAttribute("action", "add");
+            return "customers/form";
+        }
+    }
+    
+    // Hiển thị form chỉnh sửa khách hàng
+    @GetMapping("/edit/{id}")
+    public String showEditForm(@PathVariable String id, Model model) {
+        List<Customer> customers = SampleDataProvider.getSampleCustomers();
+        Customer customer = customers.stream()
+                .filter(c -> c.getCustomerId().equals(id))
+                .findFirst()
+                .orElse(null);
+        
+        if (customer == null) {
+            model.addAttribute("error", "Không tìm thấy khách hàng!");
+            return "redirect:/customers";
+        }
+        
+        model.addAttribute("customer", customer);
+        model.addAttribute("title", "Chỉnh Sửa Khách Hàng - " + customer.getCustomerName());
+        model.addAttribute("action", "edit");
+        return "customers/form";
+    }
+    
+    // Xử lý cập nhật khách hàng
+    @PostMapping("/edit/{id}")
+    public String updateCustomer(@PathVariable String id, @ModelAttribute Customer customer, Model model) {
+        System.out.println("=== CustomerController /edit POST được gọi ===");
+        System.out.println("Customer ID: " + id + ", Customer name: " + customer.getCustomerName());
+        
+        try {
+            List<Customer> customers = SampleDataProvider.getSampleCustomers();
+            Customer existingCustomer = customers.stream()
+                    .filter(c -> c.getCustomerId().equals(id))
+                    .findFirst()
+                    .orElse(null);
+            
+            if (existingCustomer == null) {
+                model.addAttribute("error", "Không tìm thấy khách hàng!");
+                return "redirect:/customers";
+            }
+            
+            // Update customer fields
+            existingCustomer.setCustomerName(customer.getCustomerName());
+            existingCustomer.setEmail(customer.getEmail());
+            existingCustomer.setPhoneNumber(customer.getPhoneNumber());
+            existingCustomer.setAddress(customer.getAddress());
+            existingCustomer.setCustomerType(customer.getCustomerType());
+            existingCustomer.setTotalSpent(customer.getTotalSpent());
+            existingCustomer.setTotalOrders(customer.getTotalOrders());
+            existingCustomer.setLoyaltyPoints(customer.getLoyaltyPoints());
+            
+            System.out.println("Customer updated successfully. Total customers: " + customers.size());
+            System.out.println("Returning to customers list view...");
+            
+            // Return to customers list directly with success message
+            List<Customer> vipCustomers = customers.stream()
+                    .filter(Customer::isVipCustomer)
+                    .collect(Collectors.toList());
+            
+            long regularCount = customers.stream()
+                    .filter(c -> "Regular".equals(c.getCustomerType()))
+                    .count();
+            
+            long newCount = customers.stream()
+                    .filter(c -> "New".equals(c.getCustomerType()))
+                    .count();
+            
+            model.addAttribute("customers", customers);
+            model.addAttribute("vipCount", vipCustomers.size());
+            model.addAttribute("regularCount", regularCount);
+            model.addAttribute("newCount", newCount);
+            model.addAttribute("title", "Quản Lý Khách Hàng");
+            model.addAttribute("successMessage", "Cập nhật khách hàng thành công!");
+            
+            return "customers/list";
+        } catch (Exception e) {
+            System.out.println("Error updating customer: " + e.getMessage());
+            e.printStackTrace();
+            model.addAttribute("error", "Có lỗi xảy ra: " + e.getMessage());
+            model.addAttribute("customer", customer);
+            model.addAttribute("title", "Chỉnh Sửa Khách Hàng");
+            model.addAttribute("action", "edit");
+            return "customers/form";
+        }
+    }
+    
+    // Xóa khách hàng
+    @PostMapping("/delete/{id}")
+    public String deleteCustomer(@PathVariable String id, Model model) {
+        System.out.println("=== CustomerController /delete POST được gọi ===");
+        System.out.println("Customer ID to delete: " + id);
+        
+        try {
+            List<Customer> customers = SampleDataProvider.getSampleCustomers();
+            Customer customerToDelete = customers.stream()
+                    .filter(c -> c.getCustomerId().equals(id))
+                    .findFirst()
+                    .orElse(null);
+            
+            if (customerToDelete == null) {
+                model.addAttribute("error", "Không tìm thấy khách hàng để xóa!");
+            } else {
+                customers.remove(customerToDelete);
+                System.out.println("Customer deleted successfully. Total customers: " + customers.size());
+                model.addAttribute("successMessage", "Xóa khách hàng thành công!");
+            }
+            
+            // Return to customers list directly
+            List<Customer> vipCustomers = customers.stream()
+                    .filter(Customer::isVipCustomer)
+                    .collect(Collectors.toList());
+            
+            long regularCount = customers.stream()
+                    .filter(c -> "Regular".equals(c.getCustomerType()))
+                    .count();
+            
+            long newCount = customers.stream()
+                    .filter(c -> "New".equals(c.getCustomerType()))
+                    .count();
+            
+            model.addAttribute("customers", customers);
+            model.addAttribute("vipCount", vipCustomers.size());
+            model.addAttribute("regularCount", regularCount);
+            model.addAttribute("newCount", newCount);
+            model.addAttribute("title", "Quản Lý Khách Hàng");
+            
+            return "customers/list";
+        } catch (Exception e) {
+            System.out.println("Error deleting customer: " + e.getMessage());
+            e.printStackTrace();
+            model.addAttribute("error", "Có lỗi xảy ra: " + e.getMessage());
+            return "redirect:/customers";
+        }
+    }
 }

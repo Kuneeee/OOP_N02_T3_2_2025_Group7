@@ -1,5 +1,7 @@
 package model;
 
+import java.time.LocalDate;
+
 public class Customer {
     private String customerId;
     private String customerName;
@@ -9,13 +11,29 @@ public class Customer {
     private String customerType;
     private double totalPurchased;
     private int totalOrders;
+    private Double totalSpent;
+    private int loyaltyPoints; // Add loyalty points field
+    private LocalDate joinDate;
 
-    public Customer() {}
+    public Customer() {
+        this.customerType = "Regular";
+        this.totalPurchased = 0.0;
+        this.totalOrders = 0;
+        this.totalSpent = 0.0; // Initialize to prevent null pointer
+        this.loyaltyPoints = 0; // Initialize loyalty points
+        this.joinDate = LocalDate.now();
+    }
 
     public Customer(String customerId, String customerName, String phoneNumber) {
         this.customerId = customerId;
         this.customerName = customerName;
         this.phoneNumber = phoneNumber;
+        this.customerType = "Regular";
+        this.totalPurchased = 0.0;
+        this.totalOrders = 0;
+        this.totalSpent = 0.0; // Initialize to prevent null pointer
+        this.loyaltyPoints = 0; // Initialize loyalty points
+        this.joinDate = LocalDate.now();
     }
 
     // Getters and Setters
@@ -42,6 +60,15 @@ public class Customer {
 
     public int getTotalOrders() { return totalOrders; }
     public void setTotalOrders(int totalOrders) { this.totalOrders = totalOrders; }
+
+    public Double getTotalSpent() { return totalSpent; }
+    public void setTotalSpent(Double totalSpent) { this.totalSpent = totalSpent; }
+
+    public int getLoyaltyPoints() { return loyaltyPoints; }
+    public void setLoyaltyPoints(int loyaltyPoints) { this.loyaltyPoints = loyaltyPoints; }
+
+    public LocalDate getJoinDate() { return joinDate; }
+    public void setJoinDate(LocalDate joinDate) { this.joinDate = joinDate; }
 
     // Helper methods
     public boolean isVipCustomer() {

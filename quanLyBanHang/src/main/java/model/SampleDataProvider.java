@@ -12,10 +12,20 @@ import java.util.List;
  */
 public class SampleDataProvider {
     
+    // Static lists to store data
+    private static List<Product> products = new ArrayList<>();
+    private static List<Customer> customers = new ArrayList<>();
+    private static List<Category> categories = new ArrayList<>();
+    
+    // Initialize data once
+    static {
+        initializeProducts();
+        initializeCustomers();
+        initializeCategories();
+    }
+    
     // Sample Products - Dữ liệu mẫu đồ ăn vặt
-    public static List<Product> getSampleProducts() {
-        List<Product> products = new ArrayList<>();
-        
+    private static void initializeProducts() {
         // Bánh tráng nướng
         Product banhTrang = new Product("PRD001", "Bánh tráng nướng", "CAT_BANH", new BigDecimal("15000"), 50);
         banhTrang.setCategoryName("Bánh kẹo");
@@ -53,13 +63,10 @@ public class SampleDataProvider {
         cheThai.setDescription("Chè thái mát lạnh với nhiều topping");
         
         products.addAll(Arrays.asList(banhTrang, traSua, banhMi, cheThai));
-        return products;
     }
     
     // Sample Customers - Dữ liệu khách hàng quán đồ ăn vặt
-    public static List<Customer> getSampleCustomers() {
-        List<Customer> customers = new ArrayList<>();
-        
+    private static void initializeCustomers() {
         // Khách VIP
         Customer vip = new Customer("CUS001", "Chị Bảo", "0355696858");
         vip.setEmail("giabaomc0903@gmail.com");
@@ -85,7 +92,33 @@ public class SampleDataProvider {
         newCustomer.setTotalOrders(0);
         
         customers.addAll(Arrays.asList(vip, regular, newCustomer));
+    }
+    
+    // Sample Categories - Danh mục đồ ăn vặt
+    private static void initializeCategories() {
+        Category banh = new Category("CAT_BANH", "Bánh kẹo", "Các loại bánh và kẹo");
+        banh.setProductCount(2);
+        
+        Category nuoc = new Category("CAT_NUOC", "Nước uống", "Các loại nước uống");
+        nuoc.setProductCount(1);
+        
+        Category che = new Category("CAT_CHE", "Chè", "Các loại chè và tráng miệng");
+        che.setProductCount(1);
+        
+        categories.addAll(Arrays.asList(banh, nuoc, che));
+    }
+    
+    // Public methods to get data
+    public static List<Product> getSampleProducts() {
+        return products;
+    }
+    
+    public static List<Customer> getSampleCustomers() {
         return customers;
+    }
+    
+    public static List<Category> getSampleCategories() {
+        return categories;
     }
     
     // Sample Users - Dữ liệu nhân viên quán ăn vặt
@@ -106,23 +139,6 @@ public class SampleDataProvider {
         
         users.addAll(Arrays.asList(admin, manager, employee));
         return users;
-    }
-    
-    // Sample Categories - Danh mục đồ ăn vặt
-    public static List<Category> getSampleCategories() {
-        List<Category> categories = new ArrayList<>();
-        
-        Category banh = new Category("CAT_BANH", "Bánh kẹo", "Các loại bánh và kẹo");
-        banh.setProductCount(2);
-        
-        Category nuoc = new Category("CAT_NUOC", "Nước uống", "Các loại nước uống");
-        nuoc.setProductCount(1);
-        
-        Category che = new Category("CAT_CHE", "Chè", "Các loại chè và tráng miệng");
-        che.setProductCount(1);
-        
-        categories.addAll(Arrays.asList(banh, nuoc, che));
-        return categories;
     }
     
     // Sample Suppliers - Nhà cung cấp đồ ăn vặt

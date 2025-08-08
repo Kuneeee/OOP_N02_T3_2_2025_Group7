@@ -250,12 +250,19 @@
                     <a href="/customers" class="btn btn-outline-secondary me-2">
                         <i class="fas fa-arrow-left me-1"></i>Quay lại danh sách
                     </a>
-                    <button class="btn btn-primary me-2">
+                    <a th:href="@{/customers/edit/{id}(id=${customer.customerId})}" class="btn btn-primary me-2">
                         <i class="fas fa-edit me-1"></i>Chỉnh sửa thông tin
-                    </button>
-                    <a th:href="@{/orders/new(customer=${customer.customerId})}" class="btn btn-success">
+                    </a>
+                    <a th:href="@{/orders/new(customer=${customer.customerId})}" class="btn btn-success me-2">
                         <i class="fas fa-plus me-1"></i>Tạo đơn hàng mới
                     </a>
+                    <form th:action="@{/customers/delete/{id}(id=${customer.customerId})}" method="post" 
+                          class="d-inline"
+                          onsubmit="return confirm('Bạn có chắc chắn muốn xóa khách hàng này? Thao tác này không thể hoàn tác!')">
+                        <button type="submit" class="btn btn-outline-danger">
+                            <i class="fas fa-trash me-1"></i>Xóa khách hàng
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>

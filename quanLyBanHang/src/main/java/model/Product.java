@@ -1,6 +1,7 @@
 package model;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class Product {
     private String productId;
@@ -14,6 +15,9 @@ public class Product {
     private String unit;
     private String brand;
     private String description;
+    private String imageUrl;
+    private String supplierId;
+    private String status;
 
     public Product() {}
 
@@ -59,6 +63,15 @@ public class Product {
     public String getDescription() { return description; }
     public void setDescription(String description) { this.description = description; }
 
+    public String getImageUrl() { return imageUrl; }
+    public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
+
+    public String getSupplierId() { return supplierId; }
+    public void setSupplierId(String supplierId) { this.supplierId = supplierId; }
+
+    public String getStatus() { return status; }
+    public void setStatus(String status) { this.status = status; }
+
     // Helper methods
     public boolean isLowStock() {
         return stockQuantity <= minStockLevel;
@@ -66,7 +79,7 @@ public class Product {
 
     public double getProfitMargin() {
         if (costPrice != null && price != null && costPrice.compareTo(BigDecimal.ZERO) > 0) {
-            return price.subtract(costPrice).divide(costPrice, 4, BigDecimal.ROUND_HALF_UP).doubleValue();
+            return price.subtract(costPrice).divide(costPrice, 4, RoundingMode.HALF_UP).doubleValue();
         }
         return 0.0;
     }
