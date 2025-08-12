@@ -4,7 +4,6 @@ import model.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -281,7 +280,7 @@ public class ProductController {
             // Return to products list directly
             List<Category> categories = SampleDataProvider.getSampleCategories();
             long lowStockCount = products.stream().filter(p -> p.getStockQuantity() <= p.getMinStockLevel()).count();
-            
+
             model.addAttribute("products", products);
             model.addAttribute("categories", categories);
             model.addAttribute("lowStockCount", lowStockCount);

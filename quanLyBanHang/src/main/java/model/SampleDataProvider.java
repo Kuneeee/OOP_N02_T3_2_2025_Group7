@@ -10,6 +10,12 @@ import java.util.List;
  * Cung cấp dữ liệu mẫu cho tất cả các model
  * Sử dụng để hiển thị trên web interface
  */
+/**
+ * Deprecated: Dữ liệu mẫu in-memory chỉ dùng tạm cho demo.
+ * Ứng dụng đã có Database (H2 + schema.sql/data.sql). Hãy thay thế các chỗ
+ * đang gọi SampleDataProvider bằng truy vấn DB (JPA/JdbcTemplate).
+ */
+@Deprecated
 public class SampleDataProvider {
     
     // Static lists to store data

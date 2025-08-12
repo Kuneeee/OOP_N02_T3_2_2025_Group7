@@ -17,9 +17,7 @@ public class OrderController {
                         @RequestParam(required = false) String status,
                         @RequestParam(required = false) String customer) {
         List<Order> orders = SampleDataProvider.getSampleOrders();
-        List<Customer> customers = SampleDataProvider.getSampleCustomers();
-        
-        // Filter by search keyword
+        List<Customer> customers = SampleDataProvider.getSampleCustomers();        // Filter by search keyword
         if (search != null && !search.trim().isEmpty()) {
             orders = orders.stream()
                     .filter(o -> o.getOrderId().toLowerCase().contains(search.toLowerCase()) ||

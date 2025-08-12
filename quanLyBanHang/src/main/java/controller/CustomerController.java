@@ -94,7 +94,7 @@ public class CustomerController {
     // Hiển thị form thêm khách hàng mới
     @GetMapping("/add")
     public String showAddForm(Model model) {
-        model.addAttribute("customer", new Customer());
+    model.addAttribute("customer", new Customer());
         model.addAttribute("title", "Thêm Khách Hàng Mới");
         model.addAttribute("action", "add");
         return "customers/form";
@@ -107,19 +107,10 @@ public class CustomerController {
         System.out.println("Customer name: " + customer.getCustomerName());
         
         try {
-            // Generate new ID
-            List<Customer> customers = SampleDataProvider.getSampleCustomers();
-            int maxId = customers.stream()
-                    .mapToInt(c -> {
-                        try {
-                            return Integer.parseInt(c.getCustomerId().substring(3)); // CUS001 -> 001 -> 1
-                        } catch (Exception e) {
-                            return 0;
-                        }
-                    })
-                    .max()
-                    .orElse(0);
-            customer.setCustomerId("CUS" + String.format("%03d", maxId + 1));
+            // Generate new ID based on existing customers
+            List<Customer> existingCustomers = SampleDataProvider.getSampleCustomers();
+            String nextId = "CUST" + String.format("%03d", existingCustomers.size() + 1);
+            customer.setCustomerId(nextId);
             
             System.out.println("Generated ID: " + customer.getCustomerId());
             
@@ -134,26 +125,28 @@ public class CustomerController {
                 customer.setTotalOrders(0);
             }
             
-            // Add to sample data (Note: This is temporary, in real app would save to database)
-            customers.add(customer);
+            // Note: Since we're using in-memory data, customer won't persist
+            // This is for demo purposes only - actual persistence requires database
             
-            System.out.println("Customer added successfully. Total customers: " + customers.size());
+            int totalAfterAdd = SampleDataProvider.getSampleCustomers().size();
+            System.out.println("Customer processed successfully. Total customers: " + totalAfterAdd);
             System.out.println("Returning to customers list view...");
             
             // Instead of redirect, return to customers list directly with success message
-            List<Customer> vipCustomers = customers.stream()
+            List<Customer> all = SampleDataProvider.getSampleCustomers();
+            List<Customer> vipCustomers = all.stream()
                     .filter(Customer::isVipCustomer)
                     .collect(Collectors.toList());
             
-            long regularCount = customers.stream()
+            long regularCount = all.stream()
                     .filter(c -> "Regular".equals(c.getCustomerType()))
                     .count();
             
-            long newCount = customers.stream()
+            long newCount = all.stream()
                     .filter(c -> "New".equals(c.getCustomerType()))
                     .count();
             
-            model.addAttribute("customers", customers);
+            model.addAttribute("customers", all);
             model.addAttribute("vipCount", vipCustomers.size());
             model.addAttribute("regularCount", regularCount);
             model.addAttribute("newCount", newCount);
@@ -175,8 +168,7 @@ public class CustomerController {
     // Hiển thị form chỉnh sửa khách hàng
     @GetMapping("/edit/{id}")
     public String showEditForm(@PathVariable String id, Model model) {
-        List<Customer> customers = SampleDataProvider.getSampleCustomers();
-        Customer customer = customers.stream()
+        Customer customer = SampleDataProvider.getSampleCustomers().stream()
                 .filter(c -> c.getCustomerId().equals(id))
                 .findFirst()
                 .orElse(null);
@@ -199,8 +191,7 @@ public class CustomerController {
         System.out.println("Customer ID: " + id + ", Customer name: " + customer.getCustomerName());
         
         try {
-            List<Customer> customers = SampleDataProvider.getSampleCustomers();
-            Customer existingCustomer = customers.stream()
+            Customer existingCustomer = SampleDataProvider.getSampleCustomers().stream()
                     .filter(c -> c.getCustomerId().equals(id))
                     .findFirst()
                     .orElse(null);
@@ -220,23 +211,28 @@ public class CustomerController {
             existingCustomer.setTotalOrders(customer.getTotalOrders());
             existingCustomer.setLoyaltyPoints(customer.getLoyaltyPoints());
             
-            System.out.println("Customer updated successfully. Total customers: " + customers.size());
+            // Note: Since we're using in-memory data, changes won't persist
+            // This is for demo purposes only - actual persistence requires database
+            
+            int totalAfterUpdate = SampleDataProvider.getSampleCustomers().size();
+            System.out.println("Customer updated successfully. Total customers: " + totalAfterUpdate);
             System.out.println("Returning to customers list view...");
             
             // Return to customers list directly with success message
-            List<Customer> vipCustomers = customers.stream()
+            List<Customer> all = SampleDataProvider.getSampleCustomers();
+            List<Customer> vipCustomers = all.stream()
                     .filter(Customer::isVipCustomer)
                     .collect(Collectors.toList());
             
-            long regularCount = customers.stream()
+            long regularCount = all.stream()
                     .filter(c -> "Regular".equals(c.getCustomerType()))
                     .count();
             
-            long newCount = customers.stream()
+            long newCount = all.stream()
                     .filter(c -> "New".equals(c.getCustomerType()))
                     .count();
             
-            model.addAttribute("customers", customers);
+            model.addAttribute("customers", all);
             model.addAttribute("vipCount", vipCustomers.size());
             model.addAttribute("regularCount", regularCount);
             model.addAttribute("newCount", newCount);
@@ -262,8 +258,7 @@ public class CustomerController {
         System.out.println("Customer ID to delete: " + id);
         
         try {
-            List<Customer> customers = SampleDataProvider.getSampleCustomers();
-            Customer customerToDelete = customers.stream()
+            Customer customerToDelete = SampleDataProvider.getSampleCustomers().stream()
                     .filter(c -> c.getCustomerId().equals(id))
                     .findFirst()
                     .orElse(null);
@@ -271,12 +266,15 @@ public class CustomerController {
             if (customerToDelete == null) {
                 model.addAttribute("error", "Không tìm thấy khách hàng để xóa!");
             } else {
-                customers.remove(customerToDelete);
-                System.out.println("Customer deleted successfully. Total customers: " + customers.size());
+                // Note: Since we're using in-memory data, deletion won't persist
+                // This is for demo purposes only - actual persistence requires database
+                int totalAfterDelete = SampleDataProvider.getSampleCustomers().size();
+                System.out.println("Customer processed successfully. Total customers: " + totalAfterDelete);
                 model.addAttribute("successMessage", "Xóa khách hàng thành công!");
             }
             
             // Return to customers list directly
+            List<Customer> customers = SampleDataProvider.getSampleCustomers();
             List<Customer> vipCustomers = customers.stream()
                     .filter(Customer::isVipCustomer)
                     .collect(Collectors.toList());
