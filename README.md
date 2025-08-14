@@ -1,47 +1,94 @@
-# OOP_N02_T3_2_2025_Group7
-Nhóm làm việc 07
-# Thành viên
- 1. Đặng Đức Long (24100068) githubID: Kuneeee
- 2. Nguyễn Gia Bảo (24100074) githubID: NgGiaBaoo
- 3. Trần Quang Trường (24100073) githubID: tuonie21
-# Ứng dụng: Xây dựng ứng dụng quản lý bán hàng đồ ăn vặt cho đại học Phenikaa
+# OOP_N02_T3_2_2025_K18_Group3
+# 📋 GIỚI THIỆU
 
-## Phân tích đối tượng
+> **Ứng dụng quản lý bán hàng đồ ăn vặt dành cho Đại học Phenikaa.**
+>
+> Được phát triển bằng Java, hỗ trợ tính năng quản lý kho, nhập hàng, xuất bán và quản lý khách hàng.
 
-Hanghoa
-```
-+ hanghoaID
-+ tenHangHoa
-+ soLuongHangHoa
-+ nhaSanXuat
-+ namSanXuat
-+ loaiHangHoa
+---
 
-```
+## 🎯 Chức năng chính
+- 📦 Quản lý hàng hóa  
+- 📥 Quản lý nhập & xuất bán hàng hóa  
+- 👤 Quản lý khách hàng mua hàng  
+- 📊 Tính toán doanh thu, xuất báo cáo Excel
 
-Nhap
-```
-+ hanghoaID
-+ tenHangHoa
-+ soLuongNhap
-+ giaNhap
-+ ngayNhap
+---
+
+## 👨‍💻 Thành viên nhóm
+| STT | Họ tên                | Mã SV      | GitHub ID   |
+|-----|-----------------------|------------|-------------|
+| 1   | Đặng Đức Long         | 24100068   | [Kuneeee](https://github.com/Kuneeee)  |
+| 2   | Nguyễn Gia Bảo        | 24100074   | [NgGiaBaoo](https://github.com/NgGiaBaoo)  |
+| 3   | Trần Quang Trường     | 24100073   | [tuonie21](https://github.com/tuonie21)  |
+## 🏗️ Cấu trúc thư mục chính
 
 ```
-XuatBan
+OOP_N02_T3_2_2025_Group7/
+├── README.md             
+├── build.gradle           
+├── gradle/               
+├── gradlew                
+├── gradlew.bat          
+├── mvnw              
+├── mvnw.cmd             
+├── pom.xml              
+├── review/              
+├── settings.gradle
+├── cp.txt     
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   │   └── ...        # Mã nguồn Java chính (chia theo package: model, controller, service, util, view)
+│   │   └── resources/
+│   │       └── ...        # File cấu hình, dữ liệu mẫu, template giao diện
+│   └── test/
+│       ├── java/
+│       │   └── ...        # Mã nguồn kiểm thử tự động
+│       └── resources/
+│           └── ...        # Dữ liệu phục vụ kiểm thử
 ```
-+ hangHoaID
-+ tenHangHoa
-+ soLuongBan
-+ giaBan
+## 🏛️ Phân tích đối tượng & Kiến trúc ứng dụng
 
-```
-Doanhthu
-```
-+ tyXuatLoiNhuan
-+ loiNhuan
-+ baoCaoExcel
-```
+Ứng dụng được xây dựng theo mô hình hướng đối tượng với các lớp chính sau:
+
+### 1. HangHoa
+- **Mô tả:** Đại diện cho từng mặt hàng đồ ăn vặt được quản lý trong hệ thống.
+- **Thuộc tính:**  
+  - `maHang` (String): Mã định danh hàng hóa  
+  - `tenHang` (String): Tên hàng  
+  - `soLuong` (int): Số lượng hiện có  
+  - `nhaSanXuat` (String): Nhà sản xuất  
+  - `namSanXuat` (int): Năm sản xuất  
+  - `loaiHang` (String): Loại hàng (ví dụ: bánh, nước, snack...)
+
+### 2. Nhap
+- **Mô tả:** Quản lý các phiếu nhập hàng vào kho.
+- **Thuộc tính:**  
+  - `maNhap` (String): Mã phiếu nhập  
+  - `maHang` (String): Mã hàng nhập  
+  - `tenHang` (String): Tên hàng nhập  
+  - `soLuongNhap` (int): Số lượng nhập  
+  - `giaNhap` (double): Giá nhập mỗi đơn vị  
+  - `ngayNhap` (Date): Ngày nhập  
+
+### 3. XuatBan
+- **Mô tả:** Quản lý các phiếu xuất bán hàng hóa cho khách.
+- **Thuộc tính:**  
+  - `maXuat` (String): Mã phiếu xuất  
+  - `maHang` (String): Mã hàng xuất  
+  - `tenHang` (String): Tên hàng bán  
+  - `soLuongBan` (int): Số lượng bán  
+  - `giaBan` (double): Giá bán mỗi đơn vị  
+  - `ngayBan` (Date): Ngày bán  
+
+### 4. KhachHang
+- **Mô tả:** Lưu trữ thông tin khách hàng mua hàng tại cửa hàng.
+- **Thuộc tính:**  
+  - `maKH` (String): Mã khách hàng  
+  - `tenKH` (String): Tên khách hàng  
+  - `soDienThoai` (String): Số điện thoại liên hệ  
+  - `ngayMua` (Date): Ngày mua hàng  
 ## Mục tiêu
  Phát triển một ứng dụng giúp quản lý hàng hóa, nhập – bán – tính doanh thu một cách trực quan và hiệu quả cho cửa hàng tạp hóa.
 
