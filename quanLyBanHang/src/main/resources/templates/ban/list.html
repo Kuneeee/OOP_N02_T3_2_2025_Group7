@@ -235,15 +235,15 @@
                                     <div>
                                         <h6 class="mb-0" th:text="${order.customerName}">Nguyễn Văn An</h6>
                                         <small class="text-muted">
-                                            <span th:text="${order.customerType}">VIP</span> - 
-                                            <span th:text="${order.customerPhone}">0912345678</span>
+                                            <span th:text="${order.customerId}">CUST001</span> - 
+                                            <span th:text="${order.status}">PENDING</span>
                                         </small>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6 text-end">
                                 <div class="h5 mb-0 text-success">
-                                    <span th:text="${#numbers.formatInteger(order.totalAmount.longValue(), 0, 'COMMA')}">30,000,000</span>đ
+                                    <span th:text="${#numbers.formatInteger(order.finalAmount.longValue(), 0, 'COMMA')}">30,000,000</span>đ
                                 </div>
                                 <small class="text-muted">Tổng giá trị</small>
                             </div>
@@ -372,7 +372,7 @@
                             </div>
                             <div class="col-4">
                                 <small class="text-muted">Giao hàng</small>
-                                <div class="fw-bold" th:text="${order.shippingMethod}">Tại cửa hàng</div>
+                                <div class="fw-bold">Tại cửa hàng</div>
                             </div>
                         </div>
                     </div>

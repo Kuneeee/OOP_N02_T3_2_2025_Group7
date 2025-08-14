@@ -1,45 +1,54 @@
 package controller;
 
-import model.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import java.util.List;
+import service.BanService;
+import service.CustomerService;
+import service.HangHoaService;
+import service.NhapService;
 
 @Controller
 public class HomeController {
+
+    @Autowired
+    private HangHoaService hangHoaService;
     
+    @Autowired
+    private BanService banService;
+    
+    @Autowired
+    private NhapService nhapService;
+    
+    @Autowired
+    private CustomerService customerService;
+
     @GetMapping("/")
-    public String home(Model model) {
-        model.addAttribute("title", "Hệ Thống Quản Lý Bán Hàng");
-        model.addAttribute("welcomeMessage", "Chào mừng bạn đến với hệ thống quản lý bán hàng!");
+    public String index(Model model) {
+        // Thống kê cơ bản
+        model.addAttribute("soLuongHangHoa", hangHoaService.getAllHangHoa().size());
+        model.addAttribute("soLuongBan", banService.getAllBan().size());
+        model.addAttribute("soLuongNhap", nhapService.getAllNhap().size());
+        model.addAttribute("soLuongKhachHang", customerService.getAllCustomers().size());
+        
         return "index";
     }
-    
+
     @GetMapping("/dashboard")
     public String dashboard(Model model) {
-        // Lấy dữ liệu thống kê
-        SampleDataProvider.SummaryStats stats = SampleDataProvider.getSummaryStats();
-        List<Product> lowStockProducts = SampleDataProvider.getSampleProducts().stream()
-                .filter(Product::isLowStock)
-                .collect(java.util.stream.Collectors.toList());
-        List<Order> recentOrders = SampleDataProvider.getSampleOrders();
-        List<Customer> vipCustomers = SampleDataProvider.getSampleCustomers().stream()
-                .filter(Customer::isVipCustomer)
-                .collect(java.util.stream.Collectors.toList());
+        // Dashboard với thông tin tổng quan
+        model.addAttribute("tongHangHoa", hangHoaService.getAllHangHoa().size());
+        model.addAttribute("tongGiaTriKho", hangHoaService.tinhTongGiaTriKho());
         
-        model.addAttribute("title", "Bảng Điều Khiển");
-        model.addAttribute("stats", stats);
-        model.addAttribute("lowStockProducts", lowStockProducts);
-        model.addAttribute("recentOrders", recentOrders);
-        model.addAttribute("vipCustomers", vipCustomers);
+        model.addAttribute("tongPhieuBan", banService.getAllBan().size());
+        model.addAttribute("tongDoanhThu", banService.tinhTongDoanhThu());
+        
+        model.addAttribute("tongPhieuNhap", nhapService.getAllNhap().size());
+        model.addAttribute("tongGiaTriNhap", nhapService.tinhTongGiaTriNhap());
+        
+        model.addAttribute("tongKhachHang", customerService.getAllCustomers().size());
         
         return "dashboard";
-    }
-    
-    @GetMapping("/about")
-    public String about(Model model) {
-        model.addAttribute("title", "Giới Thiệu");
-        return "about";
     }
 }

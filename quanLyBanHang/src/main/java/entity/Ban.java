@@ -1,26 +1,56 @@
 package entity;
 
+import javax.persistence.*;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 
+@Entity
+@Table(name = "ban_hang")
 public class Ban {
-    private String banID;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ban_id")
+    private Long banId;
+    
+    @Column(name = "ban_code", length = 50)
+    private String banCode;
+    
+    @Column(name = "hanghoa_id", nullable = false, length = 50)
     private String hangHoaID;
+    
+    @Column(name = "ten_hang_hoa", nullable = false, length = 200)
     private String tenHangHoa;
+    
+    @Column(name = "ten_khach_hang", length = 200)
     private String tenKhachHang;
+    
+    @Column(name = "khach_hang", length = 200)
     private String khachHang;
-    private String ngayBan;
+    
+    @Column(name = "ngay_ban", nullable = false)
+    private LocalDateTime ngayBan;
+    
+    @Column(name = "ghi_chu", length = 500)
     private String ghiChu;
-    private double giaBan;
-    private int soLuongBan;
-    private double tongTien;
-    private double giaNhap;
+    
+    @Column(name = "gia_ban", nullable = false, precision = 15, scale = 2)
+    private BigDecimal giaBan;
+    
+    @Column(name = "so_luong_ban", nullable = false)
+    private Integer soLuongBan;
+    
+    @Column(name = "tong_tien", precision = 15, scale = 2)
+    private BigDecimal tongTien;
+    
+    @Column(name = "gia_nhap", precision = 15, scale = 2)
+    private BigDecimal giaNhap;
 
     public Ban() {}
 
-    public Ban(String banID, String hangHoaID, String tenHangHoa, String tenKhachHang, String ngayBan, double giaBan, int soLuongBan) {
-        this.banID = banID;
+    public Ban(String banCode, String hangHoaID, String tenHangHoa, String tenKhachHang, LocalDateTime ngayBan, BigDecimal giaBan, Integer soLuongBan) {
+        this.banCode = banCode;
         this.hangHoaID = hangHoaID;
         this.tenHangHoa = tenHangHoa;
         this.tenKhachHang = tenKhachHang;
@@ -28,12 +58,12 @@ public class Ban {
         this.ngayBan = ngayBan;
         this.giaBan = giaBan;
         this.soLuongBan = soLuongBan;
-        this.tongTien = giaBan * soLuongBan;
+        this.tongTien = giaBan.multiply(BigDecimal.valueOf(soLuongBan));
         this.ghiChu = "";
     }
 
-    public Ban(String banID, String hangHoaID, String tenHangHoa, String khachHang, String ngayBan, double giaBan, int soLuongBan, String ghiChu) {
-        this.banID = banID;
+    public Ban(String banCode, String hangHoaID, String tenHangHoa, String khachHang, LocalDateTime ngayBan, BigDecimal giaBan, Integer soLuongBan, String ghiChu) {
+        this.banCode = banCode;
         this.hangHoaID = hangHoaID;
         this.tenHangHoa = tenHangHoa;
         this.khachHang = khachHang;
@@ -41,56 +71,71 @@ public class Ban {
         this.ngayBan = ngayBan;
         this.giaBan = giaBan;
         this.soLuongBan = soLuongBan;
-        this.tongTien = giaBan * soLuongBan;
+        this.tongTien = giaBan.multiply(BigDecimal.valueOf(soLuongBan));
         this.ghiChu = ghiChu;
     }
 
     // Getters and Setters
-    public String getBanID() { return banID; }
-    public void setBanID(String banID) { this.banID = banID; }
+    public Long getBanId() { return banId; }
+    public void setBanId(Long banId) { this.banId = banId; }
+    
+    public String getBanCode() { return banCode; }
+    public void setBanCode(String banCode) { this.banCode = banCode; }
+    
     public String getHangHoaID() { return hangHoaID; }
     public void setHangHoaID(String hangHoaID) { this.hangHoaID = hangHoaID; }
+    
     public String getTenHangHoa() { return tenHangHoa; }
     public void setTenHangHoa(String tenHangHoa) { this.tenHangHoa = tenHangHoa; }
+    
     public String getTenKhachHang() { return tenKhachHang; }
     public void setTenKhachHang(String tenKhachHang) { 
         this.tenKhachHang = tenKhachHang;
         this.khachHang = tenKhachHang;
     }
+    
     public String getKhachHang() { return khachHang; }
     public void setKhachHang(String khachHang) { 
         this.khachHang = khachHang;
         this.tenKhachHang = khachHang;
     }
-    public String getNgayBan() { return ngayBan; }
-    public void setNgayBan(String ngayBan) { this.ngayBan = ngayBan; }
+    
+    public LocalDateTime getNgayBan() { return ngayBan; }
+    public void setNgayBan(LocalDateTime ngayBan) { this.ngayBan = ngayBan; }
+    
     public String getGhiChu() { return ghiChu; }
     public void setGhiChu(String ghiChu) { this.ghiChu = ghiChu; }
-    public double getGiaBan() { return giaBan; }
-    public void setGiaBan(double giaBan) { this.giaBan = giaBan; }
-    public int getSoLuongBan() { return soLuongBan; }
-    public void setSoLuongBan(int soLuongBan) { this.soLuongBan = soLuongBan; }
-    public double getTongTien() { return tongTien; }
-    public void setTongTien(double tongTien) { this.tongTien = tongTien; }
-    public double getGiaNhap() { return giaNhap; }
-    public void setGiaNhap(double giaNhap) { this.giaNhap = giaNhap; }
+    
+    public BigDecimal getGiaBan() { return giaBan; }
+    public void setGiaBan(BigDecimal giaBan) { this.giaBan = giaBan; }
+    
+    public Integer getSoLuongBan() { return soLuongBan; }
+    public void setSoLuongBan(Integer soLuongBan) { this.soLuongBan = soLuongBan; }
+    
+    public BigDecimal getTongTien() { return tongTien; }
+    public void setTongTien(BigDecimal tongTien) { this.tongTien = tongTien; }
+    
+    public BigDecimal getGiaNhap() { return giaNhap; }
+    public void setGiaNhap(BigDecimal giaNhap) { this.giaNhap = giaNhap; }
 
     // Business Logic Methods
-    public double tinhTongTienBan() {
-        this.tongTien = this.giaBan * this.soLuongBan;
+    public BigDecimal tinhTongTienBan() {
+        if (giaBan == null || soLuongBan == null) return BigDecimal.ZERO;
+        this.tongTien = this.giaBan.multiply(BigDecimal.valueOf(this.soLuongBan));
         return this.tongTien;
     }
 
     public double tinhLoiNhuan() {
-        if (this.giaNhap > 0) {
-            return (this.giaBan - this.giaNhap) * this.soLuongBan;
+        if (this.giaNhap != null && this.giaNhap.compareTo(BigDecimal.ZERO) > 0 && 
+            this.giaBan != null && this.soLuongBan != null) {
+            return this.giaBan.subtract(this.giaNhap).multiply(BigDecimal.valueOf(this.soLuongBan)).doubleValue();
         }
         return 0;
     }
 
     public boolean kiemTraDonBanHang() {
         // Kiểm tra tính hợp lệ của đơn bán hàng
-        if (this.banID == null || this.banID.trim().isEmpty()) {
+        if (this.banCode == null || this.banCode.trim().isEmpty()) {
             return false;
         }
         if (this.hangHoaID == null || this.hangHoaID.trim().isEmpty()) {
@@ -99,13 +144,13 @@ public class Ban {
         if (this.khachHang == null || this.khachHang.trim().isEmpty()) {
             return false;
         }
-        if (this.soLuongBan <= 0) {
+        if (this.soLuongBan == null || this.soLuongBan <= 0) {
             return false;
         }
-        if (this.giaBan <= 0) {
+        if (this.giaBan == null || this.giaBan.compareTo(BigDecimal.ZERO) <= 0) {
             return false;
         }
-        if (this.ngayBan == null || this.ngayBan.trim().isEmpty()) {
+        if (this.ngayBan == null) {
             return false;
         }
         return true;
@@ -114,7 +159,7 @@ public class Ban {
     public boolean kiemTraNgayBan() {
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            LocalDate ngay = LocalDate.parse(this.ngayBan, formatter);
+            LocalDate ngay = LocalDate.parse(this.ngayBan.toString().substring(0, 10), DateTimeFormatter.ISO_LOCAL_DATE);
             LocalDate hienTai = LocalDate.now();
             return !ngay.isAfter(hienTai);
         } catch (Exception e) {
@@ -123,14 +168,15 @@ public class Ban {
     }
 
     public String layThongTinBan() {
-        return String.format("ID: %s | Hàng hóa: %s | Khách hàng: %s | Ngày: %s | Số lượng: %d | Giá: %.2f | Tổng tiền: %.2f",
-                this.banID, this.tenHangHoa, this.khachHang, this.ngayBan, this.soLuongBan, this.giaBan, this.tongTien);
+        return String.format("ID: %s | Hàng hóa: %s | Khách hàng: %s | Ngày: %s | Số lượng: %d | Giá: %.2f | Tổng tiên: %.2f",
+                this.banCode, this.tenHangHoa, this.khachHang, this.ngayBan, this.soLuongBan, this.giaBan.doubleValue(), this.tongTien.doubleValue());
     }
 
     @Override
     public String toString() {
         return "Ban{" +
-                "banID='" + banID + '\'' +
+                "banId=" + banId +
+                ", banCode='" + banCode + '\'' +
                 ", hangHoaID='" + hangHoaID + '\'' +
                 ", tenHangHoa='" + tenHangHoa + '\'' +
                 ", khachHang='" + khachHang + '\'' +

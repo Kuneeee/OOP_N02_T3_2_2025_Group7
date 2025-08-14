@@ -1,25 +1,46 @@
 package entity;
 
+import javax.persistence.*;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
 /**
  * Entity chính cho quản lý hàng hóa
  * Tích hợp đầy đủ tính năng từ entity gốc với Spring Boot
  */
+@Entity
+@Table(name = "hang_hoa")
 public class HangHoa {
+    @Id
+    @Column(name = "hanghoa_id", length = 50)
     private String hanghoaID;
+    
+    @Column(name = "ten_hang_hoa", nullable = false, length = 200)
     private String tenHangHoa;
-    private int soLuongHangHoa;
+    
+    @Column(name = "so_luong_hang_hoa", nullable = false)
+    private Integer soLuongHangHoa;
     
     // Thuộc tính bổ sung từ entity gốc
+    @Column(name = "nha_san_xuat", length = 200)
     private String nhaSanXuat;
-    private int namSanXuat;
-    private String ngayNhap;
-    private Double giaNhap;
+    
+    @Column(name = "nam_san_xuat")
+    private Integer namSanXuat;
+    
+    @Column(name = "ngay_nhap")
+    private LocalDateTime ngayNhap;
+    
+    @Column(name = "gia_nhap", precision = 15, scale = 2)
+    private BigDecimal giaNhap;
+    
+    @Column(name = "loai_hang_hoa", length = 100)
     private String loaiHangHoa;
 
     // Constructors
     public HangHoa() {}
 
-    public HangHoa(String hanghoaID, String tenHangHoa, int soLuongHangHoa, String ngayNhap, Double giaNhap, String loaiHangHoa) {
+    public HangHoa(String hanghoaID, String tenHangHoa, Integer soLuongHangHoa, LocalDateTime ngayNhap, BigDecimal giaNhap, String loaiHangHoa) {
         this.hanghoaID = hanghoaID;
         this.tenHangHoa = tenHangHoa;
         this.soLuongHangHoa = soLuongHangHoa;
@@ -29,8 +50,8 @@ public class HangHoa {
     }
 
     // Constructor đầy đủ với tất cả thuộc tính
-    public HangHoa(String hanghoaID, String tenHangHoa, int soLuongHangHoa, String nhaSanXuat, 
-                   int namSanXuat, String ngayNhap, Double giaNhap, String loaiHangHoa) {
+    public HangHoa(String hanghoaID, String tenHangHoa, Integer soLuongHangHoa, String nhaSanXuat, 
+                   Integer namSanXuat, LocalDateTime ngayNhap, BigDecimal giaNhap, String loaiHangHoa) {
         this.hanghoaID = hanghoaID;
         this.tenHangHoa = tenHangHoa;
         this.soLuongHangHoa = soLuongHangHoa;
@@ -48,20 +69,20 @@ public class HangHoa {
     public String getTenHangHoa() { return tenHangHoa; }
     public void setTenHangHoa(String tenHangHoa) { this.tenHangHoa = tenHangHoa; }
     
-    public int getSoLuongHangHoa() { return soLuongHangHoa; }
-    public void setSoLuongHangHoa(int soLuongHangHoa) { this.soLuongHangHoa = soLuongHangHoa; }
+    public Integer getSoLuongHangHoa() { return soLuongHangHoa; }
+    public void setSoLuongHangHoa(Integer soLuongHangHoa) { this.soLuongHangHoa = soLuongHangHoa; }
     
     public String getNhaSanXuat() { return nhaSanXuat; }
     public void setNhaSanXuat(String nhaSanXuat) { this.nhaSanXuat = nhaSanXuat; }
     
-    public int getNamSanXuat() { return namSanXuat; }
-    public void setNamSanXuat(int namSanXuat) { this.namSanXuat = namSanXuat; }
+    public Integer getNamSanXuat() { return namSanXuat; }
+    public void setNamSanXuat(Integer namSanXuat) { this.namSanXuat = namSanXuat; }
     
-    public String getNgayNhap() { return ngayNhap; }
-    public void setNgayNhap(String ngayNhap) { this.ngayNhap = ngayNhap; }
+    public LocalDateTime getNgayNhap() { return ngayNhap; }
+    public void setNgayNhap(LocalDateTime ngayNhap) { this.ngayNhap = ngayNhap; }
     
-    public Double getGiaNhap() { return giaNhap; }
-    public void setGiaNhap(Double giaNhap) { this.giaNhap = giaNhap; }
+    public BigDecimal getGiaNhap() { return giaNhap; }
+    public void setGiaNhap(BigDecimal giaNhap) { this.giaNhap = giaNhap; }
     
     public String getLoaiHangHoa() { return loaiHangHoa; }
     public void setLoaiHangHoa(String loaiHangHoa) { this.loaiHangHoa = loaiHangHoa; }
@@ -79,7 +100,7 @@ public class HangHoa {
         System.out.println("Nhà sản xuất: " + (nhaSanXuat != null ? nhaSanXuat : "Chưa cập nhật"));
         System.out.println("Năm sản xuất: " + (namSanXuat > 0 ? namSanXuat : "Chưa cập nhật"));
         System.out.println("Ngày nhập: " + ngayNhap);
-        System.out.println("Giá nhập: " + String.format("%.2f VND", giaNhap));
+        System.out.println("Giá nhập: " + String.format("%.2f VND", giaNhap != null ? giaNhap.doubleValue() : 0.0));
         System.out.println("Loại hàng hóa: " + loaiHangHoa);
         System.out.println("=============================");
     }
@@ -88,7 +109,7 @@ public class HangHoa {
      * Kiểm tra hàng hóa có hết hạn hay không (dựa trên năm sản xuất)
      */
     public boolean kiemTraHetHan() {
-        if (namSanXuat <= 0) return false;
+        if (namSanXuat == null || namSanXuat <= 0) return false;
         int namHienTai = java.util.Calendar.getInstance().get(java.util.Calendar.YEAR);
         int tuoiSanPham = namHienTai - namSanXuat;
         
@@ -110,20 +131,22 @@ public class HangHoa {
      * Tính giá trị tồn kho
      */
     public double tinhGiaTriTonKho() {
-        return soLuongHangHoa * (giaNhap != null ? giaNhap : 0.0);
+        if (soLuongHangHoa == null || giaNhap == null) return 0.0;
+        return soLuongHangHoa * giaNhap.doubleValue();
     }
 
     /**
      * Kiểm tra hàng hóa có sắp hết không
      */
     public boolean kiemTraSapHet() {
-        return soLuongHangHoa <= 5; // Ngưỡng cảnh báo: 5 sản phẩm
+        return soLuongHangHoa != null && soLuongHangHoa <= 5; // Ngưỡng cảnh báo: 5 sản phẩm
     }
 
     /**
      * Cập nhật số lượng hàng hóa (dùng cho nhập/xuất kho)
      */
     public boolean capNhatSoLuong(int soLuongThayDoi) {
+        if (soLuongHangHoa == null) soLuongHangHoa = 0;
         int soLuongMoi = this.soLuongHangHoa + soLuongThayDoi;
         if (soLuongMoi < 0) {
             System.out.println("Lỗi: Không thể giảm số lượng xuống dưới 0!");
@@ -145,11 +168,11 @@ public class HangHoa {
             System.out.println("Lỗi: Tên hàng hóa không được để trống!");
             return false;
         }
-        if (soLuongHangHoa < 0) {
+        if (soLuongHangHoa != null && soLuongHangHoa < 0) {
             System.out.println("Lỗi: Số lượng hàng hóa không được âm!");
             return false;
         }
-        if (giaNhap != null && giaNhap < 0) {
+        if (giaNhap != null && giaNhap.compareTo(BigDecimal.ZERO) < 0) {
             System.out.println("Lỗi: Giá nhập không được âm!");
             return false;
         }
@@ -159,7 +182,8 @@ public class HangHoa {
     @Override
     public String toString() {
         return String.format("HangHoa{ID='%s', Ten='%s', SoLuong=%d, LoaiHang='%s', GiaNhap=%.2f}", 
-                           hanghoaID, tenHangHoa, soLuongHangHoa, loaiHangHoa, giaNhap);
+                           hanghoaID, tenHangHoa, soLuongHangHoa, loaiHangHoa, 
+                           giaNhap != null ? giaNhap.doubleValue() : 0.0);
     }
 
     @Override
