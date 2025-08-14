@@ -47,15 +47,13 @@ quanLyBanHang/
 
 Ứng dụng được xây dựng theo mô hình hướng đối tượng với các lớp chính sau:
 
-### 1. HangHoa
+### 1. DoAnVat
 - **Mô tả:** Đại diện cho từng mặt hàng đồ ăn vặt được quản lý trong hệ thống.
 - **Thuộc tính:**  
   - `maHang` (String): Mã định danh hàng hóa  
   - `tenHang` (String): Tên hàng  
   - `soLuong` (int): Số lượng hiện có  
-  - `nhaSanXuat` (String): Nhà sản xuất  
-  - `namSanXuat` (int): Năm sản xuất  
-  - `loaiHang` (String): Loại hàng (ví dụ: bánh, nước, snack...)
+  - `ngayTao` (Date): Ngay tạo danh sách đồ ăn vặt
 
 ### 2. Nhap
 - **Mô tả:** Quản lý các phiếu nhập hàng vào kho.
@@ -83,32 +81,8 @@ quanLyBanHang/
   - `maKH` (String): Mã khách hàng  
   - `tenKH` (String): Tên khách hàng  
   - `soDienThoai` (String): Số điện thoại liên hệ  
-  - `ngayMua` (Date): Ngày mua hàng  
-## Mục tiêu
- Phát triển một ứng dụng giúp quản lý hàng hóa, nhập – bán – tính doanh thu một cách trực quan và hiệu quả cho cửa hàng tạp hóa.
-
-## Kiến trúc ứng dụng
- Ứng dụng được xây dựng dựa trên Java, chia thành các đối tượng hướng đối tượng:
-
- 📦 HangHoa
-- ID sản phẩm, tên, số lượng tồn kho, nhà sản xuất, năm sản xuất, loại hàng hóa
-
- 📝 Nhap
-- Nhập hàng mới: mã sản phẩm, số lượng, giá nhập, ngày nhập
-
- 🛒 XuatBan
-- Bán hàng: mã sản phẩm, số lượng bán, giá bán
-
- 📈 DoanhThu
-- Tính toán lợi nhuận, tỷ suất lợi nhuận, xuất báo cáo Excel
-
-## Tính năng chính
-- Quản lý hiển thị danh sách hàng hóa, số lượng tồn
-- Nhập hàng và cập nhật kho tự động
-- Bán hàng và trừ kho
-- Tính toán doanh thu, lợi nhuận theo từng đợt
-- Xuất báo cáo Excel bằng Apache POI
-
+  - `ngayMua` (Date): Ngày mua hàng
+  - `emailKH` (String): email khách hàng
 ## Sơ đồ lớp
  Truy cập sơ đồ phân tích hướng đối tượng tại: https://online.visual-paradigm.com/share.jsp?id=343136313439372d31
 
