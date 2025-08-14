@@ -119,12 +119,12 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr th:each="hanghoa : ${hanghoaList}">
+                            <tr th:each="hanghoa : ${hangHoaList}">
                                 <td th:text="${hanghoa.hanghoaID}">HH001</td>
                                 <td th:text="${hanghoa.tenHangHoa}">Laptop Dell</td>
                                 <td th:text="${hanghoa.soLuongHangHoa}">50</td>
-                                <td th:text="${#numbers.formatCurrency(hanghoa.giaNhap)}">15,000,000</td>
-                                <td th:text="${#temporals.format(hanghoa.ngayTao, 'dd/MM/yyyy')}">01/01/2025</td>
+                                <td th:text="${#numbers.formatDecimal(hanghoa.giaNhap, 0, 'COMMA', 0, 'POINT')} + ' ₫'">15,000,000</td>
+                                <td th:text="${hanghoa.ngayNhap != null ? #temporals.format(hanghoa.ngayNhap, 'dd/MM/yyyy') : 'N/A'}">01/01/2025</td>
                                 <td class="text-center action-buttons">
                                     <a th:href="@{/hanghoa/{id}(id=${hanghoa.hanghoaID})}" class="btn btn-sm btn-outline-primary">
                                         <i class="fas fa-eye"></i> READ
@@ -139,41 +139,11 @@
                                     </button>
                                 </td>
                             </tr>
-                            <!-- Sample Data for Demo -->
-                            <tr>
-                                <td>HH001</td>
-                                <td>Bánh quy Oreo</td>
-                                <td>100</td>
-                                <td>25,000 ₫</td>
-                                <td>01/01/2025</td>
-                                <td class="text-center action-buttons">
-                                    <a href="/hanghoa/HH001" class="btn btn-sm btn-outline-primary">
-                                        <i class="fas fa-eye"></i> READ
-                                    </a>
-                                    <a href="/hanghoa/HH001/edit" class="btn btn-sm btn-outline-warning">
-                                        <i class="fas fa-edit"></i> UPDATE
-                                    </a>
-                                    <button class="btn btn-sm btn-outline-danger" onclick="confirmDelete('HH001', 'Bánh quy Oreo')">
-                                        <i class="fas fa-trash"></i> DELETE
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>HH002</td>
-                                <td>Kẹo dẻo Haribo</td>
-                                <td>200</td>
-                                <td>15,000 ₫</td>
-                                <td>02/01/2025</td>
-                                <td class="text-center action-buttons">
-                                    <a href="/hanghoa/HH002" class="btn btn-sm btn-outline-primary">
-                                        <i class="fas fa-eye"></i> READ
-                                    </a>
-                                    <a href="/hanghoa/HH002/edit" class="btn btn-sm btn-outline-warning">
-                                        <i class="fas fa-edit"></i> UPDATE
-                                    </a>
-                                    <button class="btn btn-sm btn-outline-danger" onclick="confirmDelete('HH002', 'Kẹo dẻo Haribo')">
-                                        <i class="fas fa-trash"></i> DELETE
-                                    </button>
+                            <!-- No data message -->
+                            <tr th:if="${#lists.isEmpty(hangHoaList)}">
+                                <td colspan="6" class="text-center text-muted py-4">
+                                    <i class="fas fa-inbox fa-2x mb-2"></i>
+                                    <br>Chưa có đồ ăn vặt nào
                                 </td>
                             </tr>
                         </tbody>

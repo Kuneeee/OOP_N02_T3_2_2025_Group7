@@ -21,6 +21,13 @@ public class HangHoaController {
     @GetMapping
     public String listHangHoa(Model model) {
         List<HangHoa> hangHoaList = hangHoaService.getAllHangHoa();
+        System.out.println("=== HANGHOA CONTROLLER DEBUG ===");
+        System.out.println("Total HangHoa found: " + hangHoaList.size());
+        for (int i = 0; i < hangHoaList.size(); i++) {
+            HangHoa hh = hangHoaList.get(i);
+            System.out.println((i+1) + ". " + hh.getHanghoaID() + " - " + hh.getTenHangHoa());
+        }
+        System.out.println("===============================");
         model.addAttribute("hangHoaList", hangHoaList);
         model.addAttribute("newHangHoa", new HangHoa());
         return "hanghoa/index";

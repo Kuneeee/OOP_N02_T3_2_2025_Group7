@@ -1,41 +1,20 @@
--- PostgreSQL Seed data for Neon Database
+-- PostgreSQL Seed data for Neon Database with correct schema
 
--- Categories
-INSERT INTO categories(category_id, category_name, description, display_order)
+-- Hàng Hóa (Products) - Insert into hang_hoa table
+INSERT INTO hang_hoa(hanghoa_id, ten_hang_hoa, so_luong_hang_hoa, gia_nhap, loai_hang_hoa, nha_san_xuat, ngay_nhap)
 VALUES
- ('CAT_BANH', 'Bánh kẹo', 'Các loại bánh và kẹo', 1),
- ('CAT_NUOC', 'Nước uống', 'Các loại nước uống', 2),
- ('CAT_CHE',  'Chè',       'Các loại chè và tráng miệng', 3)
-ON CONFLICT (category_id) DO NOTHING;
+ ('HH001', 'Bánh quy Oreo', 100, 15000, 'Đồ ăn vặt', 'Mondelez', CURRENT_TIMESTAMP),
+ ('HH002', 'Kẹo dẻo Haribo', 200, 12000, 'Đồ ăn vặt', 'Haribo', CURRENT_TIMESTAMP),
+ ('HH003', 'Bánh tráng nướng', 50, 8000, 'Đồ ăn vặt', 'Homemade', CURRENT_TIMESTAMP),
+ ('HH004', 'Trà sữa trân châu', 30, 20000, 'Đồ uống', 'Tea House', CURRENT_TIMESTAMP),
+ ('HH005', 'Bánh mì nướng muối ớt', 25, 10000, 'Đồ ăn vặt', 'Saigon Bakery', CURRENT_TIMESTAMP),
+ ('HH006', 'Chè thái', 20, 15000, 'Đồ uống', 'Chè Bà Ba', CURRENT_TIMESTAMP)
+ON CONFLICT (hanghoa_id) DO NOTHING;
 
--- Products
-INSERT INTO products(product_id, product_name, category_id, category_name, price, cost_price, stock_quantity, min_stock_level, unit, brand, description, status)
+-- Khách Hàng (Customers) - Insert into khach_hang table  
+INSERT INTO khach_hang(khach_hang_id, ten_khach_hang, so_dien_thoai, email, dia_chi, loai_khach_hang, tong_da_mua, so_don_hang, tong_chi_tieu, diem_thuong, ngay_tham_gia)
 VALUES
- ('PRD001', 'Bánh tráng nướng', 'CAT_BANH', 'Bánh kẹo', 15000, 8000, 50, 10, 'cái', 'Homemade', 'Bánh tráng nướng giòn rụm với đầy đủ topping', 'ACTIVE'),
- ('PRD002', 'Trà sữa trân châu', 'CAT_NUOC', 'Nước uống', 25000, 12000, 30, 5, 'ly', 'Tea House', 'Trà sữa thơm ngon với trân châu dai dai', 'ACTIVE'),
- ('PRD003', 'Bánh mì nướng muối ớt', 'CAT_BANH', 'Bánh kẹo', 20000, 10000, 25, 5, 'cái', 'Saigon Bakery', 'Bánh mì nướng giòn với muối ớt đặc biệt', 'ACTIVE'),
- ('PRD004', 'Chè thái', 'CAT_CHE', 'Chè', 18000, 9000, 20, 3, 'ly', 'Chè Bà Ba', 'Chè thái mát lạnh với nhiều topping', 'ACTIVE')
-ON CONFLICT (product_id) DO NOTHING;
-
--- Customers
-INSERT INTO customers(customer_id, customer_name, phone_number, email, address, customer_type, total_purchased, total_orders, total_spent, loyalty_points, join_date)
-VALUES
- ('CUS001', 'Chị Bảo', '0355696858', 'giabaomc0903@gmail.com', 'Thôn 6 Hải Tiến, xã Hải Ninh, tỉnh Quảng Ninh', 'VIP', 500000, 25, 500000, 0, CURRENT_DATE),
- ('CUS002', 'Anh Long', '0866198289', 'dangduclong100@gmail.com', 'Thôn 4 Hải Tiến, xã Hải Ninh, tỉnh Quảng Ninh', 'Regular', 150000, 8, 150000, 0, CURRENT_DATE),
- ('CUS003', 'Em Hương', '0923456789', 'huong123@gmail.com', '789 Hai Bà Trưng, Quận 1, TP.HCM', 'New', 0, 0, 0, 0, CURRENT_DATE)
-ON CONFLICT (customer_id) DO NOTHING;
-
--- Orders
-INSERT INTO orders(order_id, customer_id, customer_name, employee_id, employee_name, order_date, status, payment_method, payment_status, discount_amount, notes)
-VALUES
- ('ORD001', 'CUS001', 'Chị Bảo', 'USR003', 'Nhân Viên', CURRENT_TIMESTAMP - INTERVAL '2 days', 'COMPLETED', 'CASH', 'PAID', 0, 'Khách VIP - giao tận bàn'),
- ('ORD002', 'CUS002', 'Anh Long', 'USR003', 'Nhân Viên', CURRENT_TIMESTAMP - INTERVAL '2 hours', 'PROCESSING', 'CARD', 'PAID', 0, 'Đang chuẩn bị')
-ON CONFLICT (order_id) DO NOTHING;
-
--- Order Items
-INSERT INTO order_items(order_id, product_id, product_name, category_id, unit_price, quantity)
-VALUES
- ('ORD001', 'PRD001', 'Bánh tráng nướng', 'CAT_BANH', 15000, 2),
- ('ORD001', 'PRD002', 'Trà sữa trân châu', 'CAT_NUOC', 25000, 1),
- ('ORD002', 'PRD004', 'Chè thái', 'CAT_CHE', 18000, 1)
-ON CONFLICT (id) DO NOTHING;
+ ('KH001', 'Chị Bảo', '0355696858', 'giabaomc0903@gmail.com', 'Thôn 6 Hải Tiến, xã Hải Ninh, tỉnh Quảng Ninh', 'VIP', 500000, 25, 500000, 50, CURRENT_DATE),
+ ('KH002', 'Anh Long', '0866198289', 'dangduclong100@gmail.com', 'Thôn 4 Hải Tiến, xã Hải Ninh, tỉnh Quảng Ninh', 'Thường', 150000, 8, 150000, 15, CURRENT_DATE),
+ ('KH003', 'Em Hương', '0923456789', 'huong123@gmail.com', '789 Hai Bà Trưng, Quận 1, TP.HCM', 'Mới', 0, 0, 0, 0, CURRENT_DATE)
+ON CONFLICT (khach_hang_id) DO NOTHING;
