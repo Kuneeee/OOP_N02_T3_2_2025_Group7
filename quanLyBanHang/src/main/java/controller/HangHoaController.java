@@ -4,7 +4,11 @@ import entity.HangHoa;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.view.RedirectView;
 import service.HangHoaService;
 
@@ -142,38 +146,5 @@ public class HangHoaController {
             redirectView.setContextRelative(true);
             return redirectView;
         }
-    }
-    
-    // API endpoints cho AJAX
-    @GetMapping("/api")
-    @ResponseBody
-    public List<HangHoa> getHangHoaAPI() {
-        return hangHoaService.getAllHangHoa();
-    }
-    
-    @PostMapping("/api")
-    @ResponseBody
-    public HangHoa createHangHoaAPI(@RequestBody HangHoa hangHoa) {
-        return hangHoaService.createHangHoa(hangHoa);
-    }
-    
-    @GetMapping("/api/{id}")
-    @ResponseBody
-    public HangHoa getHangHoaAPI(@PathVariable String id) {
-        return hangHoaService.getHangHoaById(id)
-                .orElseThrow(() -> new RuntimeException("Không tìm thấy hàng hóa"));
-    }
-    
-    @PutMapping("/api/{id}")
-    @ResponseBody
-    public HangHoa updateHangHoaAPI(@PathVariable String id, @RequestBody HangHoa hangHoa) {
-        return hangHoaService.updateHangHoa(id, hangHoa);
-    }
-    
-    @DeleteMapping("/api/{id}")
-    @ResponseBody
-    public String deleteHangHoaAPI(@PathVariable String id) {
-        boolean deleted = hangHoaService.deleteHangHoa(id);
-        return deleted ? "Đã xóa thành công" : "Không thể xóa";
     }
 }

@@ -4,7 +4,12 @@ import entity.Ban;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import service.BanService;
 
 import java.util.List;
@@ -198,38 +203,5 @@ public class BanController {
         } finally {
             System.out.println("=== POST /ban/" + id + "/delete END ===");
         }
-    }
-    
-    // API endpoints
-    @GetMapping("/api")
-    @ResponseBody
-    public List<Ban> getBanAPI() {
-        return banService.getAllBan();
-    }
-    
-    @PostMapping("/api")
-    @ResponseBody
-    public Ban createBanAPI(@RequestBody Ban ban) {
-        return banService.createBan(ban);
-    }
-    
-    @GetMapping("/api/{id}")
-    @ResponseBody
-    public Ban getBanAPI(@PathVariable Long id) {
-        return banService.getBanById(id)
-                .orElseThrow(() -> new RuntimeException("Không tìm thấy phiếu bán"));
-    }
-    
-    @PutMapping("/api/{id}")
-    @ResponseBody
-    public Ban updateBanAPI(@PathVariable Long id, @RequestBody Ban ban) {
-        return banService.updateBan(id, ban);
-    }
-    
-    @DeleteMapping("/api/{id}")
-    @ResponseBody
-    public String deleteBanAPI(@PathVariable Long id) {
-        boolean deleted = banService.deleteBan(id);
-        return deleted ? "Đã xóa thành công" : "Không thể xóa";
     }
 }

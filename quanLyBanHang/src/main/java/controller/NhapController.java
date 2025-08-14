@@ -4,7 +4,11 @@ import entity.Nhap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
 import service.NhapService;
 
 import java.util.List;
@@ -77,38 +81,5 @@ public class NhapController {
     public String deleteNhap(@PathVariable Long id) {
         nhapService.deleteNhap(id);
         return "redirect:/nhap";
-    }
-    
-    // API endpoints
-    @GetMapping("/api")
-    @ResponseBody
-    public List<Nhap> getNhapAPI() {
-        return nhapService.getAllNhap();
-    }
-    
-    @PostMapping("/api")
-    @ResponseBody
-    public Nhap createNhapAPI(@RequestBody Nhap nhap) {
-        return nhapService.createNhap(nhap);
-    }
-    
-    @GetMapping("/api/{id}")
-    @ResponseBody
-    public Nhap getNhapAPI(@PathVariable Long id) {
-        return nhapService.getNhapById(id)
-                .orElseThrow(() -> new RuntimeException("Không tìm thấy phiếu nhập"));
-    }
-    
-    @PutMapping("/api/{id}")
-    @ResponseBody
-    public Nhap updateNhapAPI(@PathVariable Long id, @RequestBody Nhap nhap) {
-        return nhapService.updateNhap(id, nhap);
-    }
-    
-    @DeleteMapping("/api/{id}")
-    @ResponseBody
-    public String deleteNhapAPI(@PathVariable Long id) {
-        boolean deleted = nhapService.deleteNhap(id);
-        return deleted ? "Đã xóa thành công" : "Không thể xóa";
     }
 }

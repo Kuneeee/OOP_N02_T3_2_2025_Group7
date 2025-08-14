@@ -4,7 +4,11 @@ import entity.KhachHang;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
 import service.CustomerService;
 
 import java.util.List;
@@ -95,38 +99,5 @@ public class CustomerController {
     public String deleteCustomer(@PathVariable String id) {
         customerService.deleteCustomer(id);
         return "redirect:/customers";
-    }
-    
-    // API endpoints cho AJAX
-    @GetMapping("/api")
-    @ResponseBody
-    public List<KhachHang> getCustomersAPI() {
-        return customerService.getAllCustomers();
-    }
-    
-    @PostMapping("/api")
-    @ResponseBody
-    public KhachHang createCustomerAPI(@RequestBody KhachHang khachHang) {
-        return customerService.createCustomer(khachHang);
-    }
-    
-    @GetMapping("/api/{id}")
-    @ResponseBody
-    public KhachHang getCustomerAPI(@PathVariable String id) {
-        return customerService.getCustomerById(id)
-                .orElseThrow(() -> new RuntimeException("Không tìm thấy khách hàng"));
-    }
-    
-    @PutMapping("/api/{id}")
-    @ResponseBody
-    public KhachHang updateCustomerAPI(@PathVariable String id, @RequestBody KhachHang khachHang) {
-        return customerService.updateCustomer(id, khachHang);
-    }
-    
-    @DeleteMapping("/api/{id}")
-    @ResponseBody
-    public String deleteCustomerAPI(@PathVariable String id) {
-        boolean deleted = customerService.deleteCustomer(id);
-        return deleted ? "Đã xóa thành công" : "Không thể xóa";
     }
 }
