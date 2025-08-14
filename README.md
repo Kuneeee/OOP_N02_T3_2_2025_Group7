@@ -89,8 +89,7 @@ quanLyBanHang/
 
 ## Activity Diagram-Tạo mặt hàng đồ ăn vặt mới
 
-<img width="354" height="545" alt="Untitled (1)" src="https://github.com/user-attachments/assets/f180763b-6576-48a9-a6f5-593566c5c13d" />
-
+<img width="354" height="545" alt="Ac1" src="https://github.com/user-attachments/assets/a769f436-a637-4164-80ff-a288f321ce9e" />
 
 ## Hướng phát triển tương lai
 - Thêm giao diện người dùng: JavaFX hoặc Swing
