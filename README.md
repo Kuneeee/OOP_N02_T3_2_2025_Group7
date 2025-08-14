@@ -24,63 +24,29 @@
 ## 🏗️ Cấu trúc thư mục chính
 
 ```
-quanLyBanHang/
-├── build.gradle         # File cấu hình cho Gradle (quản lý dependencies, tasks)
-├── cp.txt               # File thông tin bổ sung (ví dụ: đường dẫn classpath)
-├── gradle/              # Thư mục hệ thống của Gradle
-├── gradlew              # Script chạy Gradle trên Linux/Mac
-├── gradlew.bat          # Script chạy Gradle trên Windows
-├── mvnw                 # Script chạy Maven trên Linux/Mac
-├── mvnw.cmd             # Script chạy Maven trên Windows
-├── pom.xml              # File cấu hình cho Maven (quản lý dependencies, plugins)
-├── review/              # Thư mục chứa tài liệu review hoặc báo cáo
-├── settings.gradle      # File cấu hình dự án cho Gradle
+OOP_N02_T3_2_2025_Group7/
+├── README.md             
+├── build.gradle           
+├── gradle/               
+├── gradlew                
+├── gradlew.bat          
+├── mvnw              
+├── mvnw.cmd             
+├── pom.xml              
+├── review/              
+├── settings.gradle
+├── cp.txt     
 ├── src/
 │   ├── main/
 │   │   ├── java/
-│   │   │   └── com/
-│   │   │       └── group3/
-│   │   │           └── quanlybanhang/
-│   │   │               ├── App.java                  # Lớp khởi động ứng dụng
-│   │   │               ├── model/
-│   │   │               │   ├── HangHoa.java          # Định nghĩa đối tượng Hàng hóa
-│   │   │               │   ├── KhachHang.java        # Định nghĩa đối tượng Khách hàng
-│   │   │               │   ├── Nhap.java             # Định nghĩa nhập hàng
-│   │   │               │   ├── XuatBan.java          # Định nghĩa xuất bán hàng
-│   │   │               │   └── DoanhThu.java         # Định nghĩa doanh thu
-│   │   │               ├── controller/
-│   │   │               │   ├── HangHoaController.java
-│   │   │               │   └── KhachHangController.java
-│   │   │               ├── service/
-│   │   │               │   ├── HangHoaService.java
-│   │   │               │   └── DoanhThuService.java
-│   │   │               ├── util/
-│   │   │               │   ├── ExcelExporter.java    # Xuất báo cáo ra file Excel
-│   │   │               │   └── Validator.java        # Kiểm tra dữ liệu đầu vào
-│   │   │               └── view/
-│   │   │                   ├── MainUI.java           # Giao diện chính (nếu có)
-│   │   │                   └── ...
+│   │   │   └── ...        # Mã nguồn Java chính (chia theo package: model, controller, service, util, view)
 │   │   └── resources/
-│   │       ├── config.properties        # File cấu hình ứng dụng
-│   │       ├── data/
-│   │       │   ├── hanghoa.csv          # Dữ liệu mẫu hàng hóa
-│   │       │   └── khachhang.csv        # Dữ liệu mẫu khách hàng
-│   │       └── templates/               # Template giao diện nếu dùng JavaFX hoặc Swing
+│   │       └── ...        # File cấu hình, dữ liệu mẫu, template giao diện
 │   └── test/
 │       ├── java/
-│       │   └── com/
-│       │       └── group3/
-│       │           └── quanlybanhang/
-│       │               ├── model/
-│       │               │   ├── HangHoaTest.java
-│       │               │   └── KhachHangTest.java
-│       │               ├── service/
-│       │               │   └── HangHoaServiceTest.java
-│       │               └── ...
+│       │   └── ...        # Mã nguồn kiểm thử tự động
 │       └── resources/
-│           └── test-data/
-│               ├── hanghoa-test.csv
-│               └── khachhang-test.csv
+│           └── ...        # Dữ liệu phục vụ kiểm thử
 ```
 ## Phân tích đối tượng
 
