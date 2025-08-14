@@ -95,9 +95,10 @@ quanLyBanHang/
 
 <img width="558" height="655" alt="Ac2" src="https://github.com/user-attachments/assets/f3489009-56da-4e9a-a041-b571ef52a34f" />
 
-## Activity Diagram-Tìm kiếm hàng trong kho hàng hóa
+## Activity Diagram-Xóa mặt hàng trong kho
 
-<img width="577" height="655" alt="Ac3" src="https://github.com/user-attachments/assets/14340f1f-b41b-4e2d-85a6-01db76ab90cd" />
+<img width="377" height="655" alt="Ac3 (1)" src="https://github.com/user-attachments/assets/ae0831dc-9577-4296-bc6c-8ee44dd29118" />
+
 
 ## Activity Diagram-Tạo khách hàng mới
 
@@ -110,7 +111,8 @@ quanLyBanHang/
 
 ## Giao diện chương trình
 
-<img width="1919" height="946" alt="Screenshot 2025-08-15 014016" src="https://github.com/user-attachments/assets/2b62bdde-a562-487c-819d-3b1c402d0dcf" />
+![Uploading Screenshot 2025-08-15 020450.png…]()
+
 
 ## Thông tin 
 Được xây dựng bằng ngôn ngữ lập trình Java và GUI Springboot
