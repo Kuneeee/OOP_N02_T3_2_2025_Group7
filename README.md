@@ -1,10 +1,12 @@
 # OOP_N02_T3_2_2025_K18_Group3
-# Giới thiệu
- Ứng dụng quản lý bán hàng đồ ăn vặt cho Đại học Phenikaa.
- Chức năng chính:
- •Quản lý hàng hóa
- •Quản lý nhập-bán hàng hóa
- •Quản lý khách hàng mua hàng
+## 📋 Giới thiệu
+Ứng dụng quản lý bán hàng đồ ăn vặt dành cho Đại học Phenikaa.
+
+### 🎯 Chức năng chính
+- 📦 Quản lý hàng hóa  
+- 📥 Quản lý nhập & xuất bán hàng hóa  
+- 👤 Quản lý khách hàng mua hàng  
+
  
 ## 👨‍💻 Thành viên nhóm
 | STT | Họ tên                | Mã SV      | GitHub ID   |
