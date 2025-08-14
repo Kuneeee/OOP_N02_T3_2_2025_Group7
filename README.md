@@ -89,7 +89,7 @@ quanLyBanHang/
 
 ## Activity Diagram-Tạo mặt hàng đồ ăn vặt mới
 
-<img width="354" height="513" alt="Untitled" src="https://github.com/user-attachments/assets/7d9211a7-435c-4a24-8b3a-f129290a3827" />
+<img width="354" height="545" alt="Untitled (1)" src="https://github.com/user-attachments/assets/f180763b-6576-48a9-a6f5-593566c5c13d" />
 
 
 ## Hướng phát triển tương lai
