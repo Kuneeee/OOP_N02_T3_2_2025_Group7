@@ -23,7 +23,7 @@
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Mã Khách Hàng</label>
-                                    <input type="text" class="form-control" th:field="*{khachHangCode}" required>
+                                    <input type="text" class="form-control" th:field="*{khachHangId}" readonly>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Tên Khách Hàng</label>
@@ -47,20 +47,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-4 mb-3">
-                                    <label class="form-label">Ngày Sinh</label>
-                                    <input type="date" class="form-control" th:field="*{ngaySinh}">
-                                </div>
-                                <div class="col-md-4 mb-3">
-                                    <label class="form-label">Giới Tính</label>
-                                    <select class="form-select" th:field="*{gioiTinh}">
-                                        <option value="">Chọn giới tính</option>
-                                        <option value="Nam">Nam</option>
-                                        <option value="Nữ">Nữ</option>
-                                        <option value="Khác">Khác</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-4 mb-3">
+                                <div class="col-md-6 mb-3">
                                     <label class="form-label">Loại Khách Hàng</label>
                                     <select class="form-select" th:field="*{loaiKhachHang}">
                                         <option value="Mới">Mới</option>
@@ -68,28 +55,9 @@
                                         <option value="VIP">VIP</option>
                                     </select>
                                 </div>
-                            </div>
-                            <div class="row">
                                 <div class="col-md-6 mb-3">
-                                    <label class="form-label">Sở Thích Đồ Ăn</label>
-                                    <select class="form-select" th:field="*{soThich}">
-                                        <option value="">Chọn sở thích</option>
-                                        <option value="Bánh kẹo">Bánh kẹo</option>
-                                        <option value="Snack">Snack</option>
-                                        <option value="Nước uống">Nước uống</option>
-                                        <option value="Đồ khô">Đồ khô</option>
-                                        <option value="Tất cả">Tất cả</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label">Điểm Tích Lũy</label>
-                                    <input type="number" class="form-control" th:field="*{diemTichLuy}" min="0">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12 mb-3">
-                                    <label class="form-label">Ghi Chú</label>
-                                    <textarea class="form-control" th:field="*{ghiChu}" rows="3"></textarea>
+                                    <label class="form-label">Điểm Thưởng</label>
+                                    <input type="number" class="form-control" th:field="*{diemThuong}" min="0">
                                 </div>
                             </div>
                             <div class="text-center">

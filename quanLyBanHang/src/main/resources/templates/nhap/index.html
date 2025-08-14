@@ -134,8 +134,9 @@
                                     <a th:href="@{/nhap/edit/{id}(id=${nhap.nhapId})}" class="btn btn-sm btn-outline-warning">
                                         <i class="fas fa-edit"></i> UPDATE
                                     </a>
-                                    <button class="btn btn-sm btn-outline-danger" 
-                                            th:onclick="'confirmDelete(\'' + ${nhap.nhapId} + '\', \'' + ${nhap.maNhapHang} + '\')'">
+                                    <button class="btn btn-sm btn-outline-danger delete-btn" 
+                                            th:data-id="${nhap.nhapId}" 
+                                            th:data-name="${nhap.maNhapHang}">
                                         <i class="fas fa-trash"></i> DELETE
                                     </button>
                                 </td>
@@ -236,6 +237,18 @@
                 searchSection.style.display = 'none';
             }
         }
+
+        // Add event listeners for delete buttons
+        document.addEventListener('DOMContentLoaded', function() {
+            const deleteButtons = document.querySelectorAll('.delete-btn');
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const id = this.getAttribute('data-id');
+                    const name = this.getAttribute('data-name');
+                    confirmDelete(id, name);
+                });
+            });
+        });
 
         function confirmDelete(id, name) {
             document.getElementById('deleteItemName').textContent = name + ' (ID: ' + id + ')';

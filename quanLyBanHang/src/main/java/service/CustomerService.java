@@ -59,19 +59,23 @@ public class CustomerService {
     
     // UTILITY - Tạo mã tự động
     private String taoMaKhachHangTuDong() {
-        return customerRepository.findAll().stream()
-                .filter(kh -> kh.getKhachHangId() != null && !kh.getKhachHangId().isEmpty())
-                .map(kh -> kh.getKhachHangId())
-                .filter(id -> id.startsWith("KH"))
-                .map(id -> {
-                    try {
-                        return Integer.parseInt(id.substring(2));
-                    } catch (NumberFormatException e) {
-                        return 0;
+        List<KhachHang> allCustomers = customerRepository.findAll();
+        int maxNumber = 0;
+        
+        for (KhachHang kh : allCustomers) {
+            String id = kh.getKhachHangId();
+            if (id != null && id.startsWith("KH") && id.length() > 2) {
+                try {
+                    int number = Integer.parseInt(id.substring(2));
+                    if (number > maxNumber) {
+                        maxNumber = number;
                     }
-                })
-                .max(Integer::compareTo)
-                .map(max -> "KH" + String.format("%03d", max + 1))
-                .orElse("KH001");
+                } catch (NumberFormatException e) {
+                    // Ignore invalid formats
+                }
+            }
+        }
+        
+        return "KH" + String.format("%03d", maxNumber + 1);
     }
 }

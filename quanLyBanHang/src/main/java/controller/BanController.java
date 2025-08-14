@@ -69,7 +69,7 @@ public class BanController {
     @PostMapping("/{id}")
     public String updateBan(@PathVariable Long id, @ModelAttribute Ban ban) {
         banService.updateBan(id, ban);
-        return "redirect:/ban";
+        return "redirect:/ban/" + id;
     }
     
     // Xóa phiếu bán

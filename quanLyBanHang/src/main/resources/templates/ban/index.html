@@ -131,8 +131,9 @@
                                     <a th:href="@{/ban/edit/{id}(id=${ban.banId})}" class="btn btn-sm btn-outline-warning">
                                         <i class="fas fa-edit"></i> UPDATE
                                     </a>
-                                    <button class="btn btn-sm btn-outline-danger" 
-                                            th:onclick="'confirmDelete(\'' + ${ban.banId} + '\', \'' + ${ban.banCode} + '\')'">
+                                    <button class="btn btn-sm btn-outline-danger delete-btn" 
+                                            th:data-id="${ban.banId}" 
+                                            th:data-name="${ban.banCode}">
                                         <i class="fas fa-trash"></i> DELETE
                                     </button>
                                 </td>
@@ -235,6 +236,18 @@
                 searchSection.style.display = 'none';
             }
         }
+
+        // Add event listeners for delete buttons
+        document.addEventListener('DOMContentLoaded', function() {
+            const deleteButtons = document.querySelectorAll('.delete-btn');
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const id = this.getAttribute('data-id');
+                    const name = this.getAttribute('data-name');
+                    confirmDelete(id, name);
+                });
+            });
+        });
 
         function confirmDelete(id, name) {
             document.getElementById('deleteItemName').textContent = name + ' (ID: ' + id + ')';

@@ -69,7 +69,7 @@ public class HangHoaController {
     @PostMapping("/{id}")
     public String updateHangHoa(@PathVariable String id, @ModelAttribute HangHoa hangHoa) {
         hangHoaService.updateHangHoa(id, hangHoa);
-        return "redirect:/hanghoa";
+        return "redirect:/hanghoa/" + id;
     }
     
     // Xóa hàng hóa

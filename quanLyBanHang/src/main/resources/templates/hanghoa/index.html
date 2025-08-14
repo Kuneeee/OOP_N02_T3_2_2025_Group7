@@ -132,8 +132,9 @@
                                     <a th:href="@{/hanghoa/edit/{id}(id=${hanghoa.hanghoaID})}" class="btn btn-sm btn-outline-warning">
                                         <i class="fas fa-edit"></i> UPDATE
                                     </a>
-                                    <button class="btn btn-sm btn-outline-danger" 
-                                            th:onclick="'confirmDelete(\'' + ${hanghoa.hanghoaID} + '\', \'' + ${hanghoa.tenHangHoa} + '\')'">
+                                    <button class="btn btn-sm btn-outline-danger delete-btn" 
+                                            th:data-id="${hanghoa.hanghoaID}" 
+                                            th:data-name="${hanghoa.tenHangHoa}">
                                         <i class="fas fa-trash"></i> DELETE
                                     </button>
                                 </td>
@@ -232,6 +233,18 @@
                 searchSection.style.display = 'none';
             }
         }
+
+        // Add event listeners for delete buttons
+        document.addEventListener('DOMContentLoaded', function() {
+            const deleteButtons = document.querySelectorAll('.delete-btn');
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const id = this.getAttribute('data-id');
+                    const name = this.getAttribute('data-name');
+                    confirmDelete(id, name);
+                });
+            });
+        });
 
         function confirmDelete(id, name) {
             document.getElementById('deleteItemName').textContent = name + ' (ID: ' + id + ')';
