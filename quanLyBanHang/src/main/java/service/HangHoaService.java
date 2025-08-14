@@ -21,6 +21,10 @@ public class HangHoaService {
         if (hangHoa.getHanghoaID() == null || hangHoa.getHanghoaID().isEmpty()) {
             hangHoa.setHanghoaID(taoMaHangHoaTuDong());
         }
+        // Set ngày nhập hiện tại nếu chưa có
+        if (hangHoa.getNgayNhap() == null) {
+            hangHoa.setNgayNhap(LocalDateTime.now());
+        }
         return hangHoaRepository.save(hangHoa);
     }
     

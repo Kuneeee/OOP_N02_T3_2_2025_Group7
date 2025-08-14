@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 import service.HangHoaService;
 
 import java.util.List;
@@ -51,9 +52,23 @@ public class HangHoaController {
     
     // Tạo mới hàng hóa
     @PostMapping
-    public String createHangHoa(@ModelAttribute HangHoa hangHoa) {
-        hangHoaService.createHangHoa(hangHoa);
-        return "redirect:/hanghoa";
+    public RedirectView createHangHoa(@ModelAttribute HangHoa hangHoa) {
+        try {
+            System.out.println("Creating HangHoa: " + hangHoa.toString());
+            hangHoaService.createHangHoa(hangHoa);
+            System.out.println("HangHoa created successfully, redirecting to /hanghoa");
+            RedirectView redirectView = new RedirectView();
+            redirectView.setUrl("/hanghoa");
+            redirectView.setContextRelative(true);
+            return redirectView;
+        } catch (Exception e) {
+            System.err.println("Error creating HangHoa: " + e.getMessage());
+            e.printStackTrace();
+            RedirectView redirectView = new RedirectView();
+            redirectView.setUrl("/hanghoa/new?error=true");
+            redirectView.setContextRelative(true);
+            return redirectView;
+        }
     }
     
     // Trang chỉnh sửa hàng hóa
@@ -67,16 +82,22 @@ public class HangHoaController {
     
     // Cập nhật hàng hóa
     @PostMapping("/{id}")
-    public String updateHangHoa(@PathVariable String id, @ModelAttribute HangHoa hangHoa) {
+    public RedirectView updateHangHoa(@PathVariable String id, @ModelAttribute HangHoa hangHoa) {
         hangHoaService.updateHangHoa(id, hangHoa);
-        return "redirect:/hanghoa/" + id;
+        RedirectView redirectView = new RedirectView();
+        redirectView.setUrl("/hanghoa");
+        redirectView.setContextRelative(true);
+        return redirectView;
     }
     
     // Xóa hàng hóa
     @PostMapping("/{id}/delete")
-    public String deleteHangHoa(@PathVariable String id) {
+    public RedirectView deleteHangHoa(@PathVariable String id) {
         hangHoaService.deleteHangHoa(id);
-        return "redirect:/hanghoa";
+        RedirectView redirectView = new RedirectView();
+        redirectView.setUrl("/hanghoa");
+        redirectView.setContextRelative(true);
+        return redirectView;
     }
     
     // API endpoints cho AJAX

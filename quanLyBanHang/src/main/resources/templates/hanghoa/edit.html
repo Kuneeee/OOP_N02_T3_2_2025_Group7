@@ -19,11 +19,11 @@
                         </h4>
                     </div>
                     <div class="card-body">
-                        <form th:action="@{/hanghoa/{id}(id=${hanghoa.hangHoaId})}" method="post" th:object="${hanghoa}">
+                        <form th:action="@{/hanghoa/{id}(id=${hangHoa.hanghoaID})}" method="post" th:object="${hangHoa}">
                             <div class="row">
                                 <div class="col-md-6 mb-3">
-                                    <label class="form-label">Mã Hàng Hóa</label>
-                                    <input type="text" class="form-control" th:field="*{hangHoaCode}" required>
+                                    <label class="form-label">ID Hàng Hóa</label>
+                                    <input type="text" class="form-control" th:field="*{hanghoaID}" readonly>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Tên Đồ Ăn Vặt</label>
@@ -38,65 +38,35 @@
                                         <option value="Bánh kẹo">Bánh kẹo</option>
                                         <option value="Snack">Snack</option>
                                         <option value="Nước uống">Nước uống</option>
-                                        <option value="Đồ khô">Đồ khô</option>
+                                        <option value="Đồ ăn vặt khác">Đồ ăn vặt khác</option>
                                     </select>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label class="form-label">Đơn Vị Tính</label>
-                                    <select class="form-select" th:field="*{donViTinh}">
-                                        <option value="Gói">Gói</option>
-                                        <option value="Hộp">Hộp</option>
-                                        <option value="Chai">Chai</option>
-                                        <option value="Lon">Lon</option>
-                                        <option value="Kg">Kg</option>
-                                    </select>
+                                    <label class="form-label">Số Lượng</label>
+                                    <input type="number" class="form-control" th:field="*{soLuongHangHoa}" required>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-4 mb-3">
-                                    <label class="form-label">Giá</label>
-                                    <input type="number" class="form-control" th:field="*{gia}" step="0.01" required>
-                                </div>
-                                <div class="col-md-4 mb-3">
-                                    <label class="form-label">Số Lượng Tồn</label>
-                                    <input type="number" class="form-control" th:field="*{soLuongTon}" required>
-                                </div>
-                                <div class="col-md-4 mb-3">
+                                <div class="col-md-6 mb-3">
                                     <label class="form-label">Giá Nhập</label>
                                     <input type="number" class="form-control" th:field="*{giaNhap}" step="0.01">
                                 </div>
-                            </div>
-                            <div class="row">
                                 <div class="col-md-6 mb-3">
-                                    <label class="form-label">Nhà Cung Cấp</label>
-                                    <input type="text" class="form-control" th:field="*{nhaCungCap}">
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label">Ngày Sản Xuất</label>
-                                    <input type="date" class="form-control" th:field="*{ngaySanXuat}">
+                                    <label class="form-label">Nhà Sản Xuất</label>
+                                    <input type="text" class="form-control" th:field="*{nhaSanXuat}">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6 mb-3">
-                                    <label class="form-label">Hạn Sử Dụng</label>
-                                    <input type="date" class="form-control" th:field="*{hanSuDung}">
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label">Xuất Xứ</label>
-                                    <input type="text" class="form-control" th:field="*{xuatXu}">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12 mb-3">
-                                    <label class="form-label">Mô Tả</label>
-                                    <textarea class="form-control" th:field="*{moTa}" rows="3"></textarea>
+                                    <label class="form-label">Năm Sản Xuất</label>
+                                    <input type="number" class="form-control" th:field="*{namSanXuat}" min="1900" max="2030">
                                 </div>
                             </div>
                             <div class="text-center">
                                 <button type="submit" class="btn btn-warning btn-lg">
                                     <i class="fas fa-save me-2"></i>Cập Nhật
                                 </button>
-                                <a th:href="@{/hanghoa/{id}(id=${hanghoa.hangHoaId})}" class="btn btn-info btn-lg ms-2">
+                                <a th:href="@{/hanghoa/{id}(id=${hangHoa.hanghoaID})}" class="btn btn-info btn-lg ms-2">
                                     <i class="fas fa-eye me-2"></i>Xem Chi Tiết
                                 </a>
                                 <a href="/hanghoa" class="btn btn-secondary btn-lg ms-2">
