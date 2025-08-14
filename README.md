@@ -5,49 +5,44 @@
 >
 > Được phát triển bằng Java, hỗ trợ tính năng quản lý kho, nhập hàng, xuất bán và quản lý khách hàng.
 
----
-
-## 🎯 Chức năng chính
-- 📦 Quản lý hàng hóa  
-- 📥 Quản lý nhập & xuất bán hàng hóa  
-- 👤 Quản lý khách hàng mua hàng  
-- 📊 Tính toán doanh thu, xuất báo cáo Excel
-
----
-
 ## 👨‍💻 Thành viên nhóm
 | STT | Họ tên                | Mã SV      | GitHub ID   |
 |-----|-----------------------|------------|-------------|
 | 1   | Đặng Đức Long         | 24100068   | [Kuneeee](https://github.com/Kuneeee)  |
 | 2   | Nguyễn Gia Bảo        | 24100074   | [NgGiaBaoo](https://github.com/NgGiaBaoo)  |
 | 3   | Trần Quang Trường     | 24100073   | [tuonie21](https://github.com/tuonie21)  |
-## 🏗️ Cấu trúc thư mục chính
+## 🎯 Chức năng chính
+
+- 📦 Quản lý hàng hóa (CRUD, tìm kiếm, cập nhật kho)
+- 📥 Quản lý nhập hàng (CRUD, kiểm tra trùng lặp, trạng thái nhập)
+- 🛒 Quản lý bán hàng (CRUD, tính doanh thu, trạng thái đơn hàng)
+- 👤 Quản lý khách hàng (CRUD, điểm thưởng, tổng chi tiêu)
+- 📊 Báo cáo doanh thu, xuất file Excel
+- Xử lý lỗi hệ thống, giao diện thông báo lỗi (404, 500, 403, ...)
+
+---
+
+## 🏗️ Cấu trúc thư mục
 
 ```
-OOP_N02_T3_2_2025_Group7/
-├── README.md             
-├── build.gradle           
-├── gradle/               
-├── gradlew                
-├── gradlew.bat          
-├── mvnw              
-├── mvnw.cmd             
-├── pom.xml              
-├── review/              
-├── settings.gradle
-├── cp.txt     
+quanLyBanHang/
+├── build.gradle, pom.xml, gradlew, mvnw, ...
 ├── src/
 │   ├── main/
 │   │   ├── java/
-│   │   │   └── ...        # Mã nguồn Java chính (chia theo package: model, controller, service, util, view)
+│   │   │   ├── controller/   # Controller cho từng entity (HangHoa, Nhap, Ban, KhachHang, Error)
+│   │   │   ├── entity/       # Entity: HangHoa, Nhap, Ban, KhachHang
+│   │   │   ├── service/      # Service xử lý nghiệp vụ, CRUD, mã tự động
 │   │   └── resources/
-│   │       └── ...        # File cấu hình, dữ liệu mẫu, template giao diện
+│   │       ├── templates/    # Giao diện Thymeleaf: index, dashboard, hanghoa, nhap, ban, customers, error
+│   │       └── ...           # File cấu hình, dữ liệu mẫu
 │   └── test/
-│       ├── java/
-│       │   └── ...        # Mã nguồn kiểm thử tự động
-│       └── resources/
-│           └── ...        # Dữ liệu phục vụ kiểm thử
+│       └── ...               # Kiểm thử tự động
+├── review/                   # Các file Java mẫu, thử nghiệm
+└── README.md                 # Tài liệu dự án
 ```
+
+---
 ## 🏛️ Phân tích đối tượng & Kiến trúc ứng dụng
 
 Ứng dụng được xây dựng theo mô hình hướng đối tượng với các lớp chính sau:
