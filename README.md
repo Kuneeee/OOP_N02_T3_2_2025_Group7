@@ -1,5 +1,11 @@
-# OOP_N02_T3_2_2025_Group7
-Nhóm làm việc 07
+# OOP_N02_T3_2_2025_K18_Group3
+# Giới thiệu
+ Ứng dụng quản lý bán hàng đồ ăn vặt cho Đại học Phenikaa.
+ Chức năng chính:
+ •Quản lý hàng hóa
+ •Quản lý nhập-bán hàng hóa
+ •Quản lý khách hàng mua hàng
+ 
 # Thành viên
  1. Đặng Đức Long (24100068) githubID: Kuneeee
  2. Nguyễn Gia Bảo (24100074) githubID: NgGiaBaoo
@@ -36,11 +42,8 @@ XuatBan
 + giaBan
 
 ```
-Doanhthu
+Khách Hàng
 ```
-+ tyXuatLoiNhuan
-+ loiNhuan
-+ baoCaoExcel
 ```
 ## Mục tiêu
  Phát triển một ứng dụng giúp quản lý hàng hóa, nhập – bán – tính doanh thu một cách trực quan và hiệu quả cho cửa hàng tạp hóa.
