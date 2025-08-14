@@ -83,8 +83,9 @@ quanLyBanHang/
   - `soDienThoai` (String): Số điện thoại liên hệ  
   - `ngayMua` (Date): Ngày mua hàng
   - `emailKH` (String): email khách hàng
-## Sơ đồ lớp
- Truy cập sơ đồ phân tích hướng đối tượng tại: https://online.visual-paradigm.com/share.jsp?id=343136313439372d31
+## Class Diagram
+ 
+<img width="566" height="724" alt="Diagram" src="https://github.com/user-attachments/assets/36f44e29-11cb-4d35-9a91-011c49589cc4" />
 
 ## Hướng phát triển tương lai
 - Thêm giao diện người dùng: JavaFX hoặc Swing
