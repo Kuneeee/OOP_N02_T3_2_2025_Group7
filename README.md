@@ -48,39 +48,47 @@ OOP_N02_T3_2_2025_Group7/
 │       └── resources/
 │           └── ...        # Dữ liệu phục vụ kiểm thử
 ```
-## Phân tích đối tượng
+## 🏛️ Phân tích đối tượng & Kiến trúc ứng dụng
 
-Hanghoa
-```
-+ hanghoaID
-+ tenHangHoa
-+ soLuongHangHoa
-+ nhaSanXuat
-+ namSanXuat
-+ loaiHangHoa
+Ứng dụng được xây dựng theo mô hình hướng đối tượng với các lớp chính sau:
 
-```
+### 1. HangHoa
+- **Mô tả:** Đại diện cho từng mặt hàng đồ ăn vặt được quản lý trong hệ thống.
+- **Thuộc tính:**  
+  - `maHang` (String): Mã định danh hàng hóa  
+  - `tenHang` (String): Tên hàng  
+  - `soLuong` (int): Số lượng hiện có  
+  - `nhaSanXuat` (String): Nhà sản xuất  
+  - `namSanXuat` (int): Năm sản xuất  
+  - `loaiHang` (String): Loại hàng (ví dụ: bánh, nước, snack...)
 
-Nhap
-```
-+ hanghoaID
-+ tenHangHoa
-+ soLuongNhap
-+ giaNhap
-+ ngayNhap
+### 2. Nhap
+- **Mô tả:** Quản lý các phiếu nhập hàng vào kho.
+- **Thuộc tính:**  
+  - `maNhap` (String): Mã phiếu nhập  
+  - `maHang` (String): Mã hàng nhập  
+  - `tenHang` (String): Tên hàng nhập  
+  - `soLuongNhap` (int): Số lượng nhập  
+  - `giaNhap` (double): Giá nhập mỗi đơn vị  
+  - `ngayNhap` (Date): Ngày nhập  
 
-```
-XuatBan
-```
-+ hangHoaID
-+ tenHangHoa
-+ soLuongBan
-+ giaBan
+### 3. XuatBan
+- **Mô tả:** Quản lý các phiếu xuất bán hàng hóa cho khách.
+- **Thuộc tính:**  
+  - `maXuat` (String): Mã phiếu xuất  
+  - `maHang` (String): Mã hàng xuất  
+  - `tenHang` (String): Tên hàng bán  
+  - `soLuongBan` (int): Số lượng bán  
+  - `giaBan` (double): Giá bán mỗi đơn vị  
+  - `ngayBan` (Date): Ngày bán  
 
-```
-Khách Hàng
-```
-```
+### 4. KhachHang
+- **Mô tả:** Lưu trữ thông tin khách hàng mua hàng tại cửa hàng.
+- **Thuộc tính:**  
+  - `maKH` (String): Mã khách hàng  
+  - `tenKH` (String): Tên khách hàng  
+  - `soDienThoai` (String): Số điện thoại liên hệ  
+  - `ngayMua` (Date): Ngày mua hàng  
 ## Mục tiêu
  Phát triển một ứng dụng giúp quản lý hàng hóa, nhập – bán – tính doanh thu một cách trực quan và hiệu quả cho cửa hàng tạp hóa.
 
