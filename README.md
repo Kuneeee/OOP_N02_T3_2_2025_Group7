@@ -111,7 +111,7 @@ quanLyBanHang/
 
 ## Giao diện chương trình
 
-![Uploading Screenshot 2025-08-15 020450.png…]()
+<img width="1902" height="941" alt="Screenshot 2025-08-15 020450" src="https://github.com/user-attachments/assets/9e8e7410-0ba5-4b02-b8cb-620cf458e0cb" />
 
 
 ## Thông tin 
