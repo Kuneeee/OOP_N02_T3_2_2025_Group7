@@ -6,10 +6,12 @@
  •Quản lý nhập-bán hàng hóa
  •Quản lý khách hàng mua hàng
  
-# Thành viên
- 1. Đặng Đức Long (24100068) githubID: Kuneeee
- 2. Nguyễn Gia Bảo (24100074) githubID: NgGiaBaoo
- 3. Trần Quang Trường (24100073) githubID: tuonie21
+## 👨‍💻 Thành viên nhóm
+| STT | Họ tên                | Mã SV      | GitHub ID   |
+|-----|-----------------------|------------|-------------|
+| 1   | Đặng Đức Long         | 24100068   | [Kuneeee](https://github.com/Kuneeee)  |
+| 2   | Nguyễn Gia Bảo        | 24100074   | [NgGiaBaoo](https://github.com/NgGiaBaoo)  |
+| 3   | Trần Quang Trường     | 24100073   | [tuonie21](https://github.com/tuonie21)  |
 # Ứng dụng: Xây dựng ứng dụng quản lý bán hàng đồ ăn vặt cho đại học Phenikaa
 
 ## Phân tích đối tượng
