@@ -131,51 +131,12 @@
                                     <a th:href="@{/nhap/{id}(id=${nhap.nhapId})}" class="btn btn-sm btn-outline-primary">
                                         <i class="fas fa-eye"></i> READ
                                     </a>
-                                    <a th:href="@{/nhap/edit/{id}(id=${nhap.nhapId})}" class="btn btn-sm btn-outline-warning">
+                                    <a th:href="@{/nhap/{id}/edit(id=${nhap.nhapId})}" class="btn btn-sm btn-outline-warning">
                                         <i class="fas fa-edit"></i> UPDATE
                                     </a>
                                     <button class="btn btn-sm btn-outline-danger delete-btn" 
                                             th:data-id="${nhap.nhapId}" 
                                             th:data-name="${nhap.maNhapHang}">
-                                        <i class="fas fa-trash"></i> DELETE
-                                    </button>
-                                </td>
-                            </tr>
-                            <!-- Sample Data for Demo -->
-                            <tr>
-                                <td>1</td>
-                                <td>NH001</td>
-                                <td>HH001</td>
-                                <td>50</td>
-                                <td>14,500,000 ₫</td>
-                                <td>01/01/2025</td>
-                                <td class="text-center action-buttons">
-                                    <a href="/nhap/1" class="btn btn-sm btn-outline-primary">
-                                        <i class="fas fa-eye"></i> READ
-                                    </a>
-                                    <a href="/nhap/edit/1" class="btn btn-sm btn-outline-warning">
-                                        <i class="fas fa-edit"></i> UPDATE
-                                    </a>
-                                    <button class="btn btn-sm btn-outline-danger" onclick="confirmDelete('1', 'NH001')">
-                                        <i class="fas fa-trash"></i> DELETE
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>NH002</td>
-                                <td>HH002</td>
-                                <td>30</td>
-                                <td>24,500,000 ₫</td>
-                                <td>02/01/2025</td>
-                                <td class="text-center action-buttons">
-                                    <a href="/nhap/2" class="btn btn-sm btn-outline-primary">
-                                        <i class="fas fa-eye"></i> READ
-                                    </a>
-                                    <a href="/nhap/edit/2" class="btn btn-sm btn-outline-warning">
-                                        <i class="fas fa-edit"></i> UPDATE
-                                    </a>
-                                    <button class="btn btn-sm btn-outline-danger" onclick="confirmDelete('2', 'NH002')">
                                         <i class="fas fa-trash"></i> DELETE
                                     </button>
                                 </td>
@@ -253,8 +214,24 @@
         function confirmDelete(id, name) {
             document.getElementById('deleteItemName').textContent = name + ' (ID: ' + id + ')';
             document.getElementById('confirmDeleteBtn').onclick = function() {
-                // Redirect to delete endpoint
-                window.location.href = '/nhap/delete/' + id;
+                // Create form and submit POST request for DELETE
+                const form = document.createElement('form');
+                form.method = 'POST';
+                form.action = '/nhap/' + id + '/delete';
+                
+                // Add CSRF token if available
+                const csrfToken = document.querySelector('meta[name="_csrf"]');
+                const csrfHeader = document.querySelector('meta[name="_csrf_header"]');
+                if (csrfToken && csrfHeader) {
+                    const csrfInput = document.createElement('input');
+                    csrfInput.type = 'hidden';
+                    csrfInput.name = '_csrf';
+                    csrfInput.value = csrfToken.getAttribute('content');
+                    form.appendChild(csrfInput);
+                }
+                
+                document.body.appendChild(form);
+                form.submit();
             };
             new bootstrap.Modal(document.getElementById('deleteModal')).show();
         }

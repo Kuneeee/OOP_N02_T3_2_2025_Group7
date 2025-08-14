@@ -90,21 +90,58 @@ public class HangHoaController {
     // Cập nhật hàng hóa
     @PostMapping("/{id}")
     public RedirectView updateHangHoa(@PathVariable String id, @ModelAttribute HangHoa hangHoa) {
-        hangHoaService.updateHangHoa(id, hangHoa);
-        RedirectView redirectView = new RedirectView();
-        redirectView.setUrl("/hanghoa");
-        redirectView.setContextRelative(true);
-        return redirectView;
+        try {
+            System.out.println("=== UPDATING HANGHOA ===");
+            System.out.println("ID: " + id);
+            System.out.println("Data received: " + hangHoa.toString());
+            
+            HangHoa updated = hangHoaService.updateHangHoa(id, hangHoa);
+            if (updated != null) {
+                System.out.println("HangHoa updated successfully: " + updated.toString());
+            } else {
+                System.out.println("ERROR: HangHoa update failed - not found");
+            }
+            
+            RedirectView redirectView = new RedirectView();
+            redirectView.setUrl("/hanghoa");
+            redirectView.setContextRelative(true);
+            return redirectView;
+        } catch (Exception e) {
+            System.err.println("Error updating HangHoa: " + e.getMessage());
+            e.printStackTrace();
+            RedirectView redirectView = new RedirectView();
+            redirectView.setUrl("/hanghoa/" + id + "/edit?error=true");
+            redirectView.setContextRelative(true);
+            return redirectView;
+        }
     }
     
     // Xóa hàng hóa
     @PostMapping("/{id}/delete")
     public RedirectView deleteHangHoa(@PathVariable String id) {
-        hangHoaService.deleteHangHoa(id);
-        RedirectView redirectView = new RedirectView();
-        redirectView.setUrl("/hanghoa");
-        redirectView.setContextRelative(true);
-        return redirectView;
+        try {
+            System.out.println("=== DELETING HANGHOA ===");
+            System.out.println("ID to delete: " + id);
+            
+            boolean deleted = hangHoaService.deleteHangHoa(id);
+            if (deleted) {
+                System.out.println("HangHoa deleted successfully: " + id);
+            } else {
+                System.out.println("ERROR: HangHoa delete failed - not found: " + id);
+            }
+            
+            RedirectView redirectView = new RedirectView();
+            redirectView.setUrl("/hanghoa");
+            redirectView.setContextRelative(true);
+            return redirectView;
+        } catch (Exception e) {
+            System.err.println("Error deleting HangHoa: " + e.getMessage());
+            e.printStackTrace();
+            RedirectView redirectView = new RedirectView();
+            redirectView.setUrl("/hanghoa?error=true");
+            redirectView.setContextRelative(true);
+            return redirectView;
+        }
     }
     
     // API endpoints cho AJAX

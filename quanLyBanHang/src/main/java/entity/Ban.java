@@ -1,6 +1,7 @@
 package entity;
 
 import javax.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.LocalDate;
@@ -30,6 +31,7 @@ public class Ban {
     private String khachHang;
     
     @Column(name = "ngay_ban", nullable = false)
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime ngayBan;
     
     @Column(name = "ghi_chu", length = 500)
@@ -182,6 +184,7 @@ public class Ban {
                 ", khachHang='" + khachHang + '\'' +
                 ", ngayBan='" + ngayBan + '\'' +
                 ", giaBan=" + giaBan +
+                ", giaNhap=" + giaNhap +
                 ", soLuongBan=" + soLuongBan +
                 ", tongTien=" + tongTien +
                 ", ghiChu='" + ghiChu + '\'' +

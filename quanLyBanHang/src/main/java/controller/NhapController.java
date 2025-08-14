@@ -69,7 +69,7 @@ public class NhapController {
     @PostMapping("/{id}")
     public String updateNhap(@PathVariable Long id, @ModelAttribute Nhap nhap) {
         nhapService.updateNhap(id, nhap);
-        return "redirect:/nhap/" + id;
+        return "redirect:/nhap";
     }
     
     // Xóa phiếu nhập

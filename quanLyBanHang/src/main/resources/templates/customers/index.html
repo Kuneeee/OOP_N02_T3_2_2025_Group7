@@ -124,49 +124,12 @@
                                     <a th:href="@{/customers/{id}(id=${khachHang.khachHangId})}" class="btn btn-sm btn-outline-primary">
                                         <i class="fas fa-eye"></i> READ
                                     </a>
-                                    <a th:href="@{/customers/edit/{id}(id=${khachHang.khachHangId})}" class="btn btn-sm btn-outline-warning">
+                                    <a th:href="@{/customers/{id}/edit(id=${khachHang.khachHangId})}" class="btn btn-sm btn-outline-warning">
                                         <i class="fas fa-edit"></i> UPDATE
                                     </a>
                                     <button class="btn btn-sm btn-outline-danger delete-btn" 
                                             th:data-id="${khachHang.khachHangId}" 
                                             th:data-name="${khachHang.tenKhachHang}">
-                                        <i class="fas fa-trash"></i> DELETE
-                                    </button>
-                                </td>
-                            </tr>
-                            <!-- Sample Data for Demo -->
-                            <tr>
-                                <td>KH001</td>
-                                <td>Nguyễn Văn An</td>
-                                <td>0901234567</td>
-                                <td>nguyenvanan@email.com</td>
-                                <td>01/01/2025</td>
-                                <td class="text-center action-buttons">
-                                    <a href="/customers/KH001" class="btn btn-sm btn-outline-primary">
-                                        <i class="fas fa-eye"></i> READ
-                                    </a>
-                                    <a href="/customers/edit/KH001" class="btn btn-sm btn-outline-warning">
-                                        <i class="fas fa-edit"></i> UPDATE
-                                    </a>
-                                    <button class="btn btn-sm btn-outline-danger" onclick="confirmDelete('KH001', 'Nguyễn Văn An')">
-                                        <i class="fas fa-trash"></i> DELETE
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>KH002</td>
-                                <td>Trần Thị Bình</td>
-                                <td>0907654321</td>
-                                <td>tranthibinh@email.com</td>
-                                <td>02/01/2025</td>
-                                <td class="text-center action-buttons">
-                                    <a href="/customers/KH002" class="btn btn-sm btn-outline-primary">
-                                        <i class="fas fa-eye"></i> READ
-                                    </a>
-                                    <a href="/customers/edit/KH002" class="btn btn-sm btn-outline-warning">
-                                        <i class="fas fa-edit"></i> UPDATE
-                                    </a>
-                                    <button class="btn btn-sm btn-outline-danger" onclick="confirmDelete('KH002', 'Trần Thị Bình')">
                                         <i class="fas fa-trash"></i> DELETE
                                     </button>
                                 </td>
@@ -244,8 +207,24 @@
         function confirmDelete(id, name) {
             document.getElementById('deleteItemName').textContent = name + ' (ID: ' + id + ')';
             document.getElementById('confirmDeleteBtn').onclick = function() {
-                // Redirect to delete endpoint
-                window.location.href = '/customers/delete/' + id;
+                // Create form and submit POST request for DELETE
+                const form = document.createElement('form');
+                form.method = 'POST';
+                form.action = '/customers/' + id + '/delete';
+                
+                // Add CSRF token if available
+                const csrfToken = document.querySelector('meta[name="_csrf"]');
+                const csrfHeader = document.querySelector('meta[name="_csrf_header"]');
+                if (csrfToken && csrfHeader) {
+                    const csrfInput = document.createElement('input');
+                    csrfInput.type = 'hidden';
+                    csrfInput.name = '_csrf';
+                    csrfInput.value = csrfToken.getAttribute('content');
+                    form.appendChild(csrfInput);
+                }
+                
+                document.body.appendChild(form);
+                form.submit();
             };
             new bootstrap.Modal(document.getElementById('deleteModal')).show();
         }

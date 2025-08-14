@@ -51,6 +51,12 @@
                             <div class="row">
                                 <div class="col-md-4 mb-3">
                                     <label class="form-label">
+                                        <i class="fas fa-calendar me-1"></i>Ngày Bán
+                                    </label>
+                                    <input type="datetime-local" class="form-control" th:field="*{ngayBan}" required>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label class="form-label">
                                         <i class="fas fa-sort-numeric-up me-1"></i>Số Lượng Bán
                                     </label>
                                     <input type="number" class="form-control" th:field="*{soLuongBan}" placeholder="Số lượng" required>
@@ -61,21 +67,21 @@
                                     </label>
                                     <input type="number" class="form-control" th:field="*{giaBan}" step="0.01" placeholder="Giá bán" required>
                                 </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-md-4 mb-3">
                                     <label class="form-label">
                                         <i class="fas fa-calculator me-1"></i>Tổng Tiền
                                     </label>
                                     <input type="number" class="form-control" th:field="*{tongTien}" step="0.01" placeholder="Tổng tiền">
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
+                                <div class="col-md-4 mb-3">
                                     <label class="form-label">
                                         <i class="fas fa-dollar-sign me-1"></i>Giá Nhập
                                     </label>
                                     <input type="number" class="form-control" th:field="*{giaNhap}" step="0.01" placeholder="Giá nhập gốc">
                                 </div>
-                                <div class="col-md-6 mb-3">
+                                <div class="col-md-4 mb-3">
                                     <label class="form-label">
                                         <i class="fas fa-user-tag me-1"></i>Khách Hàng
                                     </label>

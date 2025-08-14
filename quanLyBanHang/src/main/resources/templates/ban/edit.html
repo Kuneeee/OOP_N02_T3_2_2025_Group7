@@ -41,6 +41,18 @@
                                 </div>
                             </div>
                             <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">
+                                        <i class="fas fa-calendar me-1"></i>Ngày Bán
+                                    </label>
+                                    <input type="datetime-local" class="form-control" th:field="*{ngayBan}" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Khách Hàng</label>
+                                    <input type="text" class="form-control" th:field="*{khachHang}">
+                                </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-md-4 mb-3">
                                     <label class="form-label">Số Lượng Bán</label>
                                     <input type="number" class="form-control" th:field="*{soLuongBan}" required>
@@ -60,8 +72,8 @@
                                     <input type="number" class="form-control" th:field="*{giaNhap}" step="0.01">
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label class="form-label">Khách Hàng</label>
-                                    <input type="text" class="form-control" th:field="*{khachHang}">
+                                    <label class="form-label">ID Đồ Ăn Vặt (Chỉ xem)</label>
+                                    <input type="text" class="form-control" th:value="${ban.hangHoaID}" readonly disabled>
                                 </div>
                             </div>
                             <div class="row">

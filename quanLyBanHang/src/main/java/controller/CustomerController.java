@@ -87,7 +87,7 @@ public class CustomerController {
     @PostMapping("/{id}")
     public String updateCustomer(@PathVariable String id, @ModelAttribute KhachHang khachHang) {
         customerService.updateCustomer(id, khachHang);
-        return "redirect:/customers/" + id;
+        return "redirect:/customers";
     }
     
     // Xóa khách hàng

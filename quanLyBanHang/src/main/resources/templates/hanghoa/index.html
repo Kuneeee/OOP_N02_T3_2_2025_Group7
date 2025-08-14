@@ -123,7 +123,7 @@
                                 <td th:text="${hanghoa.hanghoaID}">HH001</td>
                                 <td th:text="${hanghoa.tenHangHoa}">Laptop Dell</td>
                                 <td th:text="${hanghoa.soLuongHangHoa}">50</td>
-                                <td th:text="${#numbers.formatDecimal(hanghoa.giaNhap, 0, 'COMMA', 0, 'POINT')} + ' ₫'">15,000,000</td>
+                                <td th:text="${#numbers.formatDecimal(hanghoa.giaNhap, 0, 'COMMA', 2, 'POINT')} + ' ₫'">15,000,000</td>
                                 <td th:text="${hanghoa.ngayNhap != null ? #temporals.format(hanghoa.ngayNhap, 'dd/MM/yyyy') : 'N/A'}">01/01/2025</td>
                                 <td class="text-center action-buttons">
                                     <a th:href="@{/hanghoa/{id}(id=${hanghoa.hanghoaID})}" class="btn btn-sm btn-outline-primary">
@@ -219,8 +219,12 @@
         function confirmDelete(id, name) {
             document.getElementById('deleteItemName').textContent = name + ' (ID: ' + id + ')';
             document.getElementById('confirmDeleteBtn').onclick = function() {
-                // Redirect to delete endpoint
-                window.location.href = '/hanghoa/delete/' + id;
+                // Create form to send POST request to correct endpoint
+                const form = document.createElement('form');
+                form.method = 'POST';
+                form.action = '/hanghoa/' + id + '/delete';
+                document.body.appendChild(form);
+                form.submit();
             };
             new bootstrap.Modal(document.getElementById('deleteModal')).show();
         }

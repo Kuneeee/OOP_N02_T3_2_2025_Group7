@@ -38,12 +38,17 @@ public class BanService {
     public Ban updateBan(Long id, Ban banDetails) {
         return banRepository.findById(id)
                 .map(ban -> {
+                    ban.setBanCode(banDetails.getBanCode());
                     ban.setHangHoaID(banDetails.getHangHoaID());
                     ban.setTenHangHoa(banDetails.getTenHangHoa());
                     ban.setTenKhachHang(banDetails.getTenKhachHang());
+                    ban.setKhachHang(banDetails.getKhachHang());
                     ban.setSoLuongBan(banDetails.getSoLuongBan());
                     ban.setGiaBan(banDetails.getGiaBan());
+                    ban.setGiaNhap(banDetails.getGiaNhap()); // Missing field!
+                    ban.setTongTien(banDetails.getTongTien()); // Missing field!
                     ban.setNgayBan(banDetails.getNgayBan());
+                    ban.setGhiChu(banDetails.getGhiChu()); // Missing field!
                     return banRepository.save(ban);
                 })
                 .orElse(null);

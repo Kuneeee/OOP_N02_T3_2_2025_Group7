@@ -31,23 +31,51 @@
                                 </div>
                             </div>
                             <div class="row">
+                                <div class="col-md-12 mb-3">
+                                    <label class="form-label">Tên Hàng Hóa</label>
+                                    <input type="text" class="form-control" th:field="*{tenHangHoa}" required>
+                                </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Tên Khách Hàng</label>
                                     <input type="text" class="form-control" th:field="*{tenKhachHang}" required>
                                 </div>
                                 <div class="col-md-6 mb-3">
+                                    <label class="form-label">
+                                        <i class="fas fa-calendar me-1"></i>Ngày Bán
+                                    </label>
+                                    <input type="datetime-local" class="form-control" th:field="*{ngayBan}" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
                                     <label class="form-label">Số Lượng Bán</label>
                                     <input type="number" class="form-control" th:field="*{soLuongBan}" required>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label class="form-label">Giá Bán</label>
+                                    <input type="number" class="form-control" th:field="*{giaBan}" step="0.01" required>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label class="form-label">Tổng Tiền</label>
+                                    <input type="number" class="form-control" th:field="*{tongTien}" step="0.01">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6 mb-3">
-                                    <label class="form-label">Giá Bán</label>
-                                    <input type="number" class="form-control" th:field="*{giaBan}" step="0.01" required>
+                                    <label class="form-label">Giá Nhập</label>
+                                    <input type="number" class="form-control" th:field="*{giaNhap}" step="0.01">
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label class="form-label">Tổng Tiền</label>
-                                    <input type="number" class="form-control" th:field="*{tongTien}" step="0.01">
+                                    <label class="form-label">Khách Hàng</label>
+                                    <input type="text" class="form-control" th:field="*{khachHang}">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 mb-3">
+                                    <label class="form-label">Ghi Chú</label>
+                                    <textarea class="form-control" th:field="*{ghiChu}" rows="3"></textarea>
                                 </div>
                             </div>
                             <div class="text-center">
