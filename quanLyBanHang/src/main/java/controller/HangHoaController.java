@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.view.RedirectView;
 import service.HangHoaService;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Controller
@@ -42,14 +44,6 @@ public class HangHoaController {
     public String newHangHoa(Model model) {
         model.addAttribute("hangHoa", new HangHoa());
         return "hanghoa/new";
-    }
-    
-    // Trang tìm kiếm hàng hóa
-    @GetMapping("/search")
-    public String searchHangHoa(Model model) {
-        List<HangHoa> hangHoaList = hangHoaService.getAllHangHoa();
-        model.addAttribute("hangHoaList", hangHoaList);
-        return "hanghoa/search";
     }
     
     // Xem chi tiết hàng hóa

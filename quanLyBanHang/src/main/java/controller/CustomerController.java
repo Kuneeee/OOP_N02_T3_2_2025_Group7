@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import service.CustomerService;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Controller
@@ -39,14 +41,6 @@ public class CustomerController {
     public String newCustomer(Model model) {
         model.addAttribute("khachHang", new KhachHang());
         return "customers/new";
-    }
-    
-    // Trang tìm kiếm khách hàng
-    @GetMapping("/search")
-    public String searchCustomers(Model model) {
-        List<KhachHang> customers = customerService.getAllCustomers();
-        model.addAttribute("customers", customers);
-        return "customers/search";
     }
     
     // Xem chi tiết khách hàng

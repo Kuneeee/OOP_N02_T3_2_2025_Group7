@@ -41,46 +41,7 @@
         </div>
     </section>
 
-    <div class="container my-5">
-        <!-- Search Section -->
-        <div id="search-section" class="card mb-4" style="display: none;">
-            <div class="card-header bg-success text-white">
-                <h5 class="mb-0">
-                    <i class="fas fa-search me-2"></i>
-                    Tìm Kiếm Đồ Ăn Vặt
-                </h5>
-            </div>
-            <div class="card-body">
-                <form class="row g-3">
-                    <div class="col-md-4">
-                        <label class="form-label">Tên Đồ Ăn Vặt</label>
-                        <input type="text" class="form-control" placeholder="Nhập tên đồ ăn vặt...">
-                    </div>
-                    <div class="col-md-4">
-                        <label class="form-label">ID Hàng Hóa</label>
-                        <input type="text" class="form-control" placeholder="Nhập ID...">
-                    </div>
-                    <div class="col-md-4">
-                        <label class="form-label">Khoảng Giá</label>
-                        <select class="form-select">
-                            <option>Tất cả</option>
-                            <option>Dưới 100,000</option>
-                            <option>100,000 - 500,000</option>
-                            <option>Trên 500,000</option>
-                        </select>
-                    </div>
-                    <div class="col-12">
-                        <button type="submit" class="btn btn-success">
-                            <i class="fas fa-search me-2"></i>Tìm Kiếm
-                        </button>
-                        <button type="reset" class="btn btn-outline-secondary">
-                            <i class="fas fa-undo me-2"></i>Xóa Bộ Lọc
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
+        <div class="container my-5">
         <!-- Data Table -->
         <div class="card">
             <div class="card-header bg-success text-white">
@@ -178,16 +139,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        function toggleSearch() {
-            const searchSection = document.getElementById('search-section');
-            if (searchSection.style.display === 'none') {
-                searchSection.style.display = 'block';
-                searchSection.scrollIntoView({ behavior: 'smooth' });
-            } else {
-                searchSection.style.display = 'none';
-            }
-        }
-
         // Add event listeners for delete buttons
         document.addEventListener('DOMContentLoaded', function() {
             const deleteButtons = document.querySelectorAll('.delete-btn');
