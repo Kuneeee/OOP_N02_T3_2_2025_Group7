@@ -91,6 +91,24 @@ quanLyBanHang/
 
 <img width="354" height="545" alt="Ac1" src="https://github.com/user-attachments/assets/a769f436-a637-4164-80ff-a288f321ce9e" />
 
+## Activity Diagram-Tạo đơn bán hàng mới 
+
+<img width="558" height="655" alt="Ac2" src="https://github.com/user-attachments/assets/f3489009-56da-4e9a-a041-b571ef52a34f" />
+
+## Activity Diagram-Tìm kiếm hàng trong kho hàng hóa
+
+<img width="577" height="655" alt="Ac3" src="https://github.com/user-attachments/assets/14340f1f-b41b-4e2d-85a6-01db76ab90cd" />
+
+## Activity Diagram-Tạo khách hàng mới
+
+<img width="377" height="655" alt="Ac4" src="https://github.com/user-attachments/assets/bff5bcab-178d-42b8-94a3-06c8ca674f74" />
+
+
+## Activity Diagram-Xóa khách hàng
+
+<img width="386" height="655" alt="Ac5 (1)" src="https://github.com/user-attachments/assets/8852bb83-b6d7-4e6b-a2e0-f9d2861499bb" />
+
+
 ## Hướng phát triển tương lai
 - Thêm giao diện người dùng: JavaFX hoặc Swing
 - Chức năng tìm kiếm theo tên/mã hàng hóa
