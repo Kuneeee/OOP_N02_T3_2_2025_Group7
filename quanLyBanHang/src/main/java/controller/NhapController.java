@@ -25,6 +25,30 @@ public class NhapController {
         return "nhap/index";
     }
     
+    // Trang thêm mới phiếu nhập
+    @GetMapping("/new")
+    public String newNhap(Model model) {
+        model.addAttribute("nhap", new Nhap());
+        return "nhap/new";
+    }
+    
+    // Trang tìm kiếm phiếu nhập
+    @GetMapping("/search")
+    public String searchNhap(Model model) {
+        List<Nhap> nhapList = nhapService.getAllNhap();
+        model.addAttribute("nhapList", nhapList);
+        return "nhap/search";
+    }
+    
+    // Xem chi tiết phiếu nhập
+    @GetMapping("/{id}")
+    public String viewNhap(@PathVariable Long id, Model model) {
+        Nhap nhap = nhapService.getNhapById(id)
+                .orElseThrow(() -> new RuntimeException("Không tìm thấy phiếu nhập"));
+        model.addAttribute("nhap", nhap);
+        return "nhap/detail";
+    }
+    
     // Tạo mới phiếu nhập
     @PostMapping
     public String createNhap(@ModelAttribute Nhap nhap) {

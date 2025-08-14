@@ -22,7 +22,31 @@ public class HangHoaController {
         List<HangHoa> hangHoaList = hangHoaService.getAllHangHoa();
         model.addAttribute("hangHoaList", hangHoaList);
         model.addAttribute("newHangHoa", new HangHoa());
-        return "products/index";
+        return "hanghoa/index";
+    }
+    
+    // Trang thêm mới hàng hóa
+    @GetMapping("/new")
+    public String newHangHoa(Model model) {
+        model.addAttribute("hangHoa", new HangHoa());
+        return "hanghoa/new";
+    }
+    
+    // Trang tìm kiếm hàng hóa
+    @GetMapping("/search")
+    public String searchHangHoa(Model model) {
+        List<HangHoa> hangHoaList = hangHoaService.getAllHangHoa();
+        model.addAttribute("hangHoaList", hangHoaList);
+        return "hanghoa/search";
+    }
+    
+    // Xem chi tiết hàng hóa
+    @GetMapping("/{id}")
+    public String viewHangHoa(@PathVariable String id, Model model) {
+        HangHoa hangHoa = hangHoaService.getHangHoaById(id)
+                .orElseThrow(() -> new RuntimeException("Không tìm thấy hàng hóa"));
+        model.addAttribute("hangHoa", hangHoa);
+        return "hanghoa/detail";
     }
     
     // Tạo mới hàng hóa
@@ -38,7 +62,7 @@ public class HangHoaController {
         HangHoa hangHoa = hangHoaService.getHangHoaById(id)
                 .orElseThrow(() -> new RuntimeException("Không tìm thấy hàng hóa"));
         model.addAttribute("hangHoa", hangHoa);
-        return "products/edit";
+        return "hanghoa/edit";
     }
     
     // Cập nhật hàng hóa

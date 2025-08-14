@@ -22,7 +22,31 @@ public class BanController {
         List<Ban> banList = banService.getAllBan();
         model.addAttribute("banList", banList);
         model.addAttribute("newBan", new Ban());
-        return "orders/index";
+        return "ban/index";
+    }
+    
+    // Trang thêm mới phiếu bán
+    @GetMapping("/new")
+    public String newBan(Model model) {
+        model.addAttribute("ban", new Ban());
+        return "ban/new";
+    }
+    
+    // Trang tìm kiếm phiếu bán
+    @GetMapping("/search")
+    public String searchBan(Model model) {
+        List<Ban> banList = banService.getAllBan();
+        model.addAttribute("banList", banList);
+        return "ban/search";
+    }
+    
+    // Xem chi tiết phiếu bán
+    @GetMapping("/{id}")
+    public String viewBan(@PathVariable Long id, Model model) {
+        Ban ban = banService.getBanById(id)
+                .orElseThrow(() -> new RuntimeException("Không tìm thấy phiếu bán"));
+        model.addAttribute("ban", ban);
+        return "ban/detail";
     }
     
     // Tạo mới phiếu bán
@@ -38,7 +62,7 @@ public class BanController {
         Ban ban = banService.getBanById(id)
                 .orElseThrow(() -> new RuntimeException("Không tìm thấy phiếu bán"));
         model.addAttribute("ban", ban);
-        return "orders/edit";
+        return "ban/edit";
     }
     
     // Cập nhật phiếu bán

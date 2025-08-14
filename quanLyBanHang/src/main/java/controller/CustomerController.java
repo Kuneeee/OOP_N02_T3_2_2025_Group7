@@ -20,9 +20,34 @@ public class CustomerController {
     @GetMapping
     public String listCustomers(Model model) {
         List<KhachHang> customers = customerService.getAllCustomers();
+        model.addAttribute("khachHangList", customers);
         model.addAttribute("customers", customers);
         model.addAttribute("newCustomer", new KhachHang());
         return "customers/index";
+    }
+    
+    // Trang thêm mới khách hàng
+    @GetMapping("/new")
+    public String newCustomer(Model model) {
+        model.addAttribute("customer", new KhachHang());
+        return "customers/new";
+    }
+    
+    // Trang tìm kiếm khách hàng
+    @GetMapping("/search")
+    public String searchCustomers(Model model) {
+        List<KhachHang> customers = customerService.getAllCustomers();
+        model.addAttribute("customers", customers);
+        return "customers/search";
+    }
+    
+    // Xem chi tiết khách hàng
+    @GetMapping("/{id}")
+    public String viewCustomer(@PathVariable String id, Model model) {
+        KhachHang khachHang = customerService.getCustomerById(id)
+                .orElseThrow(() -> new RuntimeException("Không tìm thấy khách hàng"));
+        model.addAttribute("customer", khachHang);
+        return "customers/detail";
     }
     
     // Tạo mới khách hàng
