@@ -120,6 +120,10 @@ quanLyBanHang/
 - Thêm giao diện người dùng: JavaFX hoặc Swing
 - Chức năng tìm kiếm theo tên/mã hàng hóa
 - Lưu trữ dữ liệu bằng file hoặc tích hợp với database
+## Cài đặt và chạy
+-Mở project bằng IDE hoặc:
+ +javac src/*.java
+ +java Main
 ## 📚 Tài liệu tham khảo
 Tài liệu tham khảo
 -Slide bài giảng môn Lập trình Hướng Đối Tượng(OOP) – GVHD: TS.Nguyễn Lệ Thu
