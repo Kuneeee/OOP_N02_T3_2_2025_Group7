@@ -1,0 +1,11 @@
+{
+  "name": "OOP Group 7 - Java 17",
+  "image": "mcr.microsoft.com/devcontainers/universal:2-linux",
+  "features": {
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "17",
+      "installMaven": true
+    }
+  },
+  "postCreateCommand": "java -version && mvn -v"
+}
