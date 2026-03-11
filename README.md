@@ -122,7 +122,9 @@ quanLyBanHang/
 - Lưu trữ dữ liệu bằng file hoặc tích hợp với database
 ## Cài đặt và chạy
 -Mở project bằng IDE hoặc:
- +cd quanLyBanHang && mvn clean compile sau đó mvn spring-boot:run
+ + B1: ./j21.sh
+ + B2: cd quanLyBanHang && mvn clean compile
+ + B3: mvn spring-boot:run
 ## 📚 Tài liệu tham khảo
 Tài liệu tham khảo
 -Slide bài giảng môn Lập trình Hướng Đối Tượng(OOP) – GVHD: TS.Nguyễn Lệ Thu
