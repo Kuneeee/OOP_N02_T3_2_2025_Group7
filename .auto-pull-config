@@ -29,7 +29,7 @@ auto_git_pull() {
     fi
 }
 
-# Chạy auto pull khi vào thư mục workspace
+# Chạy auto Java 21 và auto pull khi vào thư mục workspace
 if [[ "$PWD" == *"OOP_N02_T3_2_2025_Group7"* ]]; then
     auto_set_java_default
     auto_git_pull
