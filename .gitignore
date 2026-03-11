@@ -72,6 +72,9 @@ build/
 # VS Code
 .vscode/
 
+# Local JDK
+quanLyBanHang/.jdk/
+
 # Secrets
 secrets/
 *.secret
