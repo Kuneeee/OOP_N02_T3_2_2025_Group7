@@ -3,34 +3,68 @@
 # source /workspaces/OOP_N02_T3_2_2025_Group7/.auto-pull-config
 
 auto_set_java_default() {
-    local sdkman_init="$HOME/.sdkman/bin/sdkman-init.sh"
     local java_version="21.0.9-ms"
+    local sdkman_init=""
 
-    if [ -s "$sdkman_init" ]; then
-        # Load SDKMAN only when needed, then switch the default JDK.
-        # shellcheck disable=SC1090
-        . "$sdkman_init"
+    if ! command -v sdk >/dev/null 2>&1; then
+        if [ -n "$SDKMAN_DIR" ] && [ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]; then
+            sdkman_init="$SDKMAN_DIR/bin/sdkman-init.sh"
+        elif [ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]; then
+            sdkman_init="$HOME/.sdkman/bin/sdkman-init.sh"
+        elif [ -s "/usr/local/sdkman/bin/sdkman-init.sh" ]; then
+            sdkman_init="/usr/local/sdkman/bin/sdkman-init.sh"
+        fi
 
-        if sdk list java | grep -q "${java_version}"; then
-            sdk default java "$java_version" >/dev/null 2>&1
+        if [ -n "$sdkman_init" ]; then
+            # shellcheck disable=SC1090
+            . "$sdkman_init"
+        fi
+    fi
+
+    if ! command -v sdk >/dev/null 2>&1; then
+        return
+    fi
+
+    if sdk use java "$java_version" >/dev/null 2>&1 || sdk default java "$java_version" >/dev/null 2>&1; then
+        if [ -n "$JAVA_HOME" ] && [ -x "$JAVA_HOME/bin/java" ]; then
+            export PATH="$JAVA_HOME/bin:$PATH"
         fi
     fi
 }
 
 auto_git_pull() {
-    if [ -d ".git" ]; then
-        echo "🔄 Đang pull code mới nhất..."
-        git pull origin main --quiet
-        if [ $? -eq 0 ]; then
-            echo "✅ Code đã được cập nhật!"
-        else
-            echo "❌ Không thể pull code. Vui lòng kiểm tra lại."
+    if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+        local repo_root
+        repo_root="$(git rev-parse --show-toplevel 2>/dev/null)"
+
+        # Chỉ auto pull trong đúng repository này
+        if [ "$repo_root" = "/workspaces/OOP_N02_T3_2_2025_Group7" ]; then
+            echo "Dang pull code moi nhat..."
+            if git -C "$repo_root" pull origin main --quiet; then
+                echo "Code da duoc cap nhat!"
+            else
+                echo "Khong the pull code. Vui long kiem tra lai."
+            fi
         fi
     fi
 }
 
-# Chạy auto Java 21 và auto pull khi vào thư mục workspace
-if [[ "$PWD" == *"OOP_N02_T3_2_2025_Group7"* ]]; then
-    auto_set_java_default
-    auto_git_pull
+oop_auto_on_enter_repo() {
+    if [[ "$PWD" == *"OOP_N02_T3_2_2025_Group7"* ]]; then
+        if [ "$__OOP_AUTO_INIT_DONE" != "1" ]; then
+            auto_set_java_default
+            auto_git_pull
+            __OOP_AUTO_INIT_DONE="1"
+        fi
+    else
+        __OOP_AUTO_INIT_DONE="0"
+    fi
+}
+
+# Register hook once so it runs when the prompt is shown (including after cd).
+if [[ ";$PROMPT_COMMAND;" != *";oop_auto_on_enter_repo;"* ]]; then
+    PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND; }oop_auto_on_enter_repo"
 fi
+
+# Also run once immediately for current shell.
+oop_auto_on_enter_repo
