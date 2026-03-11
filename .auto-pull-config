@@ -1,5 +1,21 @@
-# Script tự động pull code khi mở terminal
-# Thêm vào file ~/.bashrc hoặc ~/.zshrc
+# Script tự động chạy khi mở terminal
+# Thêm vào file ~/.bashrc hoặc ~/.zshrc:
+# source /workspaces/OOP_N02_T3_2_2025_Group7/.auto-pull-config
+
+auto_set_java_default() {
+    local sdkman_init="$HOME/.sdkman/bin/sdkman-init.sh"
+    local java_version="21.0.9-ms"
+
+    if [ -s "$sdkman_init" ]; then
+        # Load SDKMAN only when needed, then switch the default JDK.
+        # shellcheck disable=SC1090
+        . "$sdkman_init"
+
+        if sdk list java | grep -q "${java_version}"; then
+            sdk default java "$java_version" >/dev/null 2>&1
+        fi
+    fi
+}
 
 auto_git_pull() {
     if [ -d ".git" ]; then
@@ -15,5 +31,6 @@ auto_git_pull() {
 
 # Chạy auto pull khi vào thư mục workspace
 if [[ "$PWD" == *"OOP_N02_T3_2_2025_Group7"* ]]; then
+    auto_set_java_default
     auto_git_pull
 fi
